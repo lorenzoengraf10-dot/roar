@@ -92,8 +92,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onExploreClick, onSelect
               <div className="relative rounded-2xl overflow-hidden border border-dark-700 bg-dark-850 shadow-2xl group">
                 <img
                   src={`${import.meta.env.BASE_URL}images/combo-trebol-verde.jpg`}
-                  alt="ROAR Drop 2026"
+                  alt="Combo Trébol Esmeralda Silver - Collar y pulsera ROAR en acero quirúrgico 316L"
                   className="w-full h-[380px] sm:h-[440px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent" />
                 

@@ -12,6 +12,25 @@ interface SEOConfig {
   ogImage?: string;
 }
 
+const SEO_DOMAIN = 'https://www.roarjoyas.com.ar';
+
+/**
+ * Resolves an image path to an absolute URL on the canonical SEO domain.
+ * Passes already-absolute URLs (e.g. Unsplash) through unchanged, and
+ * strips the Vite build base path (e.g. "/roar/") from local asset paths
+ * so structured data always points at the real production domain.
+ */
+function toAbsoluteSeoUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  const base = import.meta.env.BASE_URL;
+  let rel = path;
+  if (base !== '/' && rel.startsWith(base)) {
+    rel = `/${rel.slice(base.length)}`;
+  }
+  if (!rel.startsWith('/')) rel = `/${rel}`;
+  return `${SEO_DOMAIN}${rel}`;
+}
+
 export const useSEO = (config: SEOConfig) => {
   useEffect(() => {
     const baseTitle = 'ROAR | Joyería Urbana & Accesorios Premium Argentina';
@@ -50,7 +69,7 @@ export const useSEO = (config: SEOConfig) => {
         canonical.setAttribute('rel', 'canonical');
         document.head.appendChild(canonical);
       }
-      canonical.setAttribute('href', `https://www.roarjoyas.com.ar${config.canonicalPath}`);
+      canonical.setAttribute('href', `${SEO_DOMAIN}${config.canonicalPath}`);
     }
   }, [config.title, config.description, config.canonicalPath, config.ogImage]);
 };
@@ -79,7 +98,7 @@ export function buildProductJsonLD(product: ProductSEOData): string {
     name: product.name,
     description: product.description,
     sku: product.sku,
-    image: `https://www.roarjoyas.com.ar${product.image}`,
+    image: toAbsoluteSeoUrl(product.image),
     brand: {
       '@type': 'Brand',
       name: product.brand || 'ROAR',
@@ -87,7 +106,7 @@ export function buildProductJsonLD(product: ProductSEOData): string {
     category: product.category,
     offers: {
       '@type': 'Offer',
-      url: `https://www.roarjoyas.com.ar/#${product.sku}`,
+      url: `${SEO_DOMAIN}/#${product.sku}`,
       priceCurrency: 'ARS',
       price: product.price.toString(),
       priceValidUntil: '2027-12-31',

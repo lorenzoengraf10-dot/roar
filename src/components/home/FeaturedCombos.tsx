@@ -66,6 +66,7 @@ export const FeaturedCombos: React.FC<FeaturedCombosProps> = ({ combos, onQuickV
                       src={combo.images[0]}
                       alt={combo.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-80" />
                     <span className="absolute bottom-3 left-3 bg-dark-900/90 text-gold-400 border border-gold-500/30 text-[10px] font-black uppercase px-2.5 py-1 rounded">

@@ -141,7 +141,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       selectedImageIndex === idx ? 'border-gold-400' : 'border-dark-800 opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt="Miniatura" className="w-full h-full object-cover" />
+                    <img src={img} alt={`${product.name} - vista ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
                   </button>
                 ))}
               </div>

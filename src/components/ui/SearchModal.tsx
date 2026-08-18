@@ -112,6 +112,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       src={product.images[0]}
                       alt={product.name}
                       className="w-12 h-12 rounded-lg object-cover bg-dark-950 border border-dark-700 shrink-0"
+                      loading="lazy"
                     />
                     <div>
                       <h4 className="text-xs font-bold text-white group-hover:text-gold-400 transition-colors line-clamp-1">

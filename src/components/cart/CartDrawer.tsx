@@ -145,6 +145,7 @@ export const CartDrawer: React.FC = () => {
                       src={item.product.images[0]}
                       alt={item.product.name}
                       className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover bg-dark-900 border border-dark-800 shrink-0"
+                      loading="lazy"
                     />
 
                     {/* Details */}

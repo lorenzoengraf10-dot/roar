@@ -87,8 +87,9 @@ export const CustomerReviews: React.FC = () => {
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
                 src={`${import.meta.env.BASE_URL}images/combo-trebol-verde.jpg`}
-                alt="Instagram ROAR"
+                alt="Cliente ROAR luciendo el Combo Trébol Esmeralda Silver"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2 text-white text-xs font-bold">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
@@ -99,8 +100,9 @@ export const CustomerReviews: React.FC = () => {
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
                 src={`${import.meta.env.BASE_URL}images/collar-sol-dorado.jpg`}
-                alt="Instagram ROAR"
+                alt="Cliente ROAR luciendo el Colgante Medallón Sol Radiante Gold"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2 text-white text-xs font-bold">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
@@ -111,8 +113,9 @@ export const CustomerReviews: React.FC = () => {
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
                 src={`${import.meta.env.BASE_URL}images/cadena-cruz-box.jpg`}
-                alt="Instagram ROAR"
+                alt="Cliente ROAR luciendo la Cadena Box Chain con Cruz Cincelada Silver"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2 text-white text-xs font-bold">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
@@ -123,8 +126,9 @@ export const CustomerReviews: React.FC = () => {
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
                 src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80"
-                alt="Instagram ROAR"
+                alt="Cliente ROAR luciendo un anillo de la colección"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-dark-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2 text-white text-xs font-bold">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
