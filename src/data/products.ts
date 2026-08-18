@@ -139,8 +139,8 @@ export const PRODUCTS: Product[] = [
     originalPrice: 56000,
     description: 'Eslabón cubano de 7mm con sección central engastada con microcirconias suizas de brillo diamantado. Baño de oro 18K de máxima duración.',
     images: [
+      `${import.meta.env.BASE_URL}images/pulsera-cuban-pave.jpg`,
       'https://images.unsplash.com/photo-1611591475155-4286fa7c2e63?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [
       { id: 'p-pave-18', name: '18 cm (Muñeca fina)', inStock: true },

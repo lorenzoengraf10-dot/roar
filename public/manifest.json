@@ -2,20 +2,20 @@
   "name": "ROAR Joyería Urbana",
   "short_name": "ROAR Joyas",
   "description": "Tienda oficial de joyería urbana y accesorios premium en Argentina",
-  "start_url": "/roar/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#070707",
   "theme_color": "#eab308",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/roar/images/logo-roar.jpg",
+      "src": "/images/logo-roar.jpg",
       "sizes": "192x192",
       "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "/roar/images/logo-roar.jpg",
+      "src": "/images/logo-roar.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any"

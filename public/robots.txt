@@ -10,7 +10,7 @@ Disallow: /.git/
 Disallow: /src/
 
 # Sitemap
-Sitemap: https://www.roarjoyas.com.ar/sitemap.xml
+Sitemap: https://rora.vercel.app/sitemap.xml
 
 # Google
 User-agent: Googlebot

@@ -12,7 +12,7 @@ interface SEOConfig {
   ogImage?: string;
 }
 
-const SEO_DOMAIN = 'https://www.roarjoyas.com.ar';
+const SEO_DOMAIN = 'https://rora.vercel.app';
 
 /**
  * Resolves an image path to an absolute URL on the canonical SEO domain.
