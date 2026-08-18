@@ -5,28 +5,28 @@
 
   <!-- Página Principal -->
   <url>
-    <loc>https://rora.vercel.app/</loc>
+    <loc>https://roar.vercel.app/</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es-AR" href="https://rora.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://roar.vercel.app/"/>
     <image:image>
-      <image:loc>https://rora.vercel.app/images/logo-roar.jpg</image:loc>
+      <image:loc>https://roar.vercel.app/images/logo-roar.jpg</image:loc>
       <image:title>ROAR Joyería Urbana - Logo Oficial</image:title>
       <image:caption>Logo de ROAR Joyería Urbana y Accesorios Premium Argentina</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://rora.vercel.app/images/combo-trebol-verde.jpg</image:loc>
+      <image:loc>https://roar.vercel.app/images/combo-trebol-verde.jpg</image:loc>
       <image:title>Combo Trébol Esmeralda Silver - Collar y Pulsera</image:title>
       <image:caption>Set de collar y pulsera con trébol verde en acero quirúrgico 316L</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://rora.vercel.app/images/cadena-cruz-box.jpg</image:loc>
+      <image:loc>https://roar.vercel.app/images/cadena-cruz-box.jpg</image:loc>
       <image:title>Cadena Cruz Box Silver ROAR</image:title>
       <image:caption>Cadena Box Chain con Cruz Cincelada en acero quirúrgico silver</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://rora.vercel.app/images/collar-sol-dorado.jpg</image:loc>
+      <image:loc>https://roar.vercel.app/images/collar-sol-dorado.jpg</image:loc>
       <image:title>Collar Medallón Sol Radiante Gold ROAR</image:title>
       <image:caption>Colgante Medallón Sol con cadena Rope bañada en oro 18K</image:caption>
     </image:image>
@@ -34,35 +34,35 @@
 
   <!-- Categorías (anclas de navegación interna) -->
   <url>
-    <loc>https://rora.vercel.app/#ofertas-combos</loc>
+    <loc>https://roar.vercel.app/#ofertas-combos</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://rora.vercel.app/#cadenas</loc>
+    <loc>https://roar.vercel.app/#cadenas</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://rora.vercel.app/#pulseras</loc>
+    <loc>https://roar.vercel.app/#pulseras</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://rora.vercel.app/#anillos</loc>
+    <loc>https://roar.vercel.app/#anillos</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://rora.vercel.app/#accesorios</loc>
+    <loc>https://roar.vercel.app/#accesorios</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
