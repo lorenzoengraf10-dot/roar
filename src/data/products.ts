@@ -10,7 +10,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 94000,
     description: 'Set exclusivo de collar y pulsera con eslabones de trébol en piedra verde esmeralda veteada y marco grabado en acero quirúrgico 316L silver. Incluye caja de presentación premium ROAR.',
     images: [
-      '/images/combo-trebol-verde.jpg',
+      `${import.meta.env.BASE_URL}images/combo-trebol-verde.jpg`,
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [
@@ -31,7 +31,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 112000,
     description: 'Dúo de alto impacto: Colgante medallón Sun Eye con cadena Rope bañada en oro 18k, acompañado de pulsera de eslabón tipo presidente. La combinación perfecta para elevar cualquier outfit.',
     images: [
-      '/images/collar-sol-dorado.jpg',
+      `${import.meta.env.BASE_URL}images/collar-sol-dorado.jpg`,
       'https://images.unsplash.com/photo-1611591475155-4286fa7c2e63?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [
@@ -52,7 +52,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 105000,
     description: 'Conjunto urbano compuesto por nuestra icónica Cruz Gótica con cadena Box y una pulsera Tennis con circonias cúbicas engastadas a mano.',
     images: [
-      '/images/cadena-cruz-box.jpg',
+      `${import.meta.env.BASE_URL}images/cadena-cruz-box.jpg`,
       'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [
@@ -76,7 +76,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 59000,
     description: 'Cruz con detalles labrados en relieve de alta definición, montada sobre una robusta cadena Box de 3mm. Resistente al agua, perfumes y sudor gracias al acero 316L.',
     images: [
-      '/images/cadena-cruz-box.jpg',
+      `${import.meta.env.BASE_URL}images/cadena-cruz-box.jpg`,
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [
@@ -97,7 +97,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 65000,
     description: 'Medallón con diseño solar central en relieve oxidado y marco con brillo pulido. Cadena trenzada estilo Rope de 2.5mm con cierre de mosquetón de seguridad reforzado.',
     images: [
-      '/images/collar-sol-dorado.jpg',
+      `${import.meta.env.BASE_URL}images/collar-sol-dorado.jpg`,
       'https://images.unsplash.com/photo-1611591475155-4286fa7c2e63?auto=format&fit=crop&w=800&q=80',
     ],
     variants: [

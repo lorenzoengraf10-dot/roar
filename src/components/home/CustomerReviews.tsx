@@ -86,7 +86,7 @@ export const CustomerReviews: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
-                src="/images/combo-trebol-verde.jpg"
+                src={`${import.meta.env.BASE_URL}images/combo-trebol-verde.jpg`}
                 alt="Instagram ROAR"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -98,7 +98,7 @@ export const CustomerReviews: React.FC = () => {
 
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
-                src="/images/collar-sol-dorado.jpg"
+                src={`${import.meta.env.BASE_URL}images/collar-sol-dorado.jpg`}
                 alt="Instagram ROAR"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -110,7 +110,7 @@ export const CustomerReviews: React.FC = () => {
 
             <div className="group relative aspect-square rounded-xl overflow-hidden border border-dark-800 bg-dark-900">
               <img
-                src="/images/cadena-cruz-box.jpg"
+                src={`${import.meta.env.BASE_URL}images/cadena-cruz-box.jpg`}
                 alt="Instagram ROAR"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />

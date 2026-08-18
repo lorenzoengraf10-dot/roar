@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="flex flex-col items-center group py-2"
             >
               <img
-                src="/images/logo-roar.jpg"
+                src={`${import.meta.env.BASE_URL}images/logo-roar.jpg`}
                 alt="ROAR Jewelry"
                 className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 rounded"
                 onError={(e) => {

@@ -91,7 +91,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onExploreClick, onSelect
               {/* Main Banner Image Container */}
               <div className="relative rounded-2xl overflow-hidden border border-dark-700 bg-dark-850 shadow-2xl group">
                 <img
-                  src="/images/combo-trebol-verde.jpg"
+                  src={`${import.meta.env.BASE_URL}images/combo-trebol-verde.jpg`}
                   alt="ROAR Drop 2026"
                   className="w-full h-[380px] sm:h-[440px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
@@ -126,7 +126,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onExploreClick, onSelect
               {/* Floating Secondary Mini Card */}
               <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-dark-900 border border-dark-700/90 p-3 rounded-xl shadow-xl items-center space-x-3 backdrop-blur-md">
                 <img
-                  src="/images/cadena-cruz-box.jpg"
+                  src={`${import.meta.env.BASE_URL}images/cadena-cruz-box.jpg`}
                   alt="Cruz Silver"
                   className="w-12 h-12 rounded-lg object-cover border border-dark-700"
                 />
