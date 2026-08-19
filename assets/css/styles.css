@@ -766,6 +766,16 @@ p {
   inset: 0;
   z-index: 60;
 }
+/* El backdrop del carrito y el drawer son dos elementos hermanos (a
+   diferencia del modal de producto, que trae su fondo adentro): sin esto
+   el backdrop queda pintado ARRIBA del drawer al tener el mismo z-index,
+   y tapa todos los clics/toques del carrito (no deja interactuar). */
+.cart-backdrop {
+  z-index: 59;
+}
+.cart-drawer {
+  z-index: 61;
+}
 .product-modal[hidden],
 .cart-drawer[hidden],
 .cart-backdrop[hidden] {
