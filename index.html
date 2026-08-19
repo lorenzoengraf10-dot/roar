@@ -12,7 +12,7 @@
 <meta name="keywords" content="joyería urbana, joyas Viedma, joyas Carmen de Patagones, anillos acero quirúrgico, cadenas plata 925, pulseras hombre, ROAR joyas, comprar joyas por WhatsApp" />
 <meta name="author" content="ROAR Joyería Urbana" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-<meta name="theme-color" content="#0b0a08" />
+<meta name="theme-color" content="#14120f" />
 <link rel="canonical" href="https://roar.vercel.app/" />
 
 <!-- ============================================
@@ -68,7 +68,7 @@
 <link rel="icon" type="image/jpeg" href="assets/images/logo-roar.jpg" />
 <link rel="apple-touch-icon" href="assets/images/logo-roar.jpg" />
 <link rel="manifest" href="manifest.json" />
-<link rel="stylesheet" href="assets/css/styles.css?v=6" />
+<link rel="stylesheet" href="assets/css/styles.css?v=9" />
 </head>
 <body>
 
@@ -77,13 +77,14 @@
 <!-- El header lo arma site.js. Se reserva altura para que no salte el layout. -->
 <header id="site-header" class="site-header"></header>
 
-<!-- Barra de categorías (sticky, pastillas). La arma site.js. -->
-<nav id="category-nav" class="category-nav" aria-label="Categorías del catálogo"></nav>
-
 <main id="contenido">
 
   <!-- Hero: lo arma site.js -->
   <section id="hero" class="hero"></section>
+
+  <!-- Barra de categorías: queda pegada justo arriba del catálogo al
+       scrollear (sticky), no tapa el hero. La arma site.js. -->
+  <nav id="category-nav" class="category-nav" aria-label="Categorías del catálogo"></nav>
 
   <!-- Catálogo completo: lo arma site.js, una sub-sección por categoría -->
   <section id="catalogo" class="catalogo" aria-label="Catálogo de productos"></section>
@@ -126,17 +127,15 @@
 <!-- Botón flotante de WhatsApp: lo arma site.js si CONFIG.whatsappVisible es true -->
 <div id="whatsapp-float"></div>
 
-<!-- Carrito (drawer lateral): lo arma site.js. El backdrop va primero en el
-     HTML para que, con el mismo z-index, el panel del carrito se pinte
-     encima y sea clickeable (si no, tapa todo el carrito). -->
-<div id="cart-backdrop" class="cart-backdrop" hidden></div>
+<!-- Carrito (drawer lateral): lo arma site.js -->
 <div id="cart-drawer" class="cart-drawer" hidden></div>
+<div id="cart-backdrop" class="cart-backdrop" hidden></div>
 
 <!-- Modal de producto: lo arma site.js -->
 <div id="product-modal" class="product-modal" hidden></div>
 
 <script src="assets/js/products.js?v=4"></script>
 <script src="assets/js/shipping.js?v=1"></script>
-<script src="assets/js/site.js?v=5"></script>
+<script src="assets/js/site.js?v=7"></script>
 </body>
 </html>

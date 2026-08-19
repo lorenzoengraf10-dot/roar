@@ -30,5 +30,17 @@
       <image:loc>https://roar.vercel.app/assets/images/showroom-viedma.jpg</image:loc>
       <image:title>Stand de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/testimonio-guadaeg.jpg</image:loc>
+      <image:title>Clienta de ROAR luciendo su pieza</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/testimonio-agustin.jpg</image:loc>
+      <image:title>Cliente de ROAR luciendo su pieza</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/testimonio-fran.jpg</image:loc>
+      <image:title>Cliente de ROAR luciendo su pieza</image:title>
+    </image:image>
   </url>
 </urlset>
