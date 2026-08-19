@@ -315,16 +315,33 @@ p {
    Hero
 ------------------------------------------------------------ */
 .hero {
+  position: relative;
   min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2.5rem 1rem 2rem;
+  overflow: hidden;
   background:
     radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.12), transparent 60%),
     var(--bg);
 }
+/* Marca de agua gigante de fondo, muy tenue, puramente decorativa */
+.hero-bg-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  width: 160%;
+  max-width: 900px;
+  height: auto;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
 .hero-inner {
+  position: relative;
+  z-index: 1;
   max-width: 440px;
   width: 100%;
   text-align: center;
@@ -334,12 +351,10 @@ p {
   gap: 1rem;
 }
 .hero-logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gold-deep);
-  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
 }
 .hero-tagline {
   font-size: 1.05rem;
@@ -1027,6 +1042,9 @@ p {
 @media (min-width: 640px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .hero-logo {
+    max-width: 340px;
   }
   .hero-ctas {
     flex-direction: row;

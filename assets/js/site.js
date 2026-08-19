@@ -270,13 +270,23 @@
     }
 
     hero.appendChild(
+      el('img', {
+        src: 'assets/images/logo-roar-claw-white.png',
+        alt: '',
+        'aria-hidden': 'true',
+        class: 'hero-bg-mark',
+        loading: 'lazy',
+      })
+    );
+
+    hero.appendChild(
       el('div', { class: 'hero-inner' },
         el('img', {
-          src: 'assets/images/logo-roar.jpg',
+          src: 'assets/images/logo-roar-claw-white.png',
           alt: CONFIG.nombre + ' — ' + CONFIG.tagline,
           class: 'hero-logo',
-          width: '140',
-          height: '140',
+          width: '767',
+          height: '685',
           fetchpriority: 'high',
         }),
         el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico y plata 925' }),
