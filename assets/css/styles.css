@@ -665,6 +665,13 @@ p {
   color: var(--ink-dim);
   margin-bottom: 0.7rem;
 }
+.footer-pago-line {
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+.footer-pago-line strong {
+  color: var(--ink);
+}
 .footer-socials {
   display: flex;
   gap: 0.7rem;
@@ -1039,8 +1046,12 @@ p {
   }
   .footer-inner {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+  }
+  .footer-inner > * {
+    flex: 1 1 180px;
   }
   .modal-backdrop {
     align-items: center;

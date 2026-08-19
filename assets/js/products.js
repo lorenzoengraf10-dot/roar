@@ -40,29 +40,33 @@ const CONFIG = {
   nombre: "ROAR",
   tagline: "Joyería Urbana",
 
-  // ⚠️ NÚMERO DE PRUEBA — todavía no tenemos el WhatsApp real.
-  // Reemplazalo por el número completo con código de país y de área,
-  // sin espacios ni signos. Ejemplo Carmen de Patagones: "5492920XXXXXX"
-  whatsapp: "5492920000000",
+  // Número real. Formato: 549 + código de área + número, sin espacios.
+  whatsapp: "5492920588604",
   whatsappVisible: true,
 
-  // Dejalo vacío ("") si todavía no tenés Instagram armado:
-  // el botón se oculta solo y no aparece un link roto.
-  instagram: "",
+  // Dejalo vacío ("") para ocultar el botón si algún día no tenés Instagram.
+  instagram: "roar.access",
 
-  ciudad: "Carmen de Patagones",
-  provincia: "Buenos Aires",
+  // Igual que Instagram: dejalo vacío ("") para ocultarlo.
+  facebook: "https://www.facebook.com/share/1K4b7zMFwN/?mibextid=wwXIfr",
+
+  // ⚠️ A CONFIRMAR: la dirección de abajo (Brown 690) es de Viedma, Río
+  // Negro — la ciudad "hermana" de Carmen de Patagones, cruzando el
+  // puente. Dejamos Viedma porque es el dato más preciso que tenemos,
+  // pero avisen si el showroom en realidad está del lado de Patagones.
+  ciudad: "Viedma",
+  provincia: "Río Negro",
+  direccion: "Brown 690",
   moneda: "ARS",
 
-  envioGratisDesde: 90000,
-  descuentoTransferencia: 15, // porcentaje
-  cuotasSinInteres: [3, 6],
-
-  // Datos para transferencia. Dejalo en null hasta tener los datos reales
-  // — el checkout por WhatsApp igual funciona sin esto, el cliente
-  // coordina el pago por chat.
-  pago: null,
-  // pago: { titular: "ROAR Joyería S.A.S.", alias: "ROAR.JOYAS.MP", cvu: "0000000000000000000000" },
+  // Datos para transferencia por Mercado Pago. Dejalo en null si algún
+  // día hay que sacarlos — el checkout por WhatsApp funciona igual,
+  // el cliente coordina el pago por chat.
+  pago: {
+    titular: "Enzo Martín Camperi Melo",
+    alias: "joyasdeacero.mp",
+    cvu: "0000003100071501389000",
+  },
 };
 
 

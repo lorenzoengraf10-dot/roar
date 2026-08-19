@@ -752,6 +752,26 @@
         }, document.createTextNode('Instagram'))
       );
     }
+    if (CONFIG.facebook) {
+      redes.push(
+        el('a', {
+          href: CONFIG.facebook,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          class: 'footer-social',
+        }, document.createTextNode('Facebook'))
+      );
+    }
+
+    var pagoCol = CONFIG.pago
+      ? el('div', { class: 'footer-col' },
+          el('h3', { text: 'Medios de pago' }),
+          el('p', { text: 'Transferencia / Mercado Pago' }),
+          el('p', { class: 'footer-pago-line' }, el('strong', { text: 'Alias: ' }), document.createTextNode(CONFIG.pago.alias)),
+          el('p', { class: 'footer-pago-line' }, el('strong', { text: 'CVU: ' }), document.createTextNode(CONFIG.pago.cvu)),
+          el('p', { class: 'footer-pago-line' }, el('strong', { text: 'Titular: ' }), document.createTextNode(CONFIG.pago.titular))
+        )
+      : null;
 
     footer.appendChild(
       el('div', { class: 'footer-inner' },
@@ -771,9 +791,10 @@
         ),
         el('div', { class: 'footer-col' },
           el('h3', { text: 'Contacto' }),
-          el('p', { text: CONFIG.ciudad + ', ' + CONFIG.provincia }),
+          CONFIG.direccion ? el('p', { text: CONFIG.direccion + ', ' + CONFIG.ciudad }) : el('p', { text: CONFIG.ciudad + ', ' + CONFIG.provincia }),
           redes.length ? el('div', { class: 'footer-socials' }, redes) : null
-        )
+        ),
+        pagoCol
       )
     );
 
