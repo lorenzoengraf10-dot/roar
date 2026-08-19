@@ -276,7 +276,7 @@
 
     hero.appendChild(
       el('img', {
-        src: 'assets/images/showroom-viedma.jpg',
+        src: 'assets/images/showroom-pared-roar.jpg',
         alt: '',
         'aria-hidden': 'true',
         class: 'hero-bg-photo',

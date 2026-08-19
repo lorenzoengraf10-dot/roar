@@ -616,6 +616,12 @@ p {
 .faq {
   padding: 2rem 0 2.5rem;
   border-top: 1px solid var(--border);
+  /* Foto real de un cliente con piezas ROAR de fondo, atenuada con un
+     velo blanco para que el texto siga leyéndose perfecto (mismo
+     criterio "más blanco" del resto del sitio). */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)),
+    url('../images/faq-fondo-cadenas.jpg') center top / cover no-repeat;
 }
 .faq-item {
   border-bottom: 1px solid var(--border);
