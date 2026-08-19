@@ -70,9 +70,6 @@ const CONFIG = {
    2. CATEGORÍAS Y SUBCATEGORÍAS
    ---------------------------------------------------------------- */
 const CATEGORIAS = {
-  combos: {
-    nombre: "Ofertas y Combos",
-  },
   anillos: {
     nombre: "Anillos",
     subs: {
@@ -141,49 +138,6 @@ const TESTIMONIOS = [
    Organizado por categoría. Cada categoría es un array de productos.
    ---------------------------------------------------------------- */
 const PRODUCTOS = {
-
-  combos: [
-    {
-      nombre: "Combo Trébol Esmeralda Silver (Collar + Pulsera)",
-      precio: 74999,
-      precioAntes: 94000,
-      desc: "Set exclusivo de collar y pulsera con eslabones de trébol en piedra verde esmeralda veteada y marco grabado en acero quirúrgico 316L silver. Incluye caja de presentación premium ROAR.",
-      img: "assets/images/combo-trebol-verde.jpg",
-      etiqueta: "Combo",
-      color: "gold",
-      detalles: [
-        "Material: acero quirúrgico 316L + piedra malaquita/esmeralda sintética",
-        "Incluye collar (45 o 50 cm) + pulsera regulable",
-        "Caja de presentación ROAR incluida",
-      ],
-    },
-    {
-      nombre: "Combo Golden Sun & Presidential Bracelet (Collar + Pulsera)",
-      precio: 88500,
-      precioAntes: 112000,
-      desc: "Dúo de alto impacto: colgante medallón Sun Eye con cadena Rope bañada en oro 18k, acompañado de pulsera de eslabón tipo presidente.",
-      img: null,
-      etiqueta: "Más Vendido",
-      color: "gold",
-      detalles: [
-        "Material: acero inoxidable 316L con baño de oro 18k PVD",
-        "Cadena 50 o 55 cm + pulsera a juego",
-      ],
-    },
-    {
-      nombre: "Combo Cruz Gótica Silver + Pulsera Tennis Iced",
-      precio: 82999,
-      precioAntes: 105000,
-      desc: "Conjunto urbano compuesto por nuestra icónica Cruz Gótica con cadena Box y una pulsera Tennis con circonias cúbicas engastadas a mano.",
-      img: null,
-      etiqueta: "Hot",
-      color: "danger",
-      detalles: [
-        "Material: acero quirúrgico 316L silver + circonias grado AAA",
-        "Cadena 50, 55 o 60 cm + pulsera a juego",
-      ],
-    },
-  ],
 
   cadenas: [
     {
