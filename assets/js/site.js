@@ -381,10 +381,13 @@
       });
     }
     return el('div', { class: 'photo-placeholder' },
-      el('svg', { viewBox: '0 0 24 24', width: '28', height: '28', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5' },
-        el('path', { d: 'M4 7h3l1.5-2h7L17 7h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1z' }),
-        el('circle', { cx: '12', cy: '13', r: '3.2' })
-      ),
+      el('img', {
+        src: 'assets/images/logo-roar-mono.png',
+        alt: '',
+        'aria-hidden': 'true',
+        class: 'placeholder-logo',
+        loading: 'lazy',
+      }),
       el('span', { text: 'Foto próximamente' })
     );
   }
@@ -850,6 +853,67 @@
   }
 
   /* ------------------------------------------------------------
+     Franja de confianza (materiales, envío, atención)
+  ------------------------------------------------------------ */
+  function trustIcon(d, extra) {
+    var children = Array.isArray(d) ? d : [el('path', { d: d })];
+    return el('svg', { viewBox: '0 0 24 24', width: '24', height: '24', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.6', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, children);
+  }
+
+  function renderTrustStrip() {
+    var section = document.getElementById('confianza');
+    if (!section) return;
+    var items = [
+      {
+        icon: trustIcon([
+          el('path', { d: 'M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z' }),
+          el('path', { d: 'M9 12l2 2 4-4' }),
+        ]),
+        titulo: 'Acero 316L y Plata 925',
+        texto: 'Materiales hipoalergénicos que no se oxidan ni despintan',
+      },
+      {
+        icon: trustIcon([
+          el('rect', { x: '1', y: '5', width: '14', height: '11' }),
+          el('polygon', { points: '15 9 19 9 22 12 22 16 15 16 15 9' }),
+          el('circle', { cx: '6', cy: '18.5', r: '2' }),
+          el('circle', { cx: '18', cy: '18.5', r: '2' }),
+        ]),
+        titulo: 'Envíos a todo el país',
+        texto: 'Coordinado por Correo Argentino, cotizado al instante',
+      },
+      {
+        icon: trustIcon('M21 11.5a8.4 8.4 0 01-8.4 8.4 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.8a8.4 8.4 0 01-.9-3.8A8.4 8.4 0 0112.5 3h.1a8.4 8.4 0 018.4 8.4v.1z'),
+        titulo: 'Atención personalizada',
+        texto: 'Coordinás tu pedido directo por WhatsApp',
+      },
+      {
+        icon: trustIcon([
+          el('path', { d: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z' }),
+          el('circle', { cx: '12', cy: '10', r: '3' }),
+        ]),
+        titulo: 'Showroom en ' + CONFIG.ciudad,
+        texto: CONFIG.provincia + ' — ' + (CONFIG.direccion || 'visitanos'),
+      },
+    ];
+    section.appendChild(
+      el('div', { class: 'section-inner' },
+        el('div', { class: 'trust-grid' },
+          items.map(function (it) {
+            return el('div', { class: 'trust-item' },
+              el('div', { class: 'trust-icon' }, it.icon),
+              el('div', { class: 'trust-copy' },
+                el('strong', { text: it.titulo }),
+                el('span', { text: it.texto })
+              )
+            );
+          })
+        )
+      )
+    );
+  }
+
+  /* ------------------------------------------------------------
      Testimonios
   ------------------------------------------------------------ */
   function renderTestimonios() {
@@ -880,6 +944,10 @@
   function renderFooter() {
     var footer = document.getElementById('site-footer');
     var claves = categoriasConProductos();
+
+    footer.appendChild(
+      el('img', { src: 'assets/images/logo-roar-claw-white.png', alt: '', 'aria-hidden': 'true', class: 'footer-watermark' })
+    );
 
     var redes = [];
     if (CONFIG.whatsappVisible && CONFIG.whatsapp) {
@@ -982,6 +1050,7 @@
     renderHeader();
     renderHero();
     renderCatalogo();
+    renderTrustStrip();
     renderTestimonios();
     renderFooter();
     renderWhatsappFloat();
