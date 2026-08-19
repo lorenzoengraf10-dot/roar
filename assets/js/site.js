@@ -139,6 +139,7 @@
     saveCart();
     renderCartCount();
     renderCartDrawer();
+    recalcularEnvioSiCorresponde();
     toast('Agregado al pedido');
   }
 
@@ -152,6 +153,7 @@
     saveCart();
     renderCartCount();
     renderCartDrawer();
+    recalcularEnvioSiCorresponde();
   }
 
   function cartTotal() {
@@ -183,6 +185,14 @@
       entrega.precio = resultado.precio;
       renderCartDrawer();
     });
+  }
+
+  /* Si ya se eligió una provincia, cada vez que cambia lo que hay en el
+     carrito (agregar, sumar/restar, sacar) hay que volver a pedir el
+     envío: el peso del pedido cambió y el precio de $/kg extra también
+     puede cambiar. No pasa nada si todavía no se eligió ninguna. */
+  function recalcularEnvioSiCorresponde() {
+    if (entrega.tipo === 'envio' && entrega.provincia) actualizarEnvio(entrega.provincia);
   }
 
   /* ------------------------------------------------------------
