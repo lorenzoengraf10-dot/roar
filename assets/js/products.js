@@ -25,6 +25,8 @@
       Si todavía no tenés la foto, dejá: img: null
       (el sitio va a mostrar un cartel de "Foto próximamente" solito).
    5. Si el producto ya no tiene stock, agregá: agotado: true
+   6. Para la etiqueta (Nuevo, Hot, etc.) el color puede ser: "gold",
+      "emerald", "navy" o "agotado" — son los colores de la marca.
 
    Cada vez que edites este archivo, subí en 1 el número de versión al
    final de la etiqueta <script> en index.html (products.js?v=1 pasa a
@@ -110,25 +112,24 @@ const CATEGORIAS = {
 
 /* ----------------------------------------------------------------
    3. TESTIMONIOS DE CLIENTES
+   Son fotos reales de historias de Instagram de clientes usando piezas
+   de ROAR (etiquetados @roar.access). Para agregar una nueva, subí la
+   foto a assets/images/ y sumá un objeto { img, autor } acá abajo.
    Si borrás todos los que hay acá y dejás la lista vacía ([]),
    la sección de testimonios directamente no se muestra en el sitio.
    ---------------------------------------------------------------- */
 const TESTIMONIOS = [
   {
-    texto: "La calidad del Combo Trébol verde es impresionante. El peso, los detalles y el brillo se sienten de joyería de lujo.",
-    autor: "Mateo R. — Buenos Aires, CABA",
+    img: "assets/images/testimonio-guadaeg.jpg",
+    autor: "@guadaeg",
   },
   {
-    texto: "Compré la cadena de la cruz y el anillo de tungsteno. Me bañé con ellos, fui a entrenar y siguen intactos, no se despintan para nada.",
-    autor: "Facundo G. — Córdoba Capital",
+    img: "assets/images/testimonio-agustin.jpg",
+    autor: "@agusestevanacio",
   },
   {
-    texto: "Excelente atención por WhatsApp, me ayudaron con la guía de talles para el regalo de mi novio. La caja de presentación viene de 10.",
-    autor: "Valentina P. — Rosario, Santa Fe",
-  },
-  {
-    texto: "El descuento del 15% por transferencia es real. Llegó impecable y en pocos días.",
-    autor: "Luciano D. — Mendoza",
+    img: "assets/images/testimonio-fran.jpg",
+    autor: "@fran.melignerr",
   },
 ];
 
@@ -190,7 +191,7 @@ const PRODUCTOS = {
       desc: "Eslabón cubano de 7mm con sección central engastada con microcirconias suizas de brillo diamantado. Baño de oro 18K de máxima duración.",
       img: "assets/images/pulsera-cuban-pave.jpg",
       etiqueta: "Hot",
-      color: "danger",
+      color: "navy",
       detalles: [
         "Material: acero 316L + baño oro 18K + circonias AAA",
         "Medidas disponibles: 18, 20 y 22 cm",
@@ -250,7 +251,7 @@ const PRODUCTOS = {
       desc: "Sello macizo grabado en 3D con la cabeza de león rugiente, emblema de fuerza de la marca ROAR. Laterales texturizados con acabados oxidados.",
       img: null,
       etiqueta: "Hot",
-      color: "danger",
+      color: "navy",
       detalles: [
         "Material: acero quirúrgico 316L macizo",
         "Talles disponibles: 17, 19 y 21",

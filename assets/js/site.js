@@ -184,8 +184,10 @@
           'aria-label': 'Ver carrito de pedido',
           onclick: openCart,
         },
-          el('svg', { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '2' },
-            el('path', { d: 'M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-1.7 6.2A1 1 0 006.3 20H18M10 21a1 1 0 100-2 1 1 0 000 2zM18 21a1 1 0 100-2 1 1 0 000 2z' })
+          el('svg', { viewBox: '0 0 24 24', width: '22', height: '22', 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' },
+            el('circle', { cx: '9', cy: '21', r: '1' }),
+            el('circle', { cx: '20', cy: '21', r: '1' }),
+            el('path', { d: 'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6' })
           ),
           el('span', { class: 'cart-count', id: 'cart-count', text: String(cartCount()) })
         )
@@ -720,12 +722,11 @@
     section.hidden = false;
     section.appendChild(
       el('div', { class: 'section-inner' },
-        el('h2', { class: 'section-title', text: 'Lo que dicen nuestros clientes' }),
+        el('h2', { class: 'section-title', text: 'Clientes con su ROAR' }),
         el('div', { class: 'testimonios-grid' },
           TESTIMONIOS.map(function (t) {
             return el('figure', { class: 'testimonio-card' },
-              t.img ? el('img', { src: t.img, alt: t.autor || '', class: 'testimonio-img', loading: 'lazy' }) : null,
-              el('blockquote', { text: '“' + t.texto + '”' }),
+              el('img', { src: t.img, alt: 'Cliente de ROAR luciendo su pieza' + (t.autor ? ' — ' + t.autor : ''), class: 'testimonio-img', loading: 'lazy' }),
               t.autor ? el('figcaption', { text: t.autor }) : null
             );
           })
