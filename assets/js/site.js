@@ -29,8 +29,11 @@
       .replace(/(^-|-$)/g, '');
   }
 
+  var SVG_TAGS = { svg: 1, circle: 1, path: 1, rect: 1, line: 1, polygon: 1, polyline: 1, ellipse: 1, g: 1 };
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
   function el(tag, attrs) {
-    var node = document.createElement(tag);
+    var node = SVG_TAGS[tag] ? document.createElementNS(SVG_NS, tag) : document.createElement(tag);
     attrs = attrs || {};
     for (var key in attrs) {
       if (!Object.prototype.hasOwnProperty.call(attrs, key)) continue;
