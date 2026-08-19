@@ -50,10 +50,6 @@ const CONFIG = {
   // Igual que Instagram: dejalo vacío ("") para ocultarlo.
   facebook: "https://www.facebook.com/share/1K4b7zMFwN/?mibextid=wwXIfr",
 
-  // ⚠️ A CONFIRMAR: la dirección de abajo (Brown 690) es de Viedma, Río
-  // Negro — la ciudad "hermana" de Carmen de Patagones, cruzando el
-  // puente. Dejamos Viedma porque es el dato más preciso que tenemos,
-  // pero avisen si el showroom en realidad está del lado de Patagones.
   ciudad: "Viedma",
   provincia: "Río Negro",
   direccion: "Brown 690",
