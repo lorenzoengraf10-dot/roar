@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://roar.vercel.app/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/logo-roar.jpg</image:loc>
+      <image:title>ROAR Joyería Urbana — Logo Oficial</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/combo-trebol-verde.jpg</image:loc>
+      <image:title>Combo Trébol Esmeralda Silver — Collar y Pulsera</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/collar-sol-dorado.jpg</image:loc>
+      <image:title>Colgante Medallón Sol Radiante con Cadena Rope Gold</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/cadena-cruz-box.jpg</image:loc>
+      <image:title>Cadena Box Chain con Cruz Cincelada Silver</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/pulsera-cuban-pave.jpg</image:loc>
+      <image:title>Pulsera Cuban Chain Paved Zirconia Gold</image:title>
+    </image:image>
+  </url>
+</urlset>

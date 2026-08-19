@@ -1,0 +1,21 @@
+{
+  "name": "ROAR Joyería Urbana",
+  "short_name": "ROAR",
+  "description": "Joyería urbana en Carmen de Patagones, Buenos Aires. Anillos, cadenas, pulseras y aros.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0a08",
+  "theme_color": "#0b0a08",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/logo-roar.jpg",
+      "sizes": "500x500",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "lang": "es-AR",
+  "dir": "ltr"
+}

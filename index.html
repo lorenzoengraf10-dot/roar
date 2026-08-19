@@ -1,250 +1,133 @@
 <!doctype html>
-<html lang="es" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ============================================
-         PRIMARY SEO META TAGS
-    ============================================ -->
-    <title>ROAR | Joyería Urbana & Accesorios Premium | Cadenas, Anillos, Pulseras Argentina</title>
-    <meta name="description" content="Tienda oficial ROAR Joyería Urbana. Cadenas, collares, anillos, pulseras y combos de acero quirúrgico 316L y plata 925. 15% OFF con transferencia. Envío gratis desde $90.000. Cuotas sin interés. Envíos a toda Argentina." />
-    <meta name="keywords" content="joyería urbana argentina, cadenas de plata, anillos acero quirúrgico, pulseras para hombre, combos joyería, cadena cubana, joyas hombre argentina, collar hombre, pulsera tennis, anillo titanio, ROAR joyas, comprar cadenas online" />
-    <meta name="author" content="ROAR Joyería & Accesorios" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="theme-color" content="#eab308" />
-    <link rel="canonical" href="https://roar.vercel.app/" />
+<!-- ============================================
+     SEO PRIMARIO
+============================================ -->
+<title>ROAR | Joyería Urbana en Carmen de Patagones — Anillos, Cadenas, Pulseras</title>
+<meta name="description" content="ROAR Joyería Urbana en Carmen de Patagones, Buenos Aires. Anillos, cadenas, pulseras y aros en acero quirúrgico 316L y plata 925. Coordiná tu compra directo por WhatsApp." />
+<meta name="keywords" content="joyería urbana, joyas Carmen de Patagones, anillos acero quirúrgico, cadenas plata 925, pulseras hombre, ROAR joyas, comprar joyas por WhatsApp" />
+<meta name="author" content="ROAR Joyería Urbana" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="theme-color" content="#0b0a08" />
+<link rel="canonical" href="https://roar.vercel.app/" />
 
-    <!-- ============================================
-         OPEN GRAPH (Facebook, Instagram, WhatsApp)
-    ============================================ -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ROAR Joyería Urbana" />
-    <meta property="og:title" content="ROAR | Joyería Urbana & Accesorios Premium | Argentina" />
-    <meta property="og:description" content="Descubrí las joyas urbanas de ROAR. Cadenas, anillos, pulseras y combos de alta calidad. Acero quirúrgico 316L inalterable al agua. Envío gratis desde $90.000 a toda Argentina." />
-    <meta property="og:image" content="https://roar.vercel.app/images/combo-trebol-verde.jpg" />
-    <meta property="og:image:width" content="767" />
-    <meta property="og:image:height" content="1024" />
-    <meta property="og:image:alt" content="ROAR Joyería Urbana - Cadenas, Anillos y Pulseras Premium Argentina" />
-    <meta property="og:url" content="https://roar.vercel.app/" />
-    <meta property="og:locale" content="es_AR" />
+<!-- ============================================
+     OPEN GRAPH / TWITTER
+============================================ -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ROAR Joyería Urbana" />
+<meta property="og:title" content="ROAR | Joyería Urbana en Carmen de Patagones" />
+<meta property="og:description" content="Anillos, cadenas, pulseras y aros en acero quirúrgico 316L y plata 925. Coordiná tu compra directo por WhatsApp." />
+<meta property="og:image" content="https://roar.vercel.app/assets/images/combo-trebol-verde.jpg" />
+<meta property="og:image:width" content="767" />
+<meta property="og:image:height" content="1024" />
+<meta property="og:url" content="https://roar.vercel.app/" />
+<meta property="og:locale" content="es_AR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ROAR | Joyería Urbana" />
+<meta name="twitter:description" content="Anillos, cadenas, pulseras y aros en acero quirúrgico 316L y plata 925." />
+<meta name="twitter:image" content="https://roar.vercel.app/assets/images/combo-trebol-verde.jpg" />
 
-    <!-- ============================================
-         TWITTER / X CARDS
-    ============================================ -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@roarjoyas" />
-    <meta name="twitter:creator" content="@roarjoyas" />
-    <meta name="twitter:title" content="ROAR | Joyería Urbana & Accesorios Premium" />
-    <meta name="twitter:description" content="Cadenas, anillos, pulseras y combos de acero quirúrgico 316L y plata 925. 15% OFF con transferencia. Envíos a toda Argentina." />
-    <meta name="twitter:image" content="https://roar.vercel.app/images/combo-trebol-verde.jpg" />
+<!-- ============================================
+     JSON-LD — Store
+============================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "ROAR Joyería Urbana",
+  "image": "https://roar.vercel.app/assets/images/logo-roar.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Carmen de Patagones",
+    "addressRegion": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "ARS",
+  "paymentAccepted": "Efectivo, Transferencia Bancaria, Tarjeta"
+}
+</script>
 
-    <!-- ============================================
-         STRUCTURED DATA - JSON-LD (Google Rich Results)
-    ============================================ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Store",
-          "@id": "https://roar.vercel.app/#store",
-          "name": "ROAR Joyería Urbana",
-          "alternateName": "ROAR Joyas",
-          "description": "Tienda online de joyería urbana y accesorios premium. Cadenas, anillos, pulseras y combos de acero quirúrgico 316L y plata 925 para hombre. Envíos a toda Argentina.",
-          "url": "https://roar.vercel.app",
-          "logo": "https://roar.vercel.app/images/logo-roar.jpg",
-          "image": "https://roar.vercel.app/images/combo-trebol-verde.jpg",
-          "telephone": "+54-11-2345-6789",
-          "email": "contacto@roarjoyas.com.ar",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Buenos Aires",
-            "addressRegion": "CABA",
-            "addressCountry": "AR"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-34.6037",
-            "longitude": "-58.3816"
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-              "opens": "09:00",
-              "closes": "18:00"
-            }
-          ],
-          "currenciesAccepted": "ARS",
-          "paymentAccepted": "Cash, Credit Card, Debit Card, Bank Transfer, Mercado Pago",
-          "priceRange": "$$",
-          "sameAs": [
-            "https://www.instagram.com/roar.joyas",
-            "https://wa.me/5491123456789",
-            "https://www.facebook.com/roarjoyas"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://roar.vercel.app/#website",
-          "url": "https://roar.vercel.app",
-          "name": "ROAR Joyería Urbana",
-          "description": "Tienda online oficial de ROAR Joyería Urbana & Accesorios Premium en Argentina",
-          "publisher": {
-            "@id": "https://roar.vercel.app/#store"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://roar.vercel.app/?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          },
-          "inLanguage": "es-AR"
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://roar.vercel.app/#breadcrumb",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Inicio",
-              "item": "https://roar.vercel.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Catálogo",
-              "item": "https://roar.vercel.app/#catalogo-section"
-            }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://roar.vercel.app/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "¿Cuánto cuesta el envío a toda Argentina?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Los envíos son a través de Correo Argentino y Andreani. El envío es completamente GRATIS en pedidos que superen los $90.000 ARS. Para CABA también ofrecemos Moto Express en el día."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Las joyas ROAR se oxidan o despintan?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Todas nuestras piezas están fabricadas en Acero Quirúrgico 316L o Plata 925 de ley, materiales 100% hipoalergénicos, inalterables al agua, perfumes, sudor y con baño PVD de alta durabilidad."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Tienen cuotas sin interés?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sí. Ofrecemos 3 y 6 cuotas sin interés con todas las tarjetas de crédito bancarias (Visa y Mastercard). También podés obtener un 15% de descuento extra abonando con transferencia bancaria."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Cómo puedo saber mi talle de anillo o largo de cadena?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Tenemos una Guía de Talles interactiva en el sitio. Para anillos, medís el diámetro interno de uno que te quede bien. Para cadenas, ofrecemos largos de 45cm, 50cm, 55cm y 60cm para diferentes looks."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Puedo hacer mi pedido por WhatsApp?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sí. En el carrito de compras tenés la opción de enviar tu pedido directamente a nuestro WhatsApp con todos los detalles (productos, talles, dirección de entrega y monto) ya completados automáticamente."
-              }
-            }
-          ]
-        },
-        {
-          "@type": "ItemList",
-          "name": "Categorías de ROAR Joyería",
-          "description": "Las categorías de joyas y accesorios disponibles en ROAR",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Ofertas & Combos de Joyería",
-              "item": "https://roar.vercel.app/#ofertas-combos"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Cadenas & Collares para Hombre",
-              "item": "https://roar.vercel.app/#cadenas"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Pulseras de Acero y Plata",
-              "item": "https://roar.vercel.app/#pulseras"
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "name": "Anillos de Titanio y Acero",
-              "item": "https://roar.vercel.app/#anillos"
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "name": "Accesorios Urbanos",
-              "item": "https://roar.vercel.app/#accesorios"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- ============================================
-         PERFORMANCE & RESOURCE HINTS
-    ============================================ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="dns-prefetch" href="https://wa.me" />
+<link rel="preload" as="image" fetchpriority="high" href="assets/images/logo-roar.jpg" />
 
-    <!-- Fonts: load with display=swap for performance -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+<link rel="icon" type="image/jpeg" href="assets/images/logo-roar.jpg" />
+<link rel="apple-touch-icon" href="assets/images/logo-roar.jpg" />
+<link rel="manifest" href="manifest.json" />
+<link rel="stylesheet" href="assets/css/styles.css?v=1" />
+</head>
+<body>
 
-    <!-- Favicon & App Icons -->
-    <link rel="icon" type="image/jpeg" href="%BASE_URL%images/logo-roar.jpg" />
-    <link rel="apple-touch-icon" href="%BASE_URL%images/logo-roar.jpg" />
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <!-- ============================================
-         ACCESSIBILITY & BROWSER COMPATIBILITY
-    ============================================ -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="format-detection" content="telephone=no" />
+<!-- El header lo arma site.js. Se reserva altura para que no salte el layout. -->
+<header id="site-header" class="site-header"></header>
 
-    <!-- Web App Manifest for PWA-like experience -->
-    <link rel="manifest" href="%BASE_URL%manifest.json" />
-  </head>
-  <body class="bg-dark-950 text-silver-200 antialiased selection:bg-gold-500 selection:text-dark-950 pb-16 md:pb-0">
-    <!-- Accessible no-JS message -->
-    <noscript>
-      <div style="background:#0f0f0f;color:#f1f5f9;padding:1rem;text-align:center;font-family:sans-serif">
-        Para ver la tienda ROAR correctamente, por favor habilita JavaScript en tu navegador.
-      </div>
-    </noscript>
+<!-- Barra de categorías (sticky, pastillas). La arma site.js. -->
+<nav id="category-nav" class="category-nav" aria-label="Categorías del catálogo"></nav>
 
-    <div id="root" role="main" aria-label="Tienda ROAR Joyería Urbana"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<main id="contenido">
+
+  <!-- Hero: lo arma site.js -->
+  <section id="hero" class="hero"></section>
+
+  <!-- Catálogo completo: lo arma site.js, una sub-sección por categoría -->
+  <section id="catalogo" class="catalogo" aria-label="Catálogo de productos"></section>
+
+  <!-- Testimonios: los arma site.js. Si no hay testimonios cargados, no se dibuja nada. -->
+  <section id="testimonios" class="testimonios"></section>
+
+  <!-- Preguntas frecuentes: acordeón nativo, no necesita JS -->
+  <section class="faq" aria-label="Preguntas frecuentes">
+    <div class="section-inner">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+
+      <details class="faq-item">
+        <summary>¿Las joyas se oxidan o pierden el color?</summary>
+        <p>No. Trabajamos con acero quirúrgico 316L y plata 925, materiales hipoalergénicos e inalterables al agua, el sudor y los perfumes.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo se coordina el pago y el envío?</summary>
+        <p>Todo se coordina directo por WhatsApp: elegís tus piezas, armás el pedido acá en el sitio y te escribimos para confirmar el pago y la forma de entrega.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Hacen envíos fuera de Carmen de Patagones?</summary>
+        <p>Sí, hacemos envíos a todo el país. El costo y el tiempo de entrega se coordinan por WhatsApp según tu localidad.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo pedir una pieza que no tiene foto todavía?</summary>
+        <p>Sí. Muchas piezas del catálogo están disponibles aunque todavía no subimos la foto — escribinos por WhatsApp y te mandamos fotos reales al toque.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer: lo arma site.js -->
+<footer id="site-footer" class="site-footer"></footer>
+
+<!-- Botón flotante de WhatsApp: lo arma site.js si CONFIG.whatsappVisible es true -->
+<div id="whatsapp-float"></div>
+
+<!-- Carrito (drawer lateral): lo arma site.js -->
+<div id="cart-drawer" class="cart-drawer" hidden></div>
+<div id="cart-backdrop" class="cart-backdrop" hidden></div>
+
+<!-- Modal de producto: lo arma site.js -->
+<div id="product-modal" class="product-modal" hidden></div>
+
+<script src="assets/js/products.js?v=1"></script>
+<script src="assets/js/site.js?v=1"></script>
+</body>
 </html>
