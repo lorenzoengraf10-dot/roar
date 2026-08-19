@@ -105,7 +105,7 @@
   ------------------------------------------------------------ */
   var CART_KEY = 'roar_cart_v1';
   var cart = loadCart(); // [{ catKey, slug, cantidad }]
-  var entrega = { tipo: 'retiro', provincia: '', precio: null, cp: '' };
+  var entrega = { tipo: 'retiro', provincia: '', precio: null, cp: '', esReal: false };
 
   function loadCart() {
     try {
@@ -176,15 +176,34 @@
     renderCartDrawer();
   }
 
-  /* Calcula el envío a una provincia (usa shipping.js) y repinta el carrito */
+  /* Calcula el envío a una provincia (usa shipping.js): si ya se cargó un
+     código postal, intenta primero la cotización real contra Correo
+     Argentino; si no hay CP, o la cotización real no está disponible o
+     falla, usa la tabla estimada de siempre como respaldo. */
   function actualizarEnvio(provincia) {
     if (!provincia) return;
-    estimateEnvio(provincia, cartWeight()).then(function (resultado) {
-      if (!resultado.ok) return;
+    var peso = cartWeight();
+
+    function pintar(resultado, esReal) {
+      if (!resultado.ok) return false;
       entrega.provincia = provincia;
       entrega.precio = resultado.precio;
+      entrega.esReal = esReal;
       renderCartDrawer();
-    });
+      return true;
+    }
+
+    function conTablaLocal() {
+      estimateEnvio(provincia, peso).then(function (resultado) { pintar(resultado, false); });
+    }
+
+    if (entrega.cp && /^\d{4}$/.test(entrega.cp)) {
+      cotizarEnvioReal(entrega.cp, peso).then(function (real) {
+        if (!pintar(real, true)) conTablaLocal();
+      });
+    } else {
+      conTablaLocal();
+    }
   }
 
   /* Si ya se eligió una provincia, cada vez que cambia lo que hay en el
@@ -688,11 +707,22 @@
           inputmode: 'numeric',
           pattern: '[0-9]{4}',
           maxlength: '4',
-          placeholder: 'Código postal (opcional)',
+          placeholder: 'Código postal (opcional, para el precio real)',
           'aria-label': 'Código postal de destino',
           value: entrega.cp || null,
-          oninput: function (e) { entrega.cp = e.target.value; },
+          oninput: function (e) {
+            entrega.cp = e.target.value;
+            /* Con provincia ya elegida, un CP de 4 dígitos dispara la
+               cotización real. Sin provincia todavía no hay de dónde sacar
+               un precio de respaldo si la real fallara, así que esperamos
+               a que se elija una. */
+            if (entrega.provincia && /^\d{4}$/.test(entrega.cp)) actualizarEnvio(entrega.provincia);
+          },
         })
+      : null;
+
+    var notaEnvio = entrega.tipo === 'envio' && entrega.esReal
+      ? el('small', { class: 'delivery-nota', text: '✓ Cotización real de Correo Argentino' })
       : null;
 
     return el('div', { class: 'delivery' },
@@ -716,7 +746,8 @@
         el('span', { class: 'delivery-option-price', text: precioEnvioTexto })
       ),
       selectEnvio,
-      cpInput
+      cpInput,
+      notaEnvio
     );
   }
 
@@ -809,7 +840,8 @@
     lineas.push('');
     lineas.push('Total: ' + money(cartTotal()));
     if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
-      lineas.push('Envío a ' + entrega.provincia + ' (estimado): ' + money(entrega.precio));
+      var etiquetaEnvio = entrega.esReal ? 'cotización real' : 'estimado';
+      lineas.push('Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + money(entrega.precio));
       if (entrega.cp) lineas.push('Código postal: ' + entrega.cp);
     }
     lineas.push('');

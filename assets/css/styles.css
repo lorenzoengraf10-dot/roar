@@ -1091,6 +1091,11 @@ p {
 .delivery-select:focus-visible {
   outline: 2px solid var(--gold-deep);
 }
+.delivery-nota {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--emerald);
+}
 
 .cart-footer {
   padding: 1rem 1.1rem calc(1rem + env(safe-area-inset-bottom, 0px));
