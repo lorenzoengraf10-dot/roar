@@ -102,6 +102,7 @@
   ------------------------------------------------------------ */
   var CART_KEY = 'roar_cart_v1';
   var cart = loadCart(); // [{ catKey, slug, cantidad }]
+  var entrega = { tipo: 'retiro', provincia: '', precio: null };
 
   function loadCart() {
     try {
@@ -156,6 +157,29 @@
       var precio = entry && entry.product.precio ? entry.product.precio : 0;
       return sum + precio * item.cantidad;
     }, 0);
+  }
+
+  function cartWeight() {
+    var EMBALAJE_KG = 0.1;
+    return cart.reduce(function (kg, item) {
+      return kg + (PESO_CATEGORIA_KG[item.catKey] || 0) * item.cantidad;
+    }, EMBALAJE_KG);
+  }
+
+  function setEntregaTipo(tipo) {
+    entrega.tipo = tipo;
+    renderCartDrawer();
+  }
+
+  /* Calcula el envío a una provincia (usa shipping.js) y repinta el carrito */
+  function actualizarEnvio(provincia) {
+    if (!provincia) return;
+    estimateEnvio(provincia, cartWeight()).then(function (resultado) {
+      if (!resultado.ok) return;
+      entrega.provincia = provincia;
+      entrega.precio = resultado.precio;
+      renderCartDrawer();
+    });
   }
 
   /* ------------------------------------------------------------
@@ -616,6 +640,55 @@
   /* ------------------------------------------------------------
      Carrito — drawer lateral
   ------------------------------------------------------------ */
+
+  /* Bloque "¿Cómo lo recibís?" — retiro sin cargo, o envío con selector
+     de provincia (usa shipping.js, ver estimateEnvio). */
+  function renderEntregaBlock() {
+    var precioEnvioTexto = entrega.precio != null ? money(entrega.precio) : 'A coordinar';
+
+    var selectEnvio = entrega.tipo === 'envio'
+      ? el('select', {
+          id: 'envio-select',
+          class: 'delivery-select',
+          'aria-label': 'Provincia de destino del envío',
+          onchange: function (e) { actualizarEnvio(e.target.value); },
+        },
+          [el('option', {
+            value: '',
+            selected: entrega.provincia ? null : 'selected',
+            disabled: entrega.provincia ? null : 'disabled',
+          }, document.createTextNode('Elegí tu provincia…'))].concat(
+            PROVINCIAS_ENVIO.map(function (p) {
+              return el('option', { value: p, selected: p === entrega.provincia ? 'selected' : null }, document.createTextNode(p));
+            })
+          )
+        )
+      : null;
+
+    return el('div', { class: 'delivery' },
+      el('span', { class: 'delivery-title', text: '¿Cómo lo recibís?' }),
+      el('label', { class: 'delivery-option' },
+        el('input', {
+          type: 'radio', name: 'entrega', value: 'retiro',
+          checked: entrega.tipo === 'retiro' ? 'checked' : null,
+          onchange: function () { setEntregaTipo('retiro'); },
+        }),
+        el('span', { class: 'delivery-option-name', text: 'Retiro en Viedma' }),
+        el('span', { class: 'delivery-option-price delivery-option-price-free', text: 'Sin cargo' })
+      ),
+      el('label', { class: 'delivery-option' },
+        el('input', {
+          type: 'radio', name: 'entrega', value: 'envio',
+          checked: entrega.tipo === 'envio' ? 'checked' : null,
+          onchange: function () { setEntregaTipo('envio'); },
+        }),
+        el('span', { class: 'delivery-option-name', text: 'Envío a todo el país' }),
+        el('span', { class: 'delivery-option-price', text: precioEnvioTexto })
+      ),
+      selectEnvio
+    );
+  }
+
   function openCart() {
     renderCartDrawer();
     document.getElementById('cart-drawer').hidden = false;
@@ -669,6 +742,7 @@
 
     var footer = cart.length
       ? el('div', { class: 'cart-footer' },
+          renderEntregaBlock(),
           el('div', { class: 'cart-total-row' },
             el('span', { text: 'Total' }),
             el('strong', { text: money(cartTotal()) })
@@ -703,6 +777,9 @@
     });
     lineas.push('');
     lineas.push('Total: ' + money(cartTotal()));
+    if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
+      lineas.push('Envío a ' + entrega.provincia + ' (estimado): ' + money(entrega.precio));
+    }
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');

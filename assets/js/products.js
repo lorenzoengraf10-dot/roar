@@ -53,6 +53,7 @@ const CONFIG = {
   ciudad: "Viedma",
   provincia: "Río Negro",
   direccion: "Brown 690",
+  origenCP: "8500",
   moneda: "ARS",
 
   // Datos para transferencia por Mercado Pago. Dejalo en null si algún
@@ -105,6 +106,20 @@ const CATEGORIAS = {
   accesorios: {
     nombre: "Accesorios",
   },
+};
+
+
+/* ----------------------------------------------------------------
+   Peso promedio por categoría (kg), para estimar el costo de envío.
+   Son cifras de referencia con embalaje incluido — no hace falta pesar
+   cada producto, y se pueden ajustar acá si algo queda mal calculado.
+   ---------------------------------------------------------------- */
+const PESO_CATEGORIA_KG = {
+  anillos: 0.05,
+  cadenas: 0.08,
+  pulseras: 0.06,
+  aros: 0.03,
+  accesorios: 0.15,
 };
 
 
