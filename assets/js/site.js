@@ -105,7 +105,7 @@
   ------------------------------------------------------------ */
   var CART_KEY = 'roar_cart_v1';
   var cart = loadCart(); // [{ catKey, slug, cantidad }]
-  var entrega = { tipo: 'retiro', provincia: '', precio: null };
+  var entrega = { tipo: 'retiro', provincia: '', precio: null, cp: '' };
 
   function loadCart() {
     try {
@@ -680,6 +680,21 @@
         )
       : null;
 
+    var cpInput = entrega.tipo === 'envio'
+      ? el('input', {
+          type: 'text',
+          id: 'envio-cp',
+          class: 'delivery-select',
+          inputmode: 'numeric',
+          pattern: '[0-9]{4}',
+          maxlength: '4',
+          placeholder: 'Código postal (opcional)',
+          'aria-label': 'Código postal de destino',
+          value: entrega.cp || null,
+          oninput: function (e) { entrega.cp = e.target.value; },
+        })
+      : null;
+
     return el('div', { class: 'delivery' },
       el('span', { class: 'delivery-title', text: '¿Cómo lo recibís?' }),
       el('label', { class: 'delivery-option' },
@@ -700,7 +715,8 @@
         el('span', { class: 'delivery-option-name', text: 'Envío a todo el país' }),
         el('span', { class: 'delivery-option-price', text: precioEnvioTexto })
       ),
-      selectEnvio
+      selectEnvio,
+      cpInput
     );
   }
 
@@ -794,6 +810,7 @@
     lineas.push('Total: ' + money(cartTotal()));
     if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
       lineas.push('Envío a ' + entrega.provincia + ' (estimado): ' + money(entrega.precio));
+      if (entrega.cp) lineas.push('Código postal: ' + entrega.cp);
     }
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
