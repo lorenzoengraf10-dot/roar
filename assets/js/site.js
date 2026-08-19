@@ -105,6 +105,7 @@
   ------------------------------------------------------------ */
   var CART_KEY = 'roar_cart_v1';
   var cart = loadCart(); // [{ catKey, slug, cantidad }]
+  var entrega = { tipo: 'retiro', provincia: '', precio: null, cp: '', esReal: false };
 
   function loadCart() {
     try {
@@ -138,6 +139,7 @@
     saveCart();
     renderCartCount();
     renderCartDrawer();
+    recalcularEnvioSiCorresponde();
     toast('Agregado al pedido');
   }
 
@@ -151,6 +153,7 @@
     saveCart();
     renderCartCount();
     renderCartDrawer();
+    recalcularEnvioSiCorresponde();
   }
 
   function cartTotal() {
@@ -159,6 +162,56 @@
       var precio = entry && entry.product.precio ? entry.product.precio : 0;
       return sum + precio * item.cantidad;
     }, 0);
+  }
+
+  function cartWeight() {
+    var EMBALAJE_KG = 0.1;
+    return cart.reduce(function (kg, item) {
+      return kg + (PESO_CATEGORIA_KG[item.catKey] || 0) * item.cantidad;
+    }, EMBALAJE_KG);
+  }
+
+  function setEntregaTipo(tipo) {
+    entrega.tipo = tipo;
+    renderCartDrawer();
+  }
+
+  /* Calcula el envío a una provincia (usa shipping.js): si ya se cargó un
+     código postal, intenta primero la cotización real contra Correo
+     Argentino; si no hay CP, o la cotización real no está disponible o
+     falla, usa la tabla estimada de siempre como respaldo. */
+  function actualizarEnvio(provincia) {
+    if (!provincia) return;
+    var peso = cartWeight();
+
+    function pintar(resultado, esReal) {
+      if (!resultado.ok) return false;
+      entrega.provincia = provincia;
+      entrega.precio = resultado.precio;
+      entrega.esReal = esReal;
+      renderCartDrawer();
+      return true;
+    }
+
+    function conTablaLocal() {
+      estimateEnvio(provincia, peso).then(function (resultado) { pintar(resultado, false); });
+    }
+
+    if (entrega.cp && /^\d{4}$/.test(entrega.cp)) {
+      cotizarEnvioReal(entrega.cp, peso).then(function (real) {
+        if (!pintar(real, true)) conTablaLocal();
+      });
+    } else {
+      conTablaLocal();
+    }
+  }
+
+  /* Si ya se eligió una provincia, cada vez que cambia lo que hay en el
+     carrito (agregar, sumar/restar, sacar) hay que volver a pedir el
+     envío: el peso del pedido cambió y el precio de $/kg extra también
+     puede cambiar. No pasa nada si todavía no se eligió ninguna. */
+  function recalcularEnvioSiCorresponde() {
+    if (entrega.tipo === 'envio' && entrega.provincia) actualizarEnvio(entrega.provincia);
   }
 
   /* ------------------------------------------------------------
@@ -621,6 +674,83 @@
   /* ------------------------------------------------------------
      Carrito — drawer lateral
   ------------------------------------------------------------ */
+
+  /* Bloque "¿Cómo lo recibís?" — retiro sin cargo, o envío con selector
+     de provincia (usa shipping.js, ver estimateEnvio). */
+  function renderEntregaBlock() {
+    var precioEnvioTexto = entrega.precio != null ? money(entrega.precio) : 'A coordinar';
+
+    var selectEnvio = entrega.tipo === 'envio'
+      ? el('select', {
+          id: 'envio-select',
+          class: 'delivery-select',
+          'aria-label': 'Provincia de destino del envío',
+          onchange: function (e) { actualizarEnvio(e.target.value); },
+        },
+          [el('option', {
+            value: '',
+            selected: entrega.provincia ? null : 'selected',
+            disabled: entrega.provincia ? null : 'disabled',
+          }, document.createTextNode('Elegí tu provincia…'))].concat(
+            PROVINCIAS_ENVIO.map(function (p) {
+              return el('option', { value: p, selected: p === entrega.provincia ? 'selected' : null }, document.createTextNode(p));
+            })
+          )
+        )
+      : null;
+
+    var cpInput = entrega.tipo === 'envio'
+      ? el('input', {
+          type: 'text',
+          id: 'envio-cp',
+          class: 'delivery-select',
+          inputmode: 'numeric',
+          pattern: '[0-9]{4}',
+          maxlength: '4',
+          placeholder: 'Código postal (opcional, para el precio real)',
+          'aria-label': 'Código postal de destino',
+          value: entrega.cp || null,
+          oninput: function (e) {
+            entrega.cp = e.target.value;
+            /* Con provincia ya elegida, un CP de 4 dígitos dispara la
+               cotización real. Sin provincia todavía no hay de dónde sacar
+               un precio de respaldo si la real fallara, así que esperamos
+               a que se elija una. */
+            if (entrega.provincia && /^\d{4}$/.test(entrega.cp)) actualizarEnvio(entrega.provincia);
+          },
+        })
+      : null;
+
+    var notaEnvio = entrega.tipo === 'envio' && entrega.esReal
+      ? el('small', { class: 'delivery-nota', text: '✓ Cotización real de Correo Argentino' })
+      : null;
+
+    return el('div', { class: 'delivery' },
+      el('span', { class: 'delivery-title', text: '¿Cómo lo recibís?' }),
+      el('label', { class: 'delivery-option' },
+        el('input', {
+          type: 'radio', name: 'entrega', value: 'retiro',
+          checked: entrega.tipo === 'retiro' ? 'checked' : null,
+          onchange: function () { setEntregaTipo('retiro'); },
+        }),
+        el('span', { class: 'delivery-option-name', text: 'Retiro en Viedma' }),
+        el('span', { class: 'delivery-option-price delivery-option-price-free', text: 'Sin cargo' })
+      ),
+      el('label', { class: 'delivery-option' },
+        el('input', {
+          type: 'radio', name: 'entrega', value: 'envio',
+          checked: entrega.tipo === 'envio' ? 'checked' : null,
+          onchange: function () { setEntregaTipo('envio'); },
+        }),
+        el('span', { class: 'delivery-option-name', text: 'Envío a todo el país' }),
+        el('span', { class: 'delivery-option-price', text: precioEnvioTexto })
+      ),
+      selectEnvio,
+      cpInput,
+      notaEnvio
+    );
+  }
+
   function openCart() {
     renderCartDrawer();
     document.getElementById('cart-drawer').hidden = false;
@@ -674,6 +804,7 @@
 
     var footer = cart.length
       ? el('div', { class: 'cart-footer' },
+          renderEntregaBlock(),
           el('div', { class: 'cart-total-row' },
             el('span', { text: 'Total' }),
             el('strong', { text: money(cartTotal()) })
@@ -708,6 +839,11 @@
     });
     lineas.push('');
     lineas.push('Total: ' + money(cartTotal()));
+    if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
+      var etiquetaEnvio = entrega.esReal ? 'cotización real' : 'estimado';
+      lineas.push('Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + money(entrega.precio));
+      if (entrega.cp) lineas.push('Código postal: ' + entrega.cp);
+    }
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
