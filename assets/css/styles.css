@@ -549,6 +549,33 @@ p {
 }
 
 /* ------------------------------------------------------------
+   Nuestro stand (foto real)
+------------------------------------------------------------ */
+.showroom {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elev);
+}
+.showroom-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.showroom-photo {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.showroom-copy p {
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* ------------------------------------------------------------
    Testimonios
 ------------------------------------------------------------ */
 .testimonios {
@@ -1058,6 +1085,14 @@ p {
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .showroom-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .showroom-photo {
+    max-width: 380px;
   }
   .testimonios-grid {
     grid-template-columns: repeat(2, 1fr);

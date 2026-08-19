@@ -26,5 +26,9 @@
       <image:loc>https://roar.vercel.app/assets/images/pulsera-cuban-pave.jpg</image:loc>
       <image:title>Pulsera Cuban Chain Paved Zirconia Gold</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/showroom-viedma.jpg</image:loc>
+      <image:title>Stand de ROAR Joyería Urbana en Viedma</image:title>
+    </image:image>
   </url>
 </urlset>
