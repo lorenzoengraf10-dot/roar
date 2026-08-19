@@ -316,27 +316,29 @@ p {
 ------------------------------------------------------------ */
 .hero {
   position: relative;
-  min-height: 380px;
+  min-height: 460px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2.5rem 1rem 2rem;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.12), transparent 60%),
-    var(--bg);
+  background: var(--bg);
 }
-/* Marca de agua gigante de fondo, muy tenue, puramente decorativa */
-.hero-bg-mark {
+/* Foto real del stand como fondo, con una capa oscura encima para que
+   el texto y los botones se lean bien sobre cualquier parte de la foto */
+.hero-bg-photo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -48%);
-  width: 160%;
-  max-width: 900px;
-  height: auto;
-  opacity: 0.07;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  z-index: 0;
+}
+.hero-bg-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 10, 8, 0.55) 0%, rgba(11, 10, 8, 0.85) 60%, rgba(11, 10, 8, 0.96) 100%);
   z-index: 0;
 }
 .hero-inner {
@@ -351,10 +353,12 @@ p {
   gap: 1rem;
 }
 .hero-logo {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-deep);
+  box-shadow: var(--shadow);
 }
 .hero-tagline {
   font-size: 1.05rem;
@@ -546,33 +550,6 @@ p {
   color: var(--whatsapp);
   font-weight: 700;
   text-decoration: none;
-}
-
-/* ------------------------------------------------------------
-   Nuestro stand (foto real)
------------------------------------------------------------- */
-.showroom {
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-elev);
-}
-.showroom-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-.showroom-photo {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-.showroom-copy p {
-  color: var(--ink-dim);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-top: 0.5rem;
 }
 
 /* ------------------------------------------------------------
@@ -1070,9 +1047,6 @@ p {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .hero-logo {
-    max-width: 340px;
-  }
   .hero-ctas {
     flex-direction: row;
     justify-content: center;
@@ -1085,14 +1059,6 @@ p {
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
-  }
-  .showroom-inner {
-    flex-direction: row;
-    align-items: center;
-    gap: 2.5rem;
-  }
-  .showroom-photo {
-    max-width: 380px;
   }
   .testimonios-grid {
     grid-template-columns: repeat(2, 1fr);

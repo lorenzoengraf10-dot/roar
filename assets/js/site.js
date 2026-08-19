@@ -271,23 +271,23 @@
 
     hero.appendChild(
       el('img', {
-        src: 'assets/images/logo-roar-claw-white.png',
+        src: 'assets/images/showroom-viedma.jpg',
         alt: '',
         'aria-hidden': 'true',
-        class: 'hero-bg-mark',
-        loading: 'lazy',
+        class: 'hero-bg-photo',
+        fetchpriority: 'high',
       })
     );
+    hero.appendChild(el('div', { class: 'hero-bg-scrim' }));
 
     hero.appendChild(
       el('div', { class: 'hero-inner' },
         el('img', {
-          src: 'assets/images/logo-roar-claw-white.png',
+          src: 'assets/images/logo-roar.jpg',
           alt: CONFIG.nombre + ' — ' + CONFIG.tagline,
           class: 'hero-logo',
-          width: '767',
-          height: '685',
-          fetchpriority: 'high',
+          width: '140',
+          height: '140',
         }),
         el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico y plata 925' }),
         el('div', { class: 'hero-ctas' }, ctas),
