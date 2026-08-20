@@ -1044,9 +1044,28 @@
   }
 
   /* ------------------------------------------------------------
+     Google Analytics (opcional): solo se activa si se cargó un ID
+     en CONFIG.googleAnalyticsId — si está vacío, no se manda nada.
+  ------------------------------------------------------------ */
+  function initAnalytics() {
+    var id = CONFIG.googleAnalyticsId;
+    if (!id) return;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', id);
+  }
+
+  /* ------------------------------------------------------------
      Inicialización
   ------------------------------------------------------------ */
   function init() {
+    initAnalytics();
     renderHeader();
     renderHero();
     renderCatalogo();

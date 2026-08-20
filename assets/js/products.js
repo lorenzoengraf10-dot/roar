@@ -66,6 +66,14 @@ const CONFIG = {
     alias: "joyasdeacero.mp",
     cvu: "0000003100071501389000",
   },
+
+  // Google Analytics: para saber cuánta gente entra al sitio y desde dónde.
+  // 1. Andá a https://analytics.google.com, creá una cuenta (es gratis) y
+  //    una "propiedad" para este sitio.
+  // 2. Te va a dar un ID que empieza con "G-" (por ejemplo "G-ABC1234XYZ").
+  // 3. Pegalo acá abajo entre las comillas. Mientras esté vacío (""),
+  //    el sitio funciona igual pero no se manda ninguna estadística.
+  googleAnalyticsId: "",
 };
 
 
