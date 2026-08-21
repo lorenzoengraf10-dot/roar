@@ -1094,6 +1094,9 @@ p {
 .delivery-nota {
   font-size: 0.78rem;
   font-weight: 600;
+  color: var(--ink-dim);
+}
+.delivery-nota-real {
   color: var(--emerald);
 }
 

@@ -194,7 +194,7 @@
     }
 
     function conTablaLocal() {
-      estimateEnvio(provincia, peso).then(function (resultado) { pintar(resultado, false); });
+      estimateEnvio(provincia, peso, TARIFAS_ENVIO).then(function (resultado) { pintar(resultado, false); });
     }
 
     if (entrega.cp && /^\d{4}$/.test(entrega.cp)) {
@@ -721,8 +721,11 @@
         })
       : null;
 
-    var notaEnvio = entrega.tipo === 'envio' && entrega.esReal
-      ? el('small', { class: 'delivery-nota', text: '✓ Cotización real de Correo Argentino' })
+    var notaEnvio = entrega.tipo === 'envio' && entrega.precio != null
+      ? el('small', { class: 'delivery-nota' + (entrega.esReal ? ' delivery-nota-real' : '') },
+          document.createTextNode(entrega.esReal
+            ? '✓ Cotización real de Correo Argentino'
+            : 'Estimado — puede variar, se confirma por WhatsApp'))
       : null;
 
     return el('div', { class: 'delivery' },
