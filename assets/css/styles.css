@@ -489,6 +489,12 @@ p {
   text-align: center;
   padding: 0 0.5rem;
 }
+.placeholder-logo {
+  width: 42%;
+  max-width: 90px;
+  height: auto;
+  opacity: 0.5;
+}
 .card-badges {
   position: absolute;
   top: 0.5rem;
@@ -578,11 +584,78 @@ p {
 }
 
 /* ------------------------------------------------------------
+   Divisor dorado decorativo entre secciones (mismo recurso que el
+   borde inferior de la barra de categorías, para que el scroll se
+   sienta "cosido" de una sección a la otra).
+------------------------------------------------------------ */
+.trust-strip,
+.testimonios,
+.faq {
+  position: relative;
+}
+.trust-strip::before,
+.testimonios::before,
+.faq::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-deep));
+}
+
+/* ------------------------------------------------------------
+   Franja de confianza (materiales, envío, atención)
+------------------------------------------------------------ */
+.trust-strip {
+  padding: 2.75rem 0 2.25rem;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem 1rem;
+}
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+.trust-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--gold-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.trust-copy strong {
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+.trust-copy span {
+  font-size: 0.76rem;
+  color: var(--ink-dim);
+  line-height: 1.35;
+}
+
+/* ------------------------------------------------------------
    Testimonios
 ------------------------------------------------------------ */
 .testimonios {
-  padding: 2rem 0 2.5rem;
-  border-top: 1px solid var(--border);
+  padding: 2.75rem 0 2.5rem;
 }
 .testimonios-grid {
   display: grid;
@@ -614,8 +687,13 @@ p {
    FAQ (acordeón nativo)
 ------------------------------------------------------------ */
 .faq {
-  padding: 2rem 0 2.5rem;
-  border-top: 1px solid var(--border);
+  padding: 2.75rem 0 2.5rem;
+  /* Foto real de un cliente con piezas ROAR de fondo, atenuada con un
+     velo blanco para que el texto siga leyéndose perfecto (mismo
+     criterio "más blanco" del resto del sitio). */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)),
+    url('../images/faq-fondo-cadenas.jpg') center top / cover no-repeat;
 }
 .faq-item {
   border-bottom: 1px solid var(--border);
@@ -654,10 +732,37 @@ p {
    Footer
 ------------------------------------------------------------ */
 .site-footer {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
   min-height: 260px;
   background: var(--navy);
   color: var(--on-dark-ink);
-  padding: 2rem 1rem 6rem;
+  padding: 2.75rem 1rem 6rem;
+}
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-deep));
+}
+/* Marca de agua decorativa: el logo de garras a gran tamaño, muy tenue,
+   asomando en la esquina — le da textura de marca al footer sin competir
+   con el texto. */
+.footer-watermark {
+  position: absolute;
+  z-index: -1;
+  right: -50px;
+  bottom: -40px;
+  width: 280px;
+  height: auto;
+  opacity: 0.08;
+  pointer-events: none;
 }
 .footer-inner {
   max-width: 1100px;
@@ -1162,6 +1267,9 @@ p {
 
 @media (min-width: 768px) {
   .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   .footer-inner {
