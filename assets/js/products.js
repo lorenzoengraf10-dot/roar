@@ -279,6 +279,23 @@ const PRODUCTOS = {
         "Cadena: soga (dorado) o rolo (oxidado)",
       ],
     },
+    {
+      nombre: "Collar Gloria",
+      precio: 24000,
+      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Cadena rolo con cierre de mosquetón. Disponible en dorado u oxidado.",
+      img: "assets/images/collar-gloria-dorado-modelo.jpg",
+      img2: "assets/images/collar-gloria-dorado-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/collar-gloria-dorado-modelo.jpg", img2: "assets/images/collar-gloria-dorado-modelo2.jpg" },
+        { nombre: "Oxidado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
+      ],
+      detalles: [
+        "Diseño: medallón circular con el Sol de Mayo en relieve",
+        "Cadena: rolo, cierre de mosquetón",
+      ],
+    },
   ],
 
   pulseras: [
