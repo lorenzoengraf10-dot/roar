@@ -27,6 +27,15 @@
    5. Si el producto ya no tiene stock, agregá: agotado: true
    6. Para la etiqueta (Nuevo, Hot, etc.) el color puede ser: "gold",
       "emerald", "navy" o "agotado" — son los colores de la marca.
+   7. Si el mismo producto viene en más de un color/material (por ejemplo
+      dorado y plateado), agregá "variantes" con una foto para cada uno:
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/mi-foto-dorado.jpg", img2: "assets/images/mi-foto-dorado-2.jpg" },
+        { nombre: "Plateado", img: "assets/images/mi-foto-plateado.jpg" },
+      ]
+      (el "img2" es opcional, es una segunda foto de ese color). En la
+      ficha del producto va a aparecer un selector para elegir el color,
+      y el pedido por WhatsApp o el carrito van a aclarar cuál se eligió.
 
    Cada vez que edites este archivo, subí en 1 el número de versión al
    final de la etiqueta <script> en index.html (products.js?v=1 pasa a
@@ -277,13 +286,17 @@ const PRODUCTOS = {
       nombre: "Aros Shine",
       sub: "acero",
       precio: 9000,
-      desc: "Aro pequeño estilo huggie con micropavé de piedras engastadas en todo el frente. Diseño unisex, cierre de bisagra con broche de seguridad.",
+      desc: "Aro pequeño estilo huggie con micropavé de piedras engastadas en todo el frente. Diseño unisex, cierre de bisagra con broche de seguridad. Disponible en dorado o plateado.",
       img: "assets/images/aro-shine-dorado.jpg",
       img2: "assets/images/aro-shine-dorado-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/aro-shine-dorado.jpg", img2: "assets/images/aro-shine-dorado-modelo.jpg" },
+        { nombre: "Plateado", img: "assets/images/aro-shine-plateado.jpg", img2: "assets/images/aro-shine-plateado-modelo.jpg" },
+      ],
       detalles: [
-        "Material: acero quirúrgico dorado",
+        "Material: acero quirúrgico, dorado o plateado",
         "Diseño: micropavé, cierre de bisagra",
         "Uso: unisex",
       ],

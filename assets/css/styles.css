@@ -1005,6 +1005,32 @@ p {
   font-weight: 700;
   font-size: 0.85rem;
 }
+.modal-variant-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.4rem 0 0.2rem;
+}
+.variant-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.variant-pill {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--ink-dim);
+}
+.variant-pill-active {
+  background: var(--bg-elev-2);
+  border-color: var(--gold-deep);
+  color: var(--ink);
+}
 .qty-stepper {
   display: flex;
   align-items: center;

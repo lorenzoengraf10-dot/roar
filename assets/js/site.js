@@ -128,13 +128,13 @@
     return cart.reduce(function (sum, item) { return sum + item.cantidad; }, 0);
   }
 
-  function cartAdd(catKey, slug, cantidad) {
+  function cartAdd(catKey, slug, cantidad, color) {
     cantidad = cantidad || 1;
-    var existing = cart.filter(function (i) { return i.catKey === catKey && i.slug === slug; })[0];
+    var existing = cart.filter(function (i) { return i.catKey === catKey && i.slug === slug && i.color === color; })[0];
     if (existing) {
       existing.cantidad += cantidad;
     } else {
-      cart.push({ catKey: catKey, slug: slug, cantidad: cantidad });
+      cart.push({ catKey: catKey, slug: slug, cantidad: cantidad, color: color });
     }
     saveCart();
     renderCartCount();
@@ -143,11 +143,11 @@
     toast('Agregado al pedido');
   }
 
-  function cartSetQty(catKey, slug, cantidad) {
+  function cartSetQty(catKey, slug, cantidad, color) {
     if (cantidad <= 0) {
-      cart = cart.filter(function (i) { return !(i.catKey === catKey && i.slug === slug); });
+      cart = cart.filter(function (i) { return !(i.catKey === catKey && i.slug === slug && i.color === color); });
     } else {
-      var existing = cart.filter(function (i) { return i.catKey === catKey && i.slug === slug; })[0];
+      var existing = cart.filter(function (i) { return i.catKey === catKey && i.slug === slug && i.color === color; })[0];
       if (existing) existing.cantidad = cantidad;
     }
     saveCart();
@@ -440,7 +440,15 @@
             class: 'btn btn-add',
             type: 'button',
             disabled: product.agotado ? 'disabled' : null,
-            onclick: function () { cartAdd(catKey, slug, 1); },
+            onclick: function () {
+              // Si tiene variantes (colores/materiales), hay que elegir una
+              // primero — se abre la ficha en vez de agregar un color al azar.
+              if (product.variantes && product.variantes.length) {
+                openProductModal(catKey, slug);
+              } else {
+                cartAdd(catKey, slug, 1);
+              }
+            },
           }, document.createTextNode(product.agotado ? 'Sin stock' : 'Agregar al pedido')),
           (CONFIG.whatsappVisible && CONFIG.whatsapp)
             ? el('a', {
@@ -537,7 +545,15 @@
     var modal = document.getElementById('product-modal');
     modal.innerHTML = '';
 
-    var fotos = [product.img, product.img2].filter(Boolean);
+    var variantes = (product.variantes && product.variantes.length) ? product.variantes : null;
+    var varianteActual = 0;
+
+    function fotosActuales() {
+      var base = variantes ? variantes[varianteActual] : product;
+      return [base.img, base.img2].filter(Boolean);
+    }
+
+    var fotos = fotosActuales();
     var fotoActual = 0;
 
     var fotoBox = el('div', { class: 'modal-photo' });
@@ -551,25 +567,26 @@
     }
     pintarFoto();
 
-    var galeriaDots = null;
-    if (fotos.length > 1) {
-      galeriaDots = el('div', { class: 'modal-dots' },
-        fotos.map(function (_, i) {
-          return el('button', {
+    var dotsBox = el('div', { class: 'modal-dots' });
+    function pintarDots() {
+      dotsBox.innerHTML = '';
+      dotsBox.hidden = fotos.length <= 1;
+      fotos.forEach(function (_, i) {
+        dotsBox.appendChild(
+          el('button', {
             class: 'modal-dot' + (i === fotoActual ? ' modal-dot-active' : ''),
             type: 'button',
             'aria-label': 'Ver foto ' + (i + 1),
-            onclick: function (e) {
+            onclick: function () {
               fotoActual = i;
               pintarFoto();
-              e.currentTarget.parentElement.querySelectorAll('.modal-dot').forEach(function (d, di) {
-                d.classList.toggle('modal-dot-active', di === i);
-              });
+              pintarDots();
             },
-          });
-        })
-      );
+          })
+        );
+      });
     }
+    pintarDots();
 
     var qty = 1;
     var qtyLabel = el('span', { class: 'qty-value', text: String(qty) });
@@ -583,18 +600,56 @@
       product.precioAntes ? el('span', { class: 'card-price-before', text: money(product.precioAntes) }) : null
     );
 
-    var waTexto = 'Hola ' + CONFIG.nombre + '! Quiero consultar por: ' + product.nombre;
+    function waTextoActual() {
+      var base = 'Hola ' + CONFIG.nombre + '! Quiero consultar por: ' + product.nombre;
+      return variantes ? base + ' (color: ' + variantes[varianteActual].nombre + ')' : base;
+    }
+
+    var waAnchor = (CONFIG.whatsappVisible && CONFIG.whatsapp)
+      ? el('a', {
+          href: waLink(CONFIG.whatsapp, waTextoActual()),
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          class: 'btn btn-whatsapp btn-block',
+        }, document.createTextNode('Consultar por WhatsApp'))
+      : null;
+
+    var variantSelector = null;
+    if (variantes) {
+      var variantBtns = variantes.map(function (v, i) {
+        return el('button', {
+          class: 'variant-pill' + (i === varianteActual ? ' variant-pill-active' : ''),
+          type: 'button',
+          onclick: function (e) {
+            varianteActual = i;
+            fotos = fotosActuales();
+            fotoActual = 0;
+            pintarFoto();
+            pintarDots();
+            if (waAnchor) waAnchor.href = waLink(CONFIG.whatsapp, waTextoActual());
+            e.currentTarget.parentElement.querySelectorAll('.variant-pill').forEach(function (b, bi) {
+              b.classList.toggle('variant-pill-active', bi === i);
+            });
+          },
+        }, document.createTextNode(v.nombre));
+      });
+      variantSelector = el('div', { class: 'modal-variant-row' },
+        el('span', { class: 'modal-qty-label', text: 'Color' }),
+        el('div', { class: 'variant-pills' }, variantBtns)
+      );
+    }
 
     modal.appendChild(
       el('div', { class: 'modal-backdrop', onclick: closeProductModal },
         el('div', { class: 'modal-card', onclick: function (e) { e.stopPropagation(); } },
           el('button', { class: 'modal-close', type: 'button', 'aria-label': 'Cerrar', onclick: closeProductModal }, document.createTextNode('✕')),
           fotoBox,
-          galeriaDots,
+          dotsBox,
           el('div', { class: 'modal-body' },
             el('span', { class: 'card-cat', text: entry.catNombre }),
             el('h2', { class: 'modal-nombre', text: product.nombre }),
             precioRow,
+            variantSelector,
             el('p', { class: 'modal-desc', text: product.desc || '' }),
             detallesList,
             el('div', { class: 'modal-qty-row' },
@@ -610,16 +665,12 @@
                 class: 'btn btn-add btn-block',
                 type: 'button',
                 disabled: product.agotado ? 'disabled' : null,
-                onclick: function () { cartAdd(catKey, slug, qty); closeProductModal(); },
+                onclick: function () {
+                  cartAdd(catKey, slug, qty, variantes ? variantes[varianteActual].nombre : undefined);
+                  closeProductModal();
+                },
               }, document.createTextNode(product.agotado ? 'Sin stock' : 'Agregar al pedido')),
-              (CONFIG.whatsappVisible && CONFIG.whatsapp)
-                ? el('a', {
-                    href: waLink(CONFIG.whatsapp, waTexto),
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                    class: 'btn btn-whatsapp btn-block',
-                  }, document.createTextNode('Consultar por WhatsApp'))
-                : null,
+              waAnchor,
               el('button', {
                 class: 'btn btn-link',
                 type: 'button',
@@ -786,22 +837,27 @@
           var entry = findEntry(item.catKey, item.slug);
           if (!entry) return null;
           var product = entry.product;
+          var variante = (item.color && product.variantes)
+            ? product.variantes.filter(function (v) { return v.nombre === item.color; })[0]
+            : null;
+          var nombreConColor = product.nombre + (item.color ? ' — ' + item.color : '');
+          var fotoItem = variante ? { img: variante.img, nombre: nombreConColor } : product;
           return el('div', { class: 'cart-item' },
-            el('div', { class: 'cart-item-photo' }, renderPhoto(product)),
+            el('div', { class: 'cart-item-photo' }, renderPhoto(fotoItem)),
             el('div', { class: 'cart-item-info' },
-              el('span', { class: 'cart-item-name', text: product.nombre }),
+              el('span', { class: 'cart-item-name', text: nombreConColor }),
               el('span', { class: 'cart-item-price', text: product.precio ? money(product.precio) : 'Consultar precio' }),
               el('div', { class: 'qty-stepper qty-stepper-sm' },
-                el('button', { type: 'button', class: 'qty-btn', 'aria-label': 'Restar', onclick: function () { cartSetQty(item.catKey, item.slug, item.cantidad - 1); } }, document.createTextNode('−')),
+                el('button', { type: 'button', class: 'qty-btn', 'aria-label': 'Restar', onclick: function () { cartSetQty(item.catKey, item.slug, item.cantidad - 1, item.color); } }, document.createTextNode('−')),
                 el('span', { class: 'qty-value', text: String(item.cantidad) }),
-                el('button', { type: 'button', class: 'qty-btn', 'aria-label': 'Sumar', onclick: function () { cartSetQty(item.catKey, item.slug, item.cantidad + 1); } }, document.createTextNode('+'))
+                el('button', { type: 'button', class: 'qty-btn', 'aria-label': 'Sumar', onclick: function () { cartSetQty(item.catKey, item.slug, item.cantidad + 1, item.color); } }, document.createTextNode('+'))
               )
             ),
             el('button', {
               class: 'cart-item-remove',
               type: 'button',
               'aria-label': 'Quitar del pedido',
-              onclick: function () { cartSetQty(item.catKey, item.slug, 0); },
+              onclick: function () { cartSetQty(item.catKey, item.slug, 0, item.color); },
             }, document.createTextNode('✕'))
           );
         })
@@ -841,7 +897,8 @@
       if (!entry) return;
       var product = entry.product;
       var precioTxt = product.precio ? money(product.precio * item.cantidad) : 'a consultar';
-      lineas.push((i + 1) + '. ' + product.nombre + ' x' + item.cantidad + ' — ' + precioTxt);
+      var nombreConColor = product.nombre + (item.color ? ' (' + item.color + ')' : '');
+      lineas.push((i + 1) + '. ' + nombreConColor + ' x' + item.cantidad + ' — ' + precioTxt);
     });
     lineas.push('');
     lineas.push('Total: ' + money(cartTotal()));
