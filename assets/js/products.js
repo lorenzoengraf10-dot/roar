@@ -247,9 +247,21 @@ const PRODUCTOS = {
   ],
 
   aros: [
-    // Todavía no hay aros cargados. Apenas agregues el primer producto acá
-    // (con el mismo formato que las otras categorías), la pestaña "Aros"
-    // va a aparecer sola en el sitio.
+    {
+      nombre: "Aros Shine",
+      sub: "acero",
+      precio: 9000,
+      desc: "Aro pequeño estilo huggie con micropavé de piedras engastadas en todo el frente. Diseño unisex, cierre de bisagra con broche de seguridad.",
+      img: "assets/images/aro-shine-dorado.jpg",
+      img2: "assets/images/aro-shine-dorado-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico dorado",
+        "Diseño: micropavé, cierre de bisagra",
+        "Uso: unisex",
+      ],
+    },
   ],
 
   anillos: [

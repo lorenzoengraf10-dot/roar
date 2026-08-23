@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://roar.vercel.app/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -25,6 +25,10 @@
     <image:image>
       <image:loc>https://roar.vercel.app/assets/images/pulsera-cuban-pave.jpg</image:loc>
       <image:title>Pulsera Cuban Chain Paved Zirconia Gold</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/aro-shine-dorado.jpg</image:loc>
+      <image:title>Aros Shine — Acero Quirúrgico Dorado con Micropavé</image:title>
     </image:image>
     <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
