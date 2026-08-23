@@ -307,6 +307,17 @@ const PRODUCTOS = {
         "Diseño: esferas + medalla circular, cierre ajustable",
       ],
     },
+    {
+      nombre: "Pulsera Soga Gold",
+      precio: 13000,
+      desc: "Pulsera cadena soga (rope chain) con cierre de mosquetón y cadena extensora para ajustar el largo.",
+      img: "assets/images/pulsera-soga-dorado.jpg",
+      img2: "assets/images/pulsera-soga-dorado-modelo.jpg",
+      detalles: [
+        "Material: acero quirúrgico 316L, dorado",
+        "También disponible en versión más fina — consultá por WhatsApp",
+      ],
+    },
   ],
 
   aros: [
