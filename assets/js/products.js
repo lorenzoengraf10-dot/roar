@@ -263,6 +263,22 @@ const PRODUCTOS = {
         "Largos disponibles: 50 y 55 cm",
       ],
     },
+    {
+      nombre: "Collar Enzo",
+      precio: 21000,
+      desc: "Colgante de cruz con textura tejida en relieve. Disponible en cadena soga dorada o cadena rolo en tono envejecido oxidado.",
+      img: "assets/images/collar-enzo-dorado-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/collar-enzo-dorado-modelo.jpg" },
+        { nombre: "Oxidado", img: "assets/images/collar-enzo-oxidado.jpg", img2: "assets/images/collar-enzo-oxidado-modelo.jpg" },
+      ],
+      detalles: [
+        "Diseño: colgante cruz con textura tejida en relieve",
+        "Cadena: soga (dorado) o rolo (oxidado)",
+      ],
+    },
   ],
 
   pulseras: [
