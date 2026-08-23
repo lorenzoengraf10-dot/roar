@@ -68,7 +68,7 @@
 <link rel="icon" type="image/jpeg" href="assets/images/logo-roar.jpg" />
 <link rel="apple-touch-icon" href="assets/images/logo-roar.jpg" />
 <link rel="manifest" href="manifest.json" />
-<link rel="stylesheet" href="assets/css/styles.css?v=14" />
+<link rel="stylesheet" href="assets/css/styles.css?v=15" />
 </head>
 <body>
 
@@ -82,9 +82,13 @@
   <!-- Hero: lo arma site.js -->
   <section id="hero" class="hero"></section>
 
+  <!-- Vidriera de categorías: tarjetas grandes con foto, más vistosas
+       que la barra de pastillas. La arma site.js. -->
+  <section id="category-showcase" class="category-showcase" aria-label="Categorías del catálogo"></section>
+
   <!-- Barra de categorías: queda pegada justo arriba del catálogo al
        scrollear (sticky), no tapa el hero. La arma site.js. -->
-  <nav id="category-nav" class="category-nav" aria-label="Categorías del catálogo"></nav>
+  <nav id="category-nav" class="category-nav" aria-label="Cambiar de categoría"></nav>
 
   <!-- Catálogo completo: lo arma site.js, una sub-sección por categoría -->
   <section id="catalogo" class="catalogo" aria-label="Catálogo de productos"></section>
@@ -137,8 +141,8 @@
 <!-- Modal de producto: lo arma site.js -->
 <div id="product-modal" class="product-modal" hidden></div>
 
-<script src="assets/js/products.js?v=17"></script>
+<script src="assets/js/products.js?v=18"></script>
 <script src="assets/js/shipping.js?v=5"></script>
-<script src="assets/js/site.js?v=16"></script>
+<script src="assets/js/site.js?v=17"></script>
 </body>
 </html>

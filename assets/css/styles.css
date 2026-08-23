@@ -314,6 +314,72 @@ p {
 }
 
 /* ------------------------------------------------------------
+   Vidriera de categorías (tarjetas grandes con foto)
+------------------------------------------------------------ */
+.category-showcase {
+  padding: 2.5rem 0 1rem;
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+.showcase-grid > *:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+.category-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--navy), var(--ink));
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.showcase-grid > *:last-child:nth-child(odd) .category-tile {
+  aspect-ratio: 16 / 9;
+}
+.category-tile:active {
+  transform: scale(0.98);
+}
+.category-tile-active {
+  box-shadow: 0 0 0 2px var(--gold), var(--shadow);
+}
+.category-tile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.category-tile-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 18, 15, 0) 45%, rgba(20, 18, 15, 0.85) 100%);
+}
+.category-tile-sinfoto .category-tile-scrim {
+  background: none;
+}
+.category-tile-name {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.85rem;
+  z-index: 1;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ------------------------------------------------------------
    Barra de categorías (sticky, pastillas horizontales)
 ------------------------------------------------------------ */
 .category-nav {
@@ -1297,6 +1363,15 @@ p {
   }
   .trust-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .showcase-grid > *:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+  .showcase-grid > *:last-child:nth-child(odd) .category-tile {
+    aspect-ratio: 4 / 5;
   }
   .footer-inner {
     flex-direction: row;

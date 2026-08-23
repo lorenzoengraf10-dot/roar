@@ -91,10 +91,15 @@ const CONFIG = {
 
 /* ----------------------------------------------------------------
    2. CATEGORÍAS Y SUBCATEGORÍAS
+   El "foto" de cada categoría es la imagen grande que aparece en la
+   vidriera de categorías, arriba del catálogo. Usá una foto real y
+   representativa (subida a assets/images/). Si la dejás en null,
+   esa categoría se muestra igual pero sin foto, con un fondo liso.
    ---------------------------------------------------------------- */
 const CATEGORIAS = {
   anillos: {
     nombre: "Anillos",
+    foto: null,
     subs: {
       plata: "Plata 925",
       acero: "Acero Quirúrgico",
@@ -103,6 +108,7 @@ const CATEGORIAS = {
   },
   cadenas: {
     nombre: "Cadenas y Collares",
+    foto: "assets/images/cadena-cruz-box.jpg",
     subs: {
       plata: "Plata 925",
       oro: "Baño de Oro 18K",
@@ -111,6 +117,7 @@ const CATEGORIAS = {
   },
   pulseras: {
     nombre: "Pulseras",
+    foto: "assets/images/pulsera-san-benito-dorado.jpg",
     subs: {
       plata: "Plata 925",
       oro: "Baño de Oro 18K",
@@ -119,6 +126,7 @@ const CATEGORIAS = {
   },
   aros: {
     nombre: "Aros",
+    foto: "assets/images/aro-shine-dorado.jpg",
     subs: {
       plata: "Plata 925",
       oro: "Baño de Oro 18K",
@@ -127,6 +135,7 @@ const CATEGORIAS = {
   },
   accesorios: {
     nombre: "Accesorios",
+    foto: "assets/images/cadena-angel.jpg",
   },
 };
 

@@ -267,6 +267,38 @@
     });
   }
 
+  /* Vidriera de categorías: tarjetas grandes con foto, arriba del
+     catálogo. Comparte la lógica de cambio de categoría (setActiveCategory)
+     con la barra de pastillas de más abajo. */
+  function renderCategoryShowcase() {
+    var section = document.getElementById('category-showcase');
+    if (!section) return;
+    var claves = categoriasConProductos();
+
+    section.appendChild(
+      el('div', { class: 'section-inner' },
+        el('h2', { class: 'section-title', text: 'Explorá el catálogo' }),
+        el('div', { class: 'showcase-grid' },
+          claves.map(function (key) {
+            var cat = CATEGORIAS[key];
+            return el('button', {
+              type: 'button',
+              class: 'category-tile' + (cat.foto ? '' : ' category-tile-sinfoto') + (key === activeCategory ? ' category-tile-active' : ''),
+              'data-cat': key,
+              onclick: function () { setActiveCategory(key); },
+            },
+              cat.foto
+                ? el('img', { src: cat.foto, alt: '', 'aria-hidden': 'true', class: 'category-tile-photo', loading: 'lazy' })
+                : null,
+              el('span', { class: 'category-tile-scrim' }),
+              el('span', { class: 'category-tile-name', text: cat.nombre })
+            );
+          })
+        )
+      )
+    );
+  }
+
   function renderCategoryNav() {
     var nav = document.getElementById('category-nav');
     nav.innerHTML = '';
@@ -286,6 +318,9 @@
   function setActiveCategory(key) {
     activeCategory = key;
     renderCategoryNav();
+    document.querySelectorAll('.category-tile').forEach(function (tile) {
+      tile.classList.toggle('category-tile-active', tile.getAttribute('data-cat') === key);
+    });
     document.querySelectorAll('.cat-section').forEach(function (section) {
       section.hidden = section.getAttribute('data-cat') !== key;
     });
@@ -1129,6 +1164,7 @@
     renderHeader();
     renderHero();
     renderCatalogo();
+    renderCategoryShowcase();
     renderTrustStrip();
     renderTestimonios();
     renderFooter();
