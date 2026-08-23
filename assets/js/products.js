@@ -282,6 +282,22 @@ const PRODUCTOS = {
         "Medidas disponibles: 19 y 21 cm",
       ],
     },
+    {
+      nombre: "Pulsera San Benito",
+      precio: 17000,
+      desc: "Pulsera con esferas y medalla circular tipo San Benito, con grabado en relieve en ambos lados. Cierre de mosquetón con cadena extensora para ajustar el largo. Disponible en dorado o plateado.",
+      img: "assets/images/pulsera-san-benito-dorado.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/pulsera-san-benito-dorado.jpg" },
+        { nombre: "Plateado", img: "assets/images/pulsera-san-benito-plateado.jpg", img2: "assets/images/pulsera-san-benito-plateado-modelo.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico 316L, dorado o plateado",
+        "Diseño: esferas + medalla circular, cierre ajustable",
+      ],
+    },
   ],
 
   aros: [
