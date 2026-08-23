@@ -321,6 +321,18 @@ const PRODUCTOS = {
         "Uso: unisex",
       ],
     },
+    {
+      nombre: "Aros Diamond",
+      sub: "plata",
+      precio: 14000,
+      desc: "Aro abridor con piedra blanca facetada engarzada en garras, base plana.",
+      img: "assets/images/aro-diamond-plata.jpg",
+      img2: "assets/images/aro-diamond-plata-modelo.jpg",
+      detalles: [
+        "Material: plata 900 bañada en rodio",
+        "Diseño: abridor con piedra facetada engarzada en garras",
+      ],
+    },
   ],
 
   anillos: [
