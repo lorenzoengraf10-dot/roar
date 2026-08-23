@@ -250,6 +250,19 @@ const PRODUCTOS = {
         "Largos disponibles: 50 y 55 cm",
       ],
     },
+    {
+      nombre: "Collar Soga Gold",
+      sub: "acero",
+      precio: 16000,
+      desc: "Collar cadena soga (rope chain) de acero macizo, con cierre de mosquetón.",
+      img: "assets/images/collar-soga-dorado.jpg",
+      img2: "assets/images/collar-soga-dorado-modelo.jpg",
+      img3: "assets/images/collar-soga-dorado-modelo2.jpg",
+      detalles: [
+        "Material: acero macizo dorado",
+        "Largos disponibles: 50 y 55 cm",
+      ],
+    },
   ],
 
   pulseras: [
