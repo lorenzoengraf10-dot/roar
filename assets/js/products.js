@@ -460,6 +460,17 @@ const PRODUCTOS = {
         "Cierre: mosquetones giratorios",
       ],
     },
+    {
+      nombre: "Cadena Box Triple",
+      precio: 22000,
+      desc: "Cadena de pantalón triple, combinando cadena tipo box (cuadrada), rolo y cable fina. Mosquetones giratorios en ambos extremos.",
+      img: "assets/images/cadena-box-triple.jpg",
+      img2: "assets/images/cadena-box-triple-modelo.jpg",
+      detalles: [
+        "Material: acero quirúrgico inoxidable",
+        "Diseño: triple cadena (box, rolo y cable)",
+      ],
+    },
   ],
 
 };
