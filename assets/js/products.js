@@ -471,6 +471,20 @@ const PRODUCTOS = {
         "Diseño: triple cadena (box, rolo y cable)",
       ],
     },
+    {
+      nombre: "Cadena Genesis",
+      precio: 25000,
+      desc: "Doble cadena de pantalón con dos texturas combinadas y un dije de cruz con circonias, desmontable, en una cadena aparte.",
+      img: "assets/images/cadena-genesis.jpg",
+      img2: "assets/images/cadena-genesis-modelo.jpg",
+      img3: "assets/images/cadena-genesis-detalle.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: doble cadena + dije de cruz desmontable",
+      ],
+    },
   ],
 
 };
