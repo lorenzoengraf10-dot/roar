@@ -301,6 +301,26 @@ const PRODUCTOS = {
         "Uso: unisex",
       ],
     },
+    {
+      nombre: "Aros Rock",
+      sub: "acero",
+      precio: 16000,
+      desc: "Aro tipo hoop con remaches en punta (spikes) alrededor de todo el aro. Cierre de bisagra con broche de seguridad. Disponible en dorado, plateado o negro.",
+      img: "assets/images/aro-rock-dorado.jpg",
+      img2: "assets/images/aro-rock-dorado-modelo.jpg",
+      etiqueta: "Hot",
+      color: "navy",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/aro-rock-dorado.jpg", img2: "assets/images/aro-rock-dorado-modelo.jpg" },
+        { nombre: "Plateado", img: "assets/images/aro-rock-plateado.jpg" },
+        { nombre: "Negro", img: "assets/images/aro-rock-negro.jpg", img2: "assets/images/aro-rock-negro-modelo.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico, dorado, plateado o negro",
+        "Diseño: remaches en punta, cierre de bisagra",
+        "Uso: unisex",
+      ],
+    },
   ],
 
   anillos: [

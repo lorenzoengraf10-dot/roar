@@ -35,6 +35,10 @@
       <image:title>Aros Shine — Acero Quirúrgico Plateado con Micropavé</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/aro-rock-dorado.jpg</image:loc>
+      <image:title>Aros Rock — Acero Quirúrgico con Remaches</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>
