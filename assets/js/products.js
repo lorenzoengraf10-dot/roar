@@ -331,6 +331,15 @@ const PRODUCTOS = {
         "También disponible en versión más fina — consultá por WhatsApp",
       ],
     },
+    {
+      nombre: "Pulsera Snake Gold",
+      precio: 12000,
+      desc: "Pulsera cadena plana tipo snake/herringbone, con cadena extensora para ajustar a cualquier medida de muñeca.",
+      img: "assets/images/pulsera-snake-dorado.jpg",
+      detalles: [
+        "Diseño: cadena plana snake, con extensible ajustable",
+      ],
+    },
   ],
 
   aros: [
