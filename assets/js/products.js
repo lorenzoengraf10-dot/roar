@@ -446,6 +446,20 @@ const PRODUCTOS = {
         "Uso: collar o cadena de pantalón",
       ],
     },
+    {
+      nombre: "Cadena Angel",
+      precio: 28000,
+      desc: "Cadena de pantalón triple, con tres texturas combinadas (trenzada, rolo y cadena fina) y un dije de cruz alada desmontable en una cadena aparte.",
+      img: "assets/images/cadena-angel.jpg",
+      img2: "assets/images/cadena-angel-modelo.jpg",
+      img3: "assets/images/cadena-angel-detalle.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Diseño: triple cadena + dije de cruz alada desmontable",
+        "Cierre: mosquetones giratorios",
+      ],
+    },
   ],
 
 };
