@@ -43,6 +43,10 @@
       <image:title>Aros Diamond — Plata 900 Bañada en Rodio</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/aro-cuba-dorado.jpg</image:loc>
+      <image:title>Aros Cuba Gold — Acero Quirúrgico Dorado</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>

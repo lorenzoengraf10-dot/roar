@@ -333,6 +333,18 @@ const PRODUCTOS = {
         "Diseño: abridor con piedra facetada engarzada en garras",
       ],
     },
+    {
+      nombre: "Aros Cuba Gold",
+      sub: "acero",
+      precio: 10000,
+      desc: "Aro huggie liso de caño ancho, cierre de bisagra con broche de seguridad.",
+      img: "assets/images/aro-cuba-dorado.jpg",
+      img2: "assets/images/aro-cuba-dorado-modelo.jpg",
+      detalles: [
+        "Material: acero quirúrgico 316L, dorado",
+        "Diseño: huggie liso, cierre de bisagra",
+      ],
+    },
   ],
 
   anillos: [
