@@ -432,6 +432,20 @@ const PRODUCTOS = {
         "Kit completo",
       ],
     },
+    {
+      nombre: "Cadena XL",
+      precio: 18000,
+      desc: "Cadena gruesa tipo Figaro con mosquetones giratorios en ambos extremos: se puede usar como collar o como cadena de pantalón.",
+      img: "assets/images/cadena-xl-plata.jpg",
+      img2: "assets/images/cadena-xl-plata-modelo-cuello.jpg",
+      img3: "assets/images/cadena-xl-plata-modelo-pantalon.jpg",
+      etiqueta: "Hot",
+      color: "navy",
+      detalles: [
+        "Material: acero quirúrgico 316L",
+        "Uso: collar o cadena de pantalón",
+      ],
+    },
   ],
 
 };
