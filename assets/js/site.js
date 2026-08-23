@@ -20,6 +20,35 @@
     return fmtMoneda.format(n);
   }
 
+  /* Precio real de un producto, según el color elegido (si tiene variantes
+     y esa variante trae su propio precio). Si no, usa el precio general
+     del producto. Puede devolver null/undefined ("Consultar precio"). */
+  function precioDeItem(product, color) {
+    if (color && product.variantes) {
+      var v = product.variantes.filter(function (x) { return x.nombre === color; })[0];
+      if (v && v.precio != null) return v.precio;
+    }
+    return product.precio;
+  }
+
+  /* El precio más bajo entre las variantes de un producto (o su precio
+     general si no tiene variantes con precio propio) — para mostrar
+     "Desde $X" en la tarjeta del catálogo cuando los colores no cuestan
+     lo mismo. */
+  function precioDesde(product) {
+    if (!product.variantes) return product.precio;
+    var precios = product.variantes
+      .map(function (v) { return v.precio != null ? v.precio : product.precio; })
+      .filter(function (p) { return p != null; });
+    return precios.length ? Math.min.apply(null, precios) : product.precio;
+  }
+
+  function variantesConPrecioDistinto(product) {
+    if (!product.variantes) return false;
+    var precios = product.variantes.map(function (v) { return v.precio != null ? v.precio : product.precio; });
+    return precios.some(function (p) { return p !== precios[0]; });
+  }
+
   function slugify(str) {
     return String(str)
       .toLowerCase()
@@ -159,7 +188,7 @@
   function cartTotal() {
     return cart.reduce(function (sum, item) {
       var entry = findEntry(item.catKey, item.slug);
-      var precio = entry && entry.product.precio ? entry.product.precio : 0;
+      var precio = entry ? (precioDeItem(entry.product, item.color) || 0) : 0;
       return sum + precio * item.cantidad;
     }, 0);
   }
@@ -442,8 +471,9 @@
     var slug = slugify(product.nombre);
     var waTexto = 'Hola ' + CONFIG.nombre + '! Quiero consultar por: ' + product.nombre;
 
-    var precioNode = product.precio
-      ? el('span', { class: 'card-price', text: money(product.precio) })
+    var precioBase = precioDesde(product);
+    var precioNode = precioBase
+      ? el('span', { class: 'card-price', text: (variantesConPrecioDistinto(product) ? 'Desde ' : '') + money(precioBase) })
       : el('span', { class: 'card-price card-price-consultar', text: 'Consultar precio' });
 
     var precioAntesNode = product.precioAntes
@@ -630,10 +660,18 @@
       ? el('ul', { class: 'modal-detalles' }, product.detalles.map(function (d) { return el('li', { text: d }); }))
       : null;
 
-    var precioRow = el('div', { class: 'modal-precio-row' },
-      product.precio ? el('span', { class: 'modal-precio', text: money(product.precio) }) : el('span', { class: 'modal-precio', text: 'Consultar precio' }),
-      product.precioAntes ? el('span', { class: 'card-price-before', text: money(product.precioAntes) }) : null
-    );
+    var precioRow = el('div', { class: 'modal-precio-row' });
+    function pintarPrecio() {
+      precioRow.innerHTML = '';
+      var precio = variantes ? precioDeItem(product, variantes[varianteActual].nombre) : product.precio;
+      precioRow.appendChild(
+        precio ? el('span', { class: 'modal-precio', text: money(precio) }) : el('span', { class: 'modal-precio', text: 'Consultar precio' })
+      );
+      if (product.precioAntes) {
+        precioRow.appendChild(el('span', { class: 'card-price-before', text: money(product.precioAntes) }));
+      }
+    }
+    pintarPrecio();
 
     function waTextoActual() {
       var base = 'Hola ' + CONFIG.nombre + '! Quiero consultar por: ' + product.nombre;
@@ -661,6 +699,7 @@
             fotoActual = 0;
             pintarFoto();
             pintarDots();
+            pintarPrecio();
             if (waAnchor) waAnchor.href = waLink(CONFIG.whatsapp, waTextoActual());
             e.currentTarget.parentElement.querySelectorAll('.variant-pill').forEach(function (b, bi) {
               b.classList.toggle('variant-pill-active', bi === i);
@@ -881,7 +920,7 @@
             el('div', { class: 'cart-item-photo' }, renderPhoto(fotoItem)),
             el('div', { class: 'cart-item-info' },
               el('span', { class: 'cart-item-name', text: nombreConColor }),
-              el('span', { class: 'cart-item-price', text: product.precio ? money(product.precio) : 'Consultar precio' }),
+              el('span', { class: 'cart-item-price', text: (function () { var p = precioDeItem(product, item.color); return p ? money(p) : 'Consultar precio'; })() }),
               el('div', { class: 'qty-stepper qty-stepper-sm' },
                 el('button', { type: 'button', class: 'qty-btn', 'aria-label': 'Restar', onclick: function () { cartSetQty(item.catKey, item.slug, item.cantidad - 1, item.color); } }, document.createTextNode('−')),
                 el('span', { class: 'qty-value', text: String(item.cantidad) }),
@@ -931,7 +970,8 @@
       var entry = findEntry(item.catKey, item.slug);
       if (!entry) return;
       var product = entry.product;
-      var precioTxt = product.precio ? money(product.precio * item.cantidad) : 'a consultar';
+      var precioItem = precioDeItem(product, item.color);
+      var precioTxt = precioItem ? money(precioItem * item.cantidad) : 'a consultar';
       var nombreConColor = product.nombre + (item.color ? ' (' + item.color + ')' : '');
       lineas.push((i + 1) + '. ' + nombreConColor + ' x' + item.cantidad + ' — ' + precioTxt);
     });

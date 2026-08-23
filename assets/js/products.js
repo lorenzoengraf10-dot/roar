@@ -39,6 +39,12 @@
       (el "img2" es opcional, es una segunda foto de ese color). En la
       ficha del producto va a aparecer un selector para elegir el color,
       y el pedido por WhatsApp o el carrito van a aclarar cuál se eligió.
+      Si un color cuesta distinto que el resto, agregale "precio" a esa
+      variante puntual (por ejemplo el dorado más caro que el plateado):
+      { nombre: "Dorado", precio: 31000, img: "..." }
+      El precio de arriba de todo (el que va afuera de "variantes") queda
+      como el que se ve en la tarjeta del catálogo cuando los colores
+      cuestan distinto — ahí el sitio muestra "Desde $lo más barato".
 
    Cada vez que edites este archivo, subí en 1 el número de versión al
    final de la etiqueta <script> en index.html (products.js?v=1 pasa a
@@ -382,6 +388,23 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero dorado macizo",
         "Cadena extensora ajustable",
+      ],
+    },
+    {
+      nombre: "Pulsera Rolex",
+      precio: 31000,
+      desc: "Pulsera estilo Presidential con eslabones extraíbles, regulable a la medida de la muñeca.",
+      img: "assets/images/pulsera-rolex-dorado.jpg",
+      img2: "assets/images/pulsera-rolex-dorado-modelo.jpg",
+      etiqueta: "Hot",
+      color: "navy",
+      variantes: [
+        { nombre: "Dorado", precio: 31000, img: "assets/images/pulsera-rolex-dorado.jpg", img2: "assets/images/pulsera-rolex-dorado-modelo.jpg" },
+        { nombre: "Acero Blanco", precio: 27000, img: "assets/images/pulsera-rolex-blanco-modelo.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico, dorado o blanco",
+        "Eslabones extraíbles para regular la medida",
       ],
     },
   ],
