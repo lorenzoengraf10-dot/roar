@@ -24,6 +24,9 @@
       por ejemplo: img: "assets/images/mi-foto.jpg"
       Si todavía no tenés la foto, dejá: img: null
       (el sitio va a mostrar un cartel de "Foto próximamente" solito).
+      Podés sumar más fotos del mismo producto con "img2" e "img3" (por
+      ejemplo, una foto de estudio y otra puesta o en la cajita) — en la
+      ficha del producto van a aparecer como una mini-galería.
    5. Si el producto ya no tiene stock, agregá: agotado: true
    6. Para la etiqueta (Nuevo, Hot, etc.) el color puede ser: "gold",
       "emerald", "navy" o "agotado" — son los colores de la marca.
@@ -328,6 +331,7 @@ const PRODUCTOS = {
       desc: "Aro abridor con piedra blanca facetada engarzada en garras, base plana.",
       img: "assets/images/aro-diamond-plata.jpg",
       img2: "assets/images/aro-diamond-plata-modelo.jpg",
+      img3: "assets/images/aro-diamond-plata-caja.jpg",
       detalles: [
         "Material: plata 900 bañada en rodio",
         "Diseño: abridor con piedra facetada engarzada en garras",

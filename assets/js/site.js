@@ -550,7 +550,7 @@
 
     function fotosActuales() {
       var base = variantes ? variantes[varianteActual] : product;
-      return [base.img, base.img2].filter(Boolean);
+      return [base.img, base.img2, base.img3].filter(Boolean);
     }
 
     var fotos = fotosActuales();
