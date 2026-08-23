@@ -340,6 +340,17 @@ const PRODUCTOS = {
         "Diseño: cadena plana snake, con extensible ajustable",
       ],
     },
+    {
+      nombre: "Pulsera Light",
+      precio: 21000,
+      desc: "Pulsera cadena curva (curb chain) maciza con un eslabón oval engastado con microcirconias. Cadena extensora para ajustar a cualquier medida de muñeca.",
+      img: "assets/images/pulsera-light-dorado.jpg",
+      img2: "assets/images/pulsera-light-dorado-modelo.jpg",
+      detalles: [
+        "Material: acero dorado macizo",
+        "Cadena extensora ajustable",
+      ],
+    },
   ],
 
   aros: [
