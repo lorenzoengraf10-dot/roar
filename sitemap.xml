@@ -47,6 +47,10 @@
       <image:title>Aros Cuba Gold — Acero Quirúrgico Dorado</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/aro-sky-dorado.jpg</image:loc>
+      <image:title>Aros Sky — Acero Quirúrgico con Micropavé</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>

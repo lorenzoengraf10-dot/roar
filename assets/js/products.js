@@ -349,6 +349,23 @@ const PRODUCTOS = {
         "Diseño: huggie liso, cierre de bisagra",
       ],
     },
+    {
+      nombre: "Aros Sky",
+      sub: "acero",
+      precio: 9000,
+      desc: "Aro chico tipo hoop con una franja de micropavé en el frente. Cierre de bisagra con broche de seguridad. Disponible en dorado o plateado.",
+      img: "assets/images/aro-sky-dorado.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/aro-sky-dorado.jpg" },
+        { nombre: "Plateado", img: "assets/images/aro-sky-plateado.jpg", img2: "assets/images/aro-sky-plateado-modelo.jpg", img3: "assets/images/aro-sky-plateado-modelo2.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico, dorado o plateado",
+        "Diseño: micropavé, cierre de bisagra",
+      ],
+    },
   ],
 
   anillos: [
