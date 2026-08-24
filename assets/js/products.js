@@ -108,7 +108,7 @@ const CONFIG = {
 const CATEGORIAS = {
   anillos: {
     nombre: "Anillos",
-    foto: null,
+    foto: "assets/images/anillo-italia.jpg",
     subs: {
       plata: "Plata 925",
       acero: "Acero Quirúrgico",
@@ -550,6 +550,38 @@ const PRODUCTOS = {
   ],
 
   anillos: [
+    {
+      nombre: "Anillo Italia",
+      sub: "acero",
+      precio: 23000,
+      desc: "Anillo sello con piedra ónix rectangular, acero quirúrgico dorado macizo.",
+      img: "assets/images/anillo-italia.jpg",
+      img2: "assets/images/anillo-italia-caja.jpg",
+      img3: "assets/images/anillo-italia-modelo.jpg",
+      img4: "assets/images/guia-talles-anillos.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico dorado macizo",
+        "Talles disponibles: 18 y 19",
+      ],
+    },
+    {
+      nombre: "Anillo Total Black",
+      sub: "acero",
+      precio: 21000,
+      desc: "Anillo sello liso, acero macizo negro 316L.",
+      img: "assets/images/anillo-total-black.jpg",
+      img2: "assets/images/anillo-total-black-modelo.jpg",
+      img3: "assets/images/anillo-total-black-detalle.jpg",
+      img4: "assets/images/guia-talles-anillos.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero macizo negro 316L",
+        "Talles disponibles: 18, 19 y 20",
+      ],
+    },
     {
       nombre: "Anillo Cuba Silver",
       precio: 12000,

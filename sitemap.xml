@@ -119,6 +119,14 @@
       <image:title>Collar Santos — Doble Cadena con Dijes de Cruz</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/anillo-italia.jpg</image:loc>
+      <image:title>Anillo Italia — Sello con Ónix, Acero Dorado Macizo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/anillo-total-black.jpg</image:loc>
+      <image:title>Anillo Total Black — Acero Macizo Negro 316L</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>
