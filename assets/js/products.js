@@ -381,7 +381,7 @@ const PRODUCTOS = {
     },
     {
       nombre: "Pulsera Tennis Silver",
-      precio: 14000,
+      precio: 15000,
       desc: "Pulsera tennis con circonias engarzadas, color plateado. Acero quirúrgico.",
       img: "assets/images/pulsera-tennis-silver.jpg",
       img2: "assets/images/pulsera-tennis-silver-modelo.jpg",
