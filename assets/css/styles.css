@@ -411,7 +411,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 1rem 2rem;
+  padding: 2.25rem 1rem;
   overflow: hidden;
   background: var(--bg);
 }

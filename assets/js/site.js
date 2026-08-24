@@ -393,7 +393,7 @@
 
     hero.appendChild(
       el('img', {
-        src: 'assets/images/hero-bg-cadenas.jpg',
+        src: 'assets/images/showroom-pared-roar.jpg',
         alt: '',
         'aria-hidden': 'true',
         class: 'hero-bg-photo',
@@ -411,7 +411,7 @@
           width: '140',
           height: '140',
         }),
-        el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico y plata 925' }),
+        el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico' }),
         el('div', { class: 'hero-ctas' }, ctas),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })
