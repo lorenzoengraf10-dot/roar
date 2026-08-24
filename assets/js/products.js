@@ -279,9 +279,33 @@ const PRODUCTOS = {
         "Diseño: rosario con dije de cruz y medalla de la Virgen",
       ],
     },
+    {
+      nombre: "Cadena Cuba Silver",
+      precio: 12000,
+      desc: "Cadena cubana (curb chain) color plateado, 50 cm.",
+      img: "assets/images/cadena-cuba-silver.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Diseño: cadena cubana (curb chain)",
+        "Largo: 50 cm",
+      ],
+    },
   ],
 
   pulseras: [
+    {
+      nombre: "Pulsera Cuba Silver",
+      precio: 12000,
+      desc: "Pulsera cadena cubana (curb chain) color plateado.",
+      img: "assets/images/pulsera-cuba-silver.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Diseño: cadena cubana (curb chain)",
+        "Varias medidas disponibles",
+      ],
+    },
     {
       nombre: "Pulsera San Benito",
       precio: 17000,
@@ -471,9 +495,33 @@ const PRODUCTOS = {
   ],
 
   anillos: [
+    {
+      nombre: "Anillo Cuba Silver",
+      precio: 12000,
+      desc: "Anillo plano color plateado.",
+      img: "assets/images/anillo-cuba-silver.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Diseño: banda lisa plana",
+        "Varios talles disponibles",
+      ],
+    },
   ],
 
   accesorios: [
+    {
+      nombre: "Combo Cuba Silver",
+      precio: 30000,
+      desc: "Combo de 3 piezas color plateado, cadena cubana (curb chain): pulsera, cadena de 50 cm y anillo plano.",
+      img: "assets/images/combo-cuba-silver.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Incluye: pulsera + cadena (50 cm) + anillo",
+        "Cada pieza también se vende por separado a $12.000",
+      ],
+    },
     {
       nombre: "Cadena XL",
       precio: 18000,
