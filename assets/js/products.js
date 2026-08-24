@@ -393,8 +393,10 @@ const PRODUCTOS = {
       precio: 12000,
       desc: "Pulsera cadena plana tipo snake/herringbone, con cadena extensora para ajustar a cualquier medida de muñeca.",
       img: "assets/images/pulsera-snake-dorado.jpg",
+      img2: "assets/images/pulsera-snake-dorado-detalle.jpg",
       detalles: [
         "Diseño: cadena plana snake, con extensible ajustable",
+        "Medidas: 0,5 mm x 17 cm + 5 cm (extensor)",
       ],
     },
     {
