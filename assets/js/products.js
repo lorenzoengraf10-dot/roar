@@ -280,6 +280,19 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Mito",
+      precio: 31000,
+      desc: "Cadena personalizada con estilo único: doble cadena (cubana y box) con dije de cruz desmontable.",
+      img: "assets/images/collar-mito.jpg",
+      img2: "assets/images/collar-mito-modelo.jpg",
+      img3: "assets/images/collar-mito-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Diseño: doble cadena (cubana y box) con dije de cruz desmontable",
+      ],
+    },
+    {
       nombre: "Collar Wolf",
       sub: "acero",
       precio: 26000,
