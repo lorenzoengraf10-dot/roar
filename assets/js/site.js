@@ -393,7 +393,7 @@
 
     hero.appendChild(
       el('img', {
-        src: 'assets/images/showroom-pared-roar.jpg',
+        src: 'assets/images/hero-bg-joyas.jpg',
         alt: '',
         'aria-hidden': 'true',
         class: 'hero-bg-photo',
