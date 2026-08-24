@@ -439,7 +439,7 @@ const PRODUCTOS = {
         { nombre: "Plateada blanca", img: "assets/images/pulsera-vancleef-plateada-blanca.jpg" },
         { nombre: "Plateada verde", img: "assets/images/pulsera-vancleef-plateada-verde.jpg", img2: "assets/images/pulsera-vancleef-plateada-verde-modelo2.jpg" },
         { nombre: "Doradas blanca y negra", img: "assets/images/pulsera-vancleef-dorada-blanca-negra.jpg" },
-        { nombre: "Doradas y negra", img: null },
+        { nombre: "Doradas y negra", img: "assets/images/pulsera-vancleef-dorada-negra-modelo.jpg" },
         { nombre: "Doradas blanca", img: null },
       ],
       detalles: [
