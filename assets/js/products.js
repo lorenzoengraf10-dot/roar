@@ -573,11 +573,11 @@ const PRODUCTOS = {
       sub: "acero",
       precio: 21000,
       desc: "Anillo sello con placa rectangular lisa, acero macizo 316L. Disponible en negro, plateado o dorado.",
-      img: "assets/images/anillo-rock-negro-modelo.jpg",
+      img: "assets/images/anillo-rock-negro.jpg",
       etiqueta: "Nuevo",
       color: "navy",
       variantes: [
-        { nombre: "Negro", img: "assets/images/anillo-rock-negro-modelo.jpg", img2: "assets/images/guia-talles-anillos.jpg" },
+        { nombre: "Negro", img: "assets/images/anillo-rock-negro.jpg", img2: "assets/images/anillo-rock-negro-detalle.jpg", img3: "assets/images/anillo-rock-negro-modelo.jpg", img4: "assets/images/guia-talles-anillos.jpg" },
         { nombre: "Plateado", img: "assets/images/anillo-rock-plateado.jpg", img2: "assets/images/anillo-rock-plateado-caja.jpg", img3: "assets/images/guia-talles-anillos.jpg" },
         { nombre: "Dorado", img: "assets/images/anillo-rock-dorado.jpg", img2: "assets/images/anillo-rock-dorado-modelo.jpg", img3: "assets/images/guia-talles-anillos.jpg" },
       ],
