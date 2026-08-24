@@ -99,6 +99,18 @@
       <image:title>Pulsera Rolex — Estilo Presidential</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/rosario-combinado.jpg</image:loc>
+      <image:title>Rosarios — Combinado o Plateado</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/aro-rubi-dorado.jpg</image:loc>
+      <image:title>Aros Rubí — Piedra Facetada Rectangular</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/pulsera-vancleef-plateada-negra.jpg</image:loc>
+      <image:title>Pulseras Van Cleef — Eslabones Tipo Trébol</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>

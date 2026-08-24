@@ -302,6 +302,22 @@ const PRODUCTOS = {
         "Cadena: rolo, cierre de mosquetón",
       ],
     },
+    {
+      nombre: "Rosarios",
+      precio: 16000,
+      desc: "Rosario con dije de cruz y medalla de la Virgen, cadena de bolitas. Disponible combinado (bolitas doradas y plateadas) o plateado.",
+      img: "assets/images/rosario-combinado.jpg",
+      img2: "assets/images/rosario-combinado-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      variantes: [
+        { nombre: "Combinado", precio: 16000, img: "assets/images/rosario-combinado.jpg", img2: "assets/images/rosario-combinado-modelo.jpg" },
+        { nombre: "Plateado", precio: 13000, img: "assets/images/rosario-plateado.jpg", img2: "assets/images/rosario-plateado-modelo.jpg" },
+      ],
+      detalles: [
+        "Diseño: rosario con dije de cruz y medalla de la Virgen",
+      ],
+    },
   ],
 
   pulseras: [
@@ -407,6 +423,26 @@ const PRODUCTOS = {
         "Eslabones extraíbles para regular la medida",
       ],
     },
+    {
+      nombre: "Pulseras Van Cleef",
+      precio: 13000,
+      desc: "Pulsera con eslabones tipo trébol (clover), cadena con mosquetón y cadena extensora. Elegí el color de cadena y de los tréboles.",
+      img: "assets/images/pulsera-vancleef-plateada-negra.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Plateada negra", img: "assets/images/pulsera-vancleef-plateada-negra.jpg" },
+        { nombre: "Plateada blanca", img: "assets/images/pulsera-vancleef-plateada-blanca.jpg" },
+        { nombre: "Plateada verde", img: "assets/images/pulsera-vancleef-plateada-verde.jpg", img2: "assets/images/pulsera-vancleef-plateada-verde-modelo2.jpg" },
+        { nombre: "Doradas blanca y negra", img: "assets/images/pulsera-vancleef-dorada-blanca-negra.jpg" },
+        { nombre: "Doradas y negra", img: null },
+        { nombre: "Doradas blanca", img: null },
+      ],
+      detalles: [
+        "Diseño: eslabones tipo trébol en la cadena",
+        "Cierre: mosquetón con cadena extensora",
+      ],
+    },
   ],
 
   aros: [
@@ -489,6 +525,24 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero quirúrgico, dorado o plateado",
         "Diseño: micropavé, cierre de bisagra",
+      ],
+    },
+    {
+      nombre: "Aros Rubí",
+      sub: "acero",
+      precio: 16000,
+      desc: "Aro pequeño con piedra rectangular facetada engarzada en garras. Cierre de bisagra con broche de seguridad. Disponible en dorado o plateado.",
+      img: "assets/images/aro-rubi-dorado.jpg",
+      img2: "assets/images/aro-rubi-dorado-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      variantes: [
+        { nombre: "Dorado", precio: 16000, img: "assets/images/aro-rubi-dorado.jpg", img2: "assets/images/aro-rubi-dorado-modelo.jpg" },
+        { nombre: "Plateado", precio: 14000, img: "assets/images/aro-rubi-plateado.jpg", img2: "assets/images/aro-rubi-plateado-modelo.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico 316L, dorado o plateado",
+        "Diseño: piedra facetada rectangular, cierre de bisagra",
       ],
     },
   ],

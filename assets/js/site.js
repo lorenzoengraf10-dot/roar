@@ -627,7 +627,10 @@
       if (fotos.length) {
         fotoBox.appendChild(el('img', { src: fotos[fotoActual], alt: product.nombre, class: 'modal-photo-img' }));
       } else {
-        fotoBox.appendChild(renderPhoto(product));
+        // Ojo: si el producto tiene variantes, hay que mostrar el placeholder
+        // de "sin foto" para LA VARIANTE actual, no la foto general del
+        // producto (que puede ser la de otro color y confundir).
+        fotoBox.appendChild(renderPhoto(variantes ? variantes[varianteActual] : product));
       }
     }
     pintarFoto();
