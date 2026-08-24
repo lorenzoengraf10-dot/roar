@@ -48,6 +48,9 @@
       El precio de arriba de todo (el que va afuera de "variantes") queda
       como el que se ve en la tarjeta del catálogo cuando los colores
       cuestan distinto — ahí el sitio muestra "Desde $lo más barato".
+   8. Material por defecto: todo es acero quirúrgico, salvo que se
+      aclare lo contrario (por ejemplo plata 900). No hace falta
+      preguntar por el material en cada producto nuevo.
 
    Cada vez que edites este archivo, subí en 1 el número de versión al
    final de la etiqueta <script> en index.html (products.js?v=1 pasa a
@@ -235,8 +238,9 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Enzo",
+      sub: "acero",
       precio: 21000,
-      desc: "Colgante de cruz con textura tejida en relieve. Disponible en cadena soga dorada o cadena rolo plateada.",
+      desc: "Colgante de cruz con textura tejida en relieve. Acero quirúrgico. Disponible en cadena soga dorada o cadena rolo plateada.",
       img: "assets/images/collar-enzo-dorado-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
@@ -245,14 +249,16 @@ const PRODUCTOS = {
         { nombre: "Plateado", img: "assets/images/collar-enzo-oxidado.jpg", img2: "assets/images/collar-enzo-oxidado-modelo.jpg" },
       ],
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: colgante cruz con textura tejida en relieve",
         "Cadena: soga (dorado) o rolo (plateado)",
       ],
     },
     {
       nombre: "Collar Gloria",
+      sub: "acero",
       precio: 24000,
-      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
+      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Acero quirúrgico. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
       img: "assets/images/collar-gloria-dorado-modelo.jpg",
       img2: "assets/images/collar-gloria-dorado-modelo2.jpg",
       etiqueta: "Nuevo",
@@ -262,14 +268,16 @@ const PRODUCTOS = {
         { nombre: "Plateado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
       ],
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: medallón circular con el Sol de Mayo en relieve",
         "Cadena: rolo, cierre de mosquetón",
       ],
     },
     {
       nombre: "Rosarios",
+      sub: "acero",
       precio: 16000,
-      desc: "Rosario con dije de cruz y medalla de la Virgen, cadena de bolitas. Disponible combinado (bolitas doradas y plateadas) o plateado.",
+      desc: "Rosario con dije de cruz y medalla de la Virgen, cadena de bolitas. Acero quirúrgico. Disponible combinado (bolitas doradas y plateadas) o plateado.",
       img: "assets/images/rosario-combinado.jpg",
       img2: "assets/images/rosario-combinado-modelo.jpg",
       etiqueta: "Nuevo",
@@ -279,43 +287,50 @@ const PRODUCTOS = {
         { nombre: "Plateado", precio: 13000, img: "assets/images/rosario-plateado.jpg", img2: "assets/images/rosario-plateado-modelo.jpg" },
       ],
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: rosario con dije de cruz y medalla de la Virgen",
       ],
     },
     {
       nombre: "Collar Santos",
+      sub: "acero",
       precio: 26000,
-      desc: "Collar personalizado con doble cadena combinada (box y bolitas), con dijes de cruz.",
+      desc: "Collar personalizado con doble cadena combinada (box y bolitas), con dijes de cruz. Acero quirúrgico.",
       img: "assets/images/collar-santos.jpg",
       img2: "assets/images/collar-santos-modelo.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: doble cadena combinada (box y bolitas) con dijes de cruz",
       ],
     },
     {
       nombre: "Collar Equilibrio",
+      sub: "acero",
       precio: 26000,
-      desc: "Cadena combinada (box y cubana) con dije colgante de barra rectangular.",
+      desc: "Cadena combinada (box y cubana) con dije colgante de barra rectangular. Acero quirúrgico.",
       img: "assets/images/collar-equilibrio.jpg",
       img2: "assets/images/collar-equilibrio-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: cadena combinada (box y cubana) con dije de barra rectangular",
       ],
     },
     {
       nombre: "Collar Mito",
+      sub: "acero",
       precio: 31000,
-      desc: "Cadena personalizada con estilo único: doble cadena (cubana y box) con dije de cruz desmontable.",
+      desc: "Cadena personalizada con estilo único: doble cadena (cubana y box) con dije de cruz desmontable. Acero quirúrgico.",
       img: "assets/images/collar-mito.jpg",
       img2: "assets/images/collar-mito-modelo.jpg",
       img3: "assets/images/collar-mito-modelo2.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: doble cadena (cubana y box) con dije de cruz desmontable",
       ],
     },
@@ -336,12 +351,14 @@ const PRODUCTOS = {
     },
     {
       nombre: "Cadena Cuba Silver",
+      sub: "acero",
       precio: 12000,
-      desc: "Cadena cubana (curb chain) color plateado, 50 cm.",
+      desc: "Cadena cubana (curb chain) color plateado, 50 cm. Acero quirúrgico.",
       img: "assets/images/cadena-cuba-silver.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: cadena cubana (curb chain)",
         "Largo: 50 cm",
       ],
@@ -352,11 +369,12 @@ const PRODUCTOS = {
     {
       nombre: "Pulsera Cuba Silver",
       precio: 12000,
-      desc: "Pulsera cadena cubana (curb chain) color plateado.",
+      desc: "Pulsera cadena cubana (curb chain) color plateado. Acero quirúrgico.",
       img: "assets/images/pulsera-cuba-silver.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: cadena cubana (curb chain)",
         "Varias medidas disponibles",
       ],
@@ -391,10 +409,11 @@ const PRODUCTOS = {
     {
       nombre: "Pulsera Snake Gold",
       precio: 12000,
-      desc: "Pulsera cadena plana tipo snake/herringbone, con cadena extensora para ajustar a cualquier medida de muñeca.",
+      desc: "Pulsera cadena plana tipo snake/herringbone, con cadena extensora para ajustar a cualquier medida de muñeca. Acero quirúrgico.",
       img: "assets/images/pulsera-snake-dorado.jpg",
       img2: "assets/images/pulsera-snake-dorado-detalle.jpg",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: cadena plana snake, con extensible ajustable",
         "Medidas: 0,5 mm x 17 cm + 5 cm (extensor)",
       ],
@@ -430,7 +449,7 @@ const PRODUCTOS = {
     {
       nombre: "Pulseras Van Cleef",
       precio: 13000,
-      desc: "Pulsera con eslabones tipo trébol (clover), cadena con mosquetón y cadena extensora. Elegí el color de cadena y de los tréboles.",
+      desc: "Pulsera con eslabones tipo trébol (clover), cadena con mosquetón y cadena extensora. Acero quirúrgico. Elegí el color de cadena y de los tréboles.",
       img: "assets/images/pulsera-vancleef-plateada-negra.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
@@ -443,6 +462,7 @@ const PRODUCTOS = {
         { nombre: "Doradas blanca", img: "assets/images/pulsera-vancleef-dorada-blanca.jpg" },
       ],
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: eslabones tipo trébol en la cadena",
         "Cierre: mosquetón con cadena extensora",
       ],
@@ -588,13 +608,15 @@ const PRODUCTOS = {
     },
     {
       nombre: "Anillo Cuba Silver",
+      sub: "acero",
       precio: 12000,
-      desc: "Anillo plano color plateado.",
+      desc: "Anillo plano color plateado. Acero quirúrgico.",
       img: "assets/images/anillo-cuba-silver.jpg",
       img2: "assets/images/guia-talles-anillos.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: banda lisa plana",
         "Varios talles disponibles",
       ],
@@ -605,11 +627,12 @@ const PRODUCTOS = {
     {
       nombre: "Combo Cuba Silver",
       precio: 30000,
-      desc: "Combo de 3 piezas color plateado, cadena cubana (curb chain): pulsera, cadena de 50 cm y anillo plano.",
+      desc: "Combo de 3 piezas color plateado, cadena cubana (curb chain): pulsera, cadena de 50 cm y anillo plano. Acero quirúrgico.",
       img: "assets/images/combo-cuba-silver.jpg",
       etiqueta: "Nuevo",
       color: "navy",
       detalles: [
+        "Material: acero quirúrgico",
         "Incluye: pulsera + cadena (50 cm) + anillo",
         "Cada pieza también se vende por separado a $12.000",
       ],
@@ -631,13 +654,14 @@ const PRODUCTOS = {
     {
       nombre: "Cadena Angel",
       precio: 28000,
-      desc: "Cadena de pantalón triple, con tres texturas combinadas (trenzada, rolo y cadena fina) y un dije de cruz alada desmontable en una cadena aparte.",
+      desc: "Cadena de pantalón triple, con tres texturas combinadas (trenzada, rolo y cadena fina) y un dije de cruz alada desmontable en una cadena aparte. Acero quirúrgico.",
       img: "assets/images/cadena-angel.jpg",
       img2: "assets/images/cadena-angel-modelo.jpg",
       img3: "assets/images/cadena-angel-detalle.jpg",
       etiqueta: "Nuevo",
       color: "navy",
       detalles: [
+        "Material: acero quirúrgico",
         "Diseño: triple cadena + dije de cruz alada desmontable",
         "Cierre: mosquetones giratorios",
       ],
