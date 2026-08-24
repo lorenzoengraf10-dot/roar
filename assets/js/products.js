@@ -280,6 +280,18 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Santos",
+      precio: 26000,
+      desc: "Collar personalizado con doble cadena combinada (box y bolitas), con dijes de cruz.",
+      img: "assets/images/collar-santos.jpg",
+      img2: "assets/images/collar-santos-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Diseño: doble cadena combinada (box y bolitas) con dijes de cruz",
+      ],
+    },
+    {
       nombre: "Collar Equilibrio",
       precio: 26000,
       desc: "Cadena combinada (box y cubana) con dije colgante de barra rectangular.",

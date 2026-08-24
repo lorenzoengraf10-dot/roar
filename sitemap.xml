@@ -115,6 +115,10 @@
       <image:title>Collar Equilibrio — Cadena con Dije de Barra</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/collar-santos.jpg</image:loc>
+      <image:title>Collar Santos — Doble Cadena con Dijes de Cruz</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
       <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
     </image:image>
