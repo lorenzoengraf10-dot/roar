@@ -412,11 +412,15 @@ const PRODUCTOS = {
     {
       nombre: "Pulsera Soga Gold",
       precio: 13000,
-      desc: "Pulsera cadena soga (rope chain) con cierre de mosquetón y cadena extensora para ajustar el largo.",
+      desc: "Pulsera cadena soga (rope chain) con cierre de mosquetón y cadena extensora para ajustar el largo. Acero quirúrgico. Disponible en dorado o plateado.",
       img: "assets/images/pulsera-soga-dorado.jpg",
-      img2: "assets/images/pulsera-soga-dorado-modelo.jpg",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/pulsera-soga-dorado.jpg", img2: "assets/images/pulsera-soga-dorado-modelo.jpg" },
+        { nombre: "Plateado", img: "assets/images/pulsera-soga-plateado.jpg" },
+      ],
       detalles: [
-        "Material: acero quirúrgico 316L, dorado",
+        "Material: acero quirúrgico",
+        "Medidas: 0,8 mm x 19 cm + 5 cm (alargue)",
         "También disponible en versión más fina — consultá por WhatsApp",
       ],
     },
