@@ -380,6 +380,19 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Pulsera Darkness",
+      precio: 14000,
+      desc: "Pulsera cadena cubana (curb chain) color acero negro.",
+      img: "assets/images/pulsera-darkness.jpg",
+      img2: "assets/images/pulsera-darkness-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero negro",
+        "Medidas: 20 cm de largo",
+      ],
+    },
+    {
       nombre: "Pulsera Tennis Silver",
       precio: 15000,
       desc: "Pulsera tennis con circonias engarzadas, color plateado. Acero quirúrgico.",

@@ -91,6 +91,10 @@
       <image:title>Pulsera Tennis Silver — Acero Quirúrgico</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar.vercel.app/assets/images/pulsera-darkness.jpg</image:loc>
+      <image:title>Pulsera Darkness — Acero Negro</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar.vercel.app/assets/images/rosario-combinado.jpg</image:loc>
       <image:title>Rosarios — Combinado o Plateado</image:title>
     </image:image>
