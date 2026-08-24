@@ -236,30 +236,30 @@ const PRODUCTOS = {
     {
       nombre: "Collar Enzo",
       precio: 21000,
-      desc: "Colgante de cruz con textura tejida en relieve. Disponible en cadena soga dorada o cadena rolo en tono envejecido oxidado.",
+      desc: "Colgante de cruz con textura tejida en relieve. Disponible en cadena soga dorada o cadena rolo plateada.",
       img: "assets/images/collar-enzo-dorado-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       variantes: [
         { nombre: "Dorado", img: "assets/images/collar-enzo-dorado-modelo.jpg" },
-        { nombre: "Oxidado", img: "assets/images/collar-enzo-oxidado.jpg", img2: "assets/images/collar-enzo-oxidado-modelo.jpg" },
+        { nombre: "Plateado", img: "assets/images/collar-enzo-oxidado.jpg", img2: "assets/images/collar-enzo-oxidado-modelo.jpg" },
       ],
       detalles: [
         "Diseño: colgante cruz con textura tejida en relieve",
-        "Cadena: soga (dorado) o rolo (oxidado)",
+        "Cadena: soga (dorado) o rolo (plateado)",
       ],
     },
     {
       nombre: "Collar Gloria",
       precio: 24000,
-      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Cadena rolo con cierre de mosquetón. Disponible en dorado u oxidado.",
+      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
       img: "assets/images/collar-gloria-dorado-modelo.jpg",
       img2: "assets/images/collar-gloria-dorado-modelo2.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
       variantes: [
         { nombre: "Dorado", img: "assets/images/collar-gloria-dorado-modelo.jpg", img2: "assets/images/collar-gloria-dorado-modelo2.jpg" },
-        { nombre: "Oxidado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
+        { nombre: "Plateado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
       ],
       detalles: [
         "Diseño: medallón circular con el Sol de Mayo en relieve",
