@@ -124,7 +124,7 @@ const CATEGORIAS = {
     subs: {
       plata: "Plata 925",
       oro: "Baño de Oro 18K",
-      acero: "Acero Quirúrgico",
+      pantalon: "Para Pantalón",
     },
   },
   pulseras: {
@@ -146,8 +146,8 @@ const CATEGORIAS = {
     },
   },
   accesorios: {
-    nombre: "Accesorios",
-    foto: "assets/images/cadena-angel.jpg",
+    nombre: "Combos",
+    foto: "assets/images/combo-cuba-silver.jpg",
   },
 };
 
@@ -225,7 +225,6 @@ const PRODUCTOS = {
   cadenas: [
     {
       nombre: "Collar Soga Gold",
-      sub: "acero",
       precio: 16000,
       desc: "Collar cadena soga (rope chain) de acero macizo, con cierre de mosquetón.",
       img: "assets/images/collar-soga-dorado.jpg",
@@ -238,7 +237,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Enzo",
-      sub: "acero",
       precio: 21000,
       desc: "Colgante de cruz con textura tejida en relieve. Acero quirúrgico. Disponible en cadena soga dorada o cadena rolo plateada.",
       img: "assets/images/collar-enzo-dorado-modelo.jpg",
@@ -256,7 +254,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Gloria",
-      sub: "acero",
       precio: 24000,
       desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Acero quirúrgico. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
       img: "assets/images/collar-gloria-dorado-modelo.jpg",
@@ -275,7 +272,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Rosarios",
-      sub: "acero",
       precio: 16000,
       desc: "Rosario con dije de cruz y medalla de la Virgen, cadena de bolitas. Acero quirúrgico. Disponible combinado (bolitas doradas y plateadas) o plateado.",
       img: "assets/images/rosario-combinado.jpg",
@@ -293,7 +289,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Santos",
-      sub: "acero",
       precio: 26000,
       desc: "Collar personalizado con doble cadena combinada (box y bolitas), con dijes de cruz. Acero quirúrgico.",
       img: "assets/images/collar-santos.jpg",
@@ -307,7 +302,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Equilibrio",
-      sub: "acero",
       precio: 26000,
       desc: "Cadena combinada (box y cubana) con dije colgante de barra rectangular. Acero quirúrgico.",
       img: "assets/images/collar-equilibrio.jpg",
@@ -321,7 +315,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Mito",
-      sub: "acero",
       precio: 31000,
       desc: "Cadena personalizada con estilo único: doble cadena (cubana y box) con dije de cruz desmontable. Acero quirúrgico.",
       img: "assets/images/collar-mito.jpg",
@@ -336,7 +329,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Collar Wolf",
-      sub: "acero",
       precio: 26000,
       desc: "Collar con dije de cabeza de lobo y piedras ónix naturales sobre cadena combinada.",
       img: "assets/images/collar-wolf.jpg",
@@ -351,7 +343,6 @@ const PRODUCTOS = {
     },
     {
       nombre: "Cadena Cuba Silver",
-      sub: "acero",
       precio: 12000,
       desc: "Cadena cubana (curb chain) color plateado, 50 cm. Acero quirúrgico.",
       img: "assets/images/cadena-cuba-silver.jpg",
@@ -361,6 +352,64 @@ const PRODUCTOS = {
         "Material: acero quirúrgico",
         "Diseño: cadena cubana (curb chain)",
         "Largo: 50 cm",
+      ],
+    },
+    {
+      nombre: "Cadena XL",
+      sub: "pantalon",
+      precio: 18000,
+      desc: "Cadena gruesa tipo Figaro con mosquetones giratorios en ambos extremos: se puede usar como collar o como cadena de pantalón.",
+      img: "assets/images/cadena-xl-plata.jpg",
+      img2: "assets/images/cadena-xl-plata-modelo-cuello.jpg",
+      img3: "assets/images/cadena-xl-plata-modelo-pantalon.jpg",
+      etiqueta: "Hot",
+      color: "navy",
+      detalles: [
+        "Material: acero quirúrgico 316L",
+        "Uso: collar o cadena de pantalón",
+      ],
+    },
+    {
+      nombre: "Cadena Angel",
+      sub: "pantalon",
+      precio: 28000,
+      desc: "Cadena de pantalón triple, con tres texturas combinadas (trenzada, rolo y cadena fina) y un dije de cruz alada desmontable en una cadena aparte. Acero quirúrgico.",
+      img: "assets/images/cadena-angel.jpg",
+      img2: "assets/images/cadena-angel-modelo.jpg",
+      img3: "assets/images/cadena-angel-detalle.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: triple cadena + dije de cruz alada desmontable",
+        "Cierre: mosquetones giratorios",
+      ],
+    },
+    {
+      nombre: "Cadena Box Triple",
+      sub: "pantalon",
+      precio: 22000,
+      desc: "Cadena de pantalón triple, combinando cadena tipo box (cuadrada), rolo y cable fina. Mosquetones giratorios en ambos extremos.",
+      img: "assets/images/cadena-box-triple.jpg",
+      img2: "assets/images/cadena-box-triple-modelo.jpg",
+      detalles: [
+        "Material: acero quirúrgico inoxidable",
+        "Diseño: triple cadena (box, rolo y cable)",
+      ],
+    },
+    {
+      nombre: "Cadena Genesis",
+      sub: "pantalon",
+      precio: 25000,
+      desc: "Doble cadena de pantalón con dos texturas combinadas y un dije de cruz con circonias, desmontable, en una cadena aparte.",
+      img: "assets/images/cadena-genesis.jpg",
+      img2: "assets/images/cadena-genesis-modelo.jpg",
+      img3: "assets/images/cadena-genesis-detalle.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: doble cadena + dije de cruz desmontable",
       ],
     },
   ],
@@ -666,60 +715,6 @@ const PRODUCTOS = {
         "Material: acero quirúrgico",
         "Incluye: pulsera + cadena (50 cm) + anillo",
         "Cada pieza también se vende por separado a $12.000",
-      ],
-    },
-    {
-      nombre: "Cadena XL",
-      precio: 18000,
-      desc: "Cadena gruesa tipo Figaro con mosquetones giratorios en ambos extremos: se puede usar como collar o como cadena de pantalón.",
-      img: "assets/images/cadena-xl-plata.jpg",
-      img2: "assets/images/cadena-xl-plata-modelo-cuello.jpg",
-      img3: "assets/images/cadena-xl-plata-modelo-pantalon.jpg",
-      etiqueta: "Hot",
-      color: "navy",
-      detalles: [
-        "Material: acero quirúrgico 316L",
-        "Uso: collar o cadena de pantalón",
-      ],
-    },
-    {
-      nombre: "Cadena Angel",
-      precio: 28000,
-      desc: "Cadena de pantalón triple, con tres texturas combinadas (trenzada, rolo y cadena fina) y un dije de cruz alada desmontable en una cadena aparte. Acero quirúrgico.",
-      img: "assets/images/cadena-angel.jpg",
-      img2: "assets/images/cadena-angel-modelo.jpg",
-      img3: "assets/images/cadena-angel-detalle.jpg",
-      etiqueta: "Nuevo",
-      color: "navy",
-      detalles: [
-        "Material: acero quirúrgico",
-        "Diseño: triple cadena + dije de cruz alada desmontable",
-        "Cierre: mosquetones giratorios",
-      ],
-    },
-    {
-      nombre: "Cadena Box Triple",
-      precio: 22000,
-      desc: "Cadena de pantalón triple, combinando cadena tipo box (cuadrada), rolo y cable fina. Mosquetones giratorios en ambos extremos.",
-      img: "assets/images/cadena-box-triple.jpg",
-      img2: "assets/images/cadena-box-triple-modelo.jpg",
-      detalles: [
-        "Material: acero quirúrgico inoxidable",
-        "Diseño: triple cadena (box, rolo y cable)",
-      ],
-    },
-    {
-      nombre: "Cadena Genesis",
-      precio: 25000,
-      desc: "Doble cadena de pantalón con dos texturas combinadas y un dije de cruz con circonias, desmontable, en una cadena aparte.",
-      img: "assets/images/cadena-genesis.jpg",
-      img2: "assets/images/cadena-genesis-modelo.jpg",
-      img3: "assets/images/cadena-genesis-detalle.jpg",
-      etiqueta: "Nuevo",
-      color: "gold",
-      detalles: [
-        "Material: acero quirúrgico",
-        "Diseño: doble cadena + dije de cruz desmontable",
       ],
     },
   ],
