@@ -280,6 +280,18 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Equilibrio",
+      precio: 26000,
+      desc: "Cadena combinada (box y cubana) con dije colgante de barra rectangular.",
+      img: "assets/images/collar-equilibrio.jpg",
+      img2: "assets/images/collar-equilibrio-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Diseño: cadena combinada (box y cubana) con dije de barra rectangular",
+      ],
+    },
+    {
       nombre: "Collar Mito",
       precio: 31000,
       desc: "Cadena personalizada con estilo único: doble cadena (cubana y box) con dije de cruz desmontable.",
