@@ -280,6 +280,21 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Wolf",
+      sub: "acero",
+      precio: 26000,
+      desc: "Collar con dije de cabeza de lobo y piedras ónix naturales sobre cadena combinada.",
+      img: "assets/images/collar-wolf.jpg",
+      img2: "assets/images/collar-wolf-modelo.jpg",
+      img3: "assets/images/collar-wolf-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero quirúrgico con piedras ónix naturales",
+        "Diseño: dije cabeza de lobo, cadena combinada",
+      ],
+    },
+    {
       nombre: "Cadena Cuba Silver",
       precio: 12000,
       desc: "Cadena cubana (curb chain) color plateado, 50 cm.",
