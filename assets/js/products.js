@@ -380,6 +380,20 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Pulsera Tennis Silver",
+      precio: 14000,
+      desc: "Pulsera tennis con circonias engarzadas, color plateado. Acero quirúrgico.",
+      img: "assets/images/pulsera-tennis-silver.jpg",
+      img2: "assets/images/pulsera-tennis-silver-modelo.jpg",
+      img3: "assets/images/pulsera-tennis-silver-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Medidas: 2,5 mm x 18 cm + 3 cm (alargue)",
+      ],
+    },
+    {
       nombre: "Pulsera San Benito",
       precio: 17000,
       desc: "Pulsera con esferas y medalla circular tipo San Benito, con grabado en relieve en ambos lados. Cierre de mosquetón con cadena extensora para ajustar el largo. Disponible en dorado o plateado.",
