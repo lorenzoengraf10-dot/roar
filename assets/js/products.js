@@ -24,9 +24,12 @@
       por ejemplo: img: "assets/images/mi-foto.jpg"
       Si todavía no tenés la foto, dejá: img: null
       (el sitio va a mostrar un cartel de "Foto próximamente" solito).
-      Podés sumar más fotos del mismo producto con "img2" e "img3" (por
-      ejemplo, una foto de estudio y otra puesta o en la cajita) — en la
-      ficha del producto van a aparecer como una mini-galería.
+      Podés sumar más fotos del mismo producto con "img2", "img3" e "img4"
+      (por ejemplo, una foto de estudio y otra puesta o en la cajita) — en
+      la ficha del producto van a aparecer como una mini-galería.
+      Para ANILLOS: en todos los anillos hay que sumar como última foto
+      (img4, o la que corresponda) la guía de talles:
+      "assets/images/guia-talles-anillos.jpg"
    5. Si el producto ya no tiene stock, agregá: agotado: true
    6. Para la etiqueta (Nuevo, Hot, etc.) el color puede ser: "gold",
       "emerald", "navy" o "agotado" — son los colores de la marca.
@@ -552,6 +555,7 @@ const PRODUCTOS = {
       precio: 12000,
       desc: "Anillo plano color plateado.",
       img: "assets/images/anillo-cuba-silver.jpg",
+      img2: "assets/images/guia-talles-anillos.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
