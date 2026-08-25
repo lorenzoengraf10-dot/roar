@@ -626,6 +626,42 @@ p {
   color: var(--ink-faint);
   text-decoration: line-through;
 }
+/* Circulitos de color en la tarjeta del catálogo (ver renderCard en
+   site.js) — se ven de entrada, antes de abrir la ficha. */
+.card-variantes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.card-swatch {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--border);
+  transition: transform 0.15s ease;
+}
+.card-swatch:hover { transform: scale(1.08); }
+/* Aviso genérico cuando hay más de MAX_SWATCHES_EN_TARJETA colores (ver
+   renderCard en site.js) — mostrar todos los circulitos queda amontonado,
+   así que se ve este texto y la selección completa aparece en la ficha. */
+.card-muchos-colores {
+  align-self: flex-start;
+  min-height: 30px;
+  padding: 0.3rem 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pill-sm {
+  min-height: 44px;
+  padding: 0 0.8rem;
+  font-size: 0.74rem;
+}
 .card-actions {
   margin-top: 0.4rem;
   display: flex;
@@ -1084,6 +1120,9 @@ p {
   gap: 0.5rem;
 }
 .variant-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   min-height: 44px;
   padding: 0 1.1rem;
   border-radius: 999px;
@@ -1092,6 +1131,14 @@ p {
   border: 1px solid var(--border);
   background: var(--bg-elev);
   color: var(--ink-dim);
+}
+/* Circulito de color al lado del nombre — ver colorHexDeNombre en site.js. */
+.variant-pill-dot {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 .variant-pill-active {
   background: var(--bg-elev-2);

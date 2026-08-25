@@ -49,6 +49,32 @@
     return precios.some(function (p) { return p !== precios[0]; });
   }
 
+  /* Para poder VER los colores (no solo leerlos) en la tarjeta y en la
+     ficha: un circulito de color al lado de cada opción, calculado a
+     partir del nombre de la variante — no hace falta cargar un color
+     hex por producto en products.js. Si el nombre no menciona ningún
+     color conocido (ej. "Talle único"), no se muestra circulito, solo
+     el texto. Para nombres compuestos (ej. "Plateada verde", el caso
+     de Pulseras Van Cleef) se usa el primer color que aparece en el
+     texto — la cadena, que es lo que más se ve del conjunto. */
+  var COLOR_HEX = {
+    dorado: '#c99a2e', dorada: '#c99a2e', doradas: '#c99a2e',
+    plateado: '#c7c9cc', plateada: '#c7c9cc', plateadas: '#c7c9cc',
+    negro: '#1a1a1a', negra: '#1a1a1a', negras: '#1a1a1a',
+    blanco: '#e9e6df', blanca: '#e9e6df', blancas: '#e9e6df',
+    oxidado: '#4a4742', oxidada: '#4a4742',
+    verde: '#145c3f',
+  };
+  function colorHexDeNombre(nombre) {
+    var texto = String(nombre).toLowerCase();
+    var mejorClave = null, mejorPos = Infinity;
+    Object.keys(COLOR_HEX).forEach(function (clave) {
+      var pos = texto.indexOf(clave);
+      if (pos !== -1 && pos < mejorPos) { mejorPos = pos; mejorClave = clave; }
+    });
+    return mejorClave ? COLOR_HEX[mejorClave] : null;
+  }
+
   function slugify(str) {
     return String(str)
       .toLowerCase()
@@ -459,6 +485,43 @@
       ? el('span', { class: 'card-price-before', text: money(product.precioAntes) })
       : null;
 
+    /* Circulitos de color en la tarjeta: se ven de entrada, antes de abrir
+       la ficha, para que quede claro que hay más de un color. Tocar uno
+       abre la ficha con ese color ya elegido (agregar al pedido se sigue
+       confirmando ahí, igual que tocando la foto o "Agregar al pedido").
+
+       Con pocos colores (hasta MAX_SWATCHES_EN_TARJETA) se ven los
+       circulitos. Con más, ponerlos todos queda amontonado — en vez de
+       eso se ve un aviso genérico ("Muchos colores"): la selección
+       completa, con foto de cada uno, se ve al entrar a la ficha. */
+    var MAX_SWATCHES_EN_TARJETA = 3;
+    var variantesNode = null;
+    if (product.variantes && product.variantes.length > 1) {
+      if (product.variantes.length > MAX_SWATCHES_EN_TARJETA) {
+        variantesNode = el('button', {
+          type: 'button', class: 'card-muchos-colores',
+          onclick: function () { openProductModal(catKey, slug); },
+        }, document.createTextNode('Muchos colores — ver todos'));
+      } else {
+        variantesNode = el('div', { class: 'card-variantes', 'aria-label': 'Colores disponibles' },
+          product.variantes.map(function (v) {
+            var hex = colorHexDeNombre(v.nombre);
+            return hex
+              ? el('button', {
+                  type: 'button', class: 'card-swatch',
+                  style: 'background:' + hex,
+                  'aria-label': v.nombre,
+                  onclick: function () { openProductModal(catKey, slug, v.nombre); },
+                })
+              : el('button', {
+                  type: 'button', class: 'pill pill-sm',
+                  onclick: function () { openProductModal(catKey, slug, v.nombre); },
+                }, document.createTextNode(v.nombre));
+          })
+        );
+      }
+    }
+
     return el('article', { class: 'card', 'data-sub': product.sub || '' },
       el('button', {
         class: 'card-photo',
@@ -479,6 +542,7 @@
           }, document.createTextNode(product.nombre))
         ),
         el('div', { class: 'card-price-row' }, [precioNode, precioAntesNode]),
+        variantesNode,
         el('div', { class: 'card-actions' },
           el('button', {
             class: 'btn btn-add',
@@ -582,7 +646,7 @@
   /* ------------------------------------------------------------
      Modal de producto (con mini-galería si hay img2)
   ------------------------------------------------------------ */
-  function openProductModal(catKey, slug) {
+  function openProductModal(catKey, slug, varianteInicial) {
     var entry = findEntry(catKey, slug);
     if (!entry) return;
     var product = entry.product;
@@ -591,6 +655,10 @@
 
     var variantes = (product.variantes && product.variantes.length) ? product.variantes : null;
     var varianteActual = 0;
+    if (varianteInicial && variantes) {
+      var idxInicial = variantes.findIndex(function (v) { return v.nombre === varianteInicial; });
+      if (idxInicial !== -1) varianteActual = idxInicial;
+    }
 
     function fotosActuales() {
       var base = variantes ? variantes[varianteActual] : product;
@@ -705,6 +773,8 @@
     var variantSelector = null;
     if (variantes) {
       var variantBtns = variantes.map(function (v, i) {
+        var hex = colorHexDeNombre(v.nombre);
+        var dot = hex ? el('span', { class: 'variant-pill-dot', style: 'background:' + hex, 'aria-hidden': 'true' }) : null;
         return el('button', {
           class: 'variant-pill' + (i === varianteActual ? ' variant-pill-active' : ''),
           type: 'button',
@@ -720,7 +790,7 @@
               b.classList.toggle('variant-pill-active', bi === i);
             });
           },
-        }, document.createTextNode(v.nombre));
+        }, dot, document.createTextNode(v.nombre));
       });
       variantSelector = el('div', { class: 'modal-variant-row' },
         el('span', { class: 'modal-qty-label', text: 'Color' }),
