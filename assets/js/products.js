@@ -379,7 +379,7 @@ const PRODUCTOS = {
       color: "gold",
       detalles: [
         "Material: acero quirúrgico",
-        "Cadena: groumet, 50 cm",
+        "Cadena: groumet, 3 mm de ancho, 50 cm",
         "Dije: cruz maciza en acero combinado, 4,5 cm de alto",
       ],
     },
