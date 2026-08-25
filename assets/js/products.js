@@ -342,6 +342,20 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Blessed Gold",
+      precio: 16000,
+      desc: "Cadena groumet dorada de 50 cm con dije de cruz macizo en acero combinado (dorado y plateado).",
+      img: "assets/images/collar-blessed-gold.jpg",
+      img2: "assets/images/collar-blessed-gold-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Cadena: groumet, 50 cm",
+        "Dije: cruz maciza en acero combinado, 4,5 cm de alto",
+      ],
+    },
+    {
       nombre: "Cadena Cuba Silver",
       precio: 12000,
       desc: "Cadena cubana (curb chain) color plateado, 50 cm. Acero quirúrgico.",
