@@ -342,6 +342,19 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Cali",
+      precio: 15000,
+      desc: "Collar tipo tennis con piedras baguette engarzadas, color dorado.",
+      img: "assets/images/collar-cali.jpg",
+      img2: "assets/images/collar-cali-detalle.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado con piedras baguette",
+        "Medidas: 40 cm + 10 cm (extensión)",
+      ],
+    },
+    {
       nombre: "Collar Blessed Gold",
       precio: 16000,
       desc: "Cadena groumet dorada de 50 cm con dije de cruz macizo en acero combinado (dorado y plateado).",
