@@ -667,6 +667,22 @@ const PRODUCTOS = {
 
   anillos: [
     {
+      nombre: "Anillo Cali",
+      sub: "acero",
+      precio: 10000,
+      desc: "Anillo con piedras baguette engarzadas, color dorado.",
+      img: "assets/images/anillo-cali.jpg",
+      img2: "assets/images/anillo-cali-modelo.jpg",
+      img3: "assets/images/anillo-cali-modelo2.jpg",
+      img4: "assets/images/guia-talles-anillos.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado con piedras baguette",
+        "Talles disponibles: 17, 18 y 19",
+      ],
+    },
+    {
       nombre: "Anillo Italia",
       sub: "acero",
       precio: 23000,
