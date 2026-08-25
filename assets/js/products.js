@@ -342,6 +342,20 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Collar Nicky",
+      precio: 15000,
+      desc: "Collar tipo tennis con piedras blancas y negras alternadas, color dorado.",
+      img: "assets/images/collar-nicky.jpg",
+      img2: "assets/images/collar-nicky-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado",
+        "Diseño: piedras blancas y negras alternadas",
+        "Medidas: 45 cm + 5 cm (extensión)",
+      ],
+    },
+    {
       nombre: "Collar Cali",
       precio: 15000,
       desc: "Collar tipo tennis con piedras baguette engarzadas, color dorado.",
