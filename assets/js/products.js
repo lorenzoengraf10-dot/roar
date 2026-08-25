@@ -750,7 +750,8 @@ const PRODUCTOS = {
       precio: 12000,
       desc: "Anillo plano color plateado. Acero quirúrgico.",
       img: "assets/images/anillo-cuba-silver.jpg",
-      img2: "assets/images/guia-talles-anillos.jpg",
+      img2: "assets/images/anillo-cuba-silver-modelo.jpg",
+      img3: "assets/images/guia-talles-anillos.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
