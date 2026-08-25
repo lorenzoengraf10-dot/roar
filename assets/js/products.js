@@ -347,6 +347,7 @@ const PRODUCTOS = {
       desc: "Collar tipo tennis con piedras blancas y negras alternadas, color dorado.",
       img: "assets/images/collar-nicky.jpg",
       img2: "assets/images/collar-nicky-modelo.jpg",
+      img3: "assets/images/collar-nicky-detalle.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
