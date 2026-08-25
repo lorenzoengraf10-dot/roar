@@ -488,25 +488,38 @@
     /* Circulitos de color en la tarjeta: se ven de entrada, antes de abrir
        la ficha, para que quede claro que hay más de un color. Tocar uno
        abre la ficha con ese color ya elegido (agregar al pedido se sigue
-       confirmando ahí, igual que tocando la foto o "Agregar al pedido"). */
+       confirmando ahí, igual que tocando la foto o "Agregar al pedido").
+
+       Con pocos colores (hasta MAX_SWATCHES_EN_TARJETA) se ven los
+       circulitos. Con más, ponerlos todos queda amontonado — en vez de
+       eso se ve un aviso genérico ("Muchos colores"): la selección
+       completa, con foto de cada uno, se ve al entrar a la ficha. */
+    var MAX_SWATCHES_EN_TARJETA = 3;
     var variantesNode = null;
     if (product.variantes && product.variantes.length > 1) {
-      variantesNode = el('div', { class: 'card-variantes', 'aria-label': 'Colores disponibles' },
-        product.variantes.map(function (v) {
-          var hex = colorHexDeNombre(v.nombre);
-          return hex
-            ? el('button', {
-                type: 'button', class: 'card-swatch',
-                style: 'background:' + hex,
-                'aria-label': v.nombre,
-                onclick: function () { openProductModal(catKey, slug, v.nombre); },
-              })
-            : el('button', {
-                type: 'button', class: 'pill pill-sm',
-                onclick: function () { openProductModal(catKey, slug, v.nombre); },
-              }, document.createTextNode(v.nombre));
-        })
-      );
+      if (product.variantes.length > MAX_SWATCHES_EN_TARJETA) {
+        variantesNode = el('button', {
+          type: 'button', class: 'card-muchos-colores',
+          onclick: function () { openProductModal(catKey, slug); },
+        }, document.createTextNode('Muchos colores — ver todos'));
+      } else {
+        variantesNode = el('div', { class: 'card-variantes', 'aria-label': 'Colores disponibles' },
+          product.variantes.map(function (v) {
+            var hex = colorHexDeNombre(v.nombre);
+            return hex
+              ? el('button', {
+                  type: 'button', class: 'card-swatch',
+                  style: 'background:' + hex,
+                  'aria-label': v.nombre,
+                  onclick: function () { openProductModal(catKey, slug, v.nombre); },
+                })
+              : el('button', {
+                  type: 'button', class: 'pill pill-sm',
+                  onclick: function () { openProductModal(catKey, slug, v.nombre); },
+                }, document.createTextNode(v.nombre));
+          })
+        );
+      }
     }
 
     return el('article', { class: 'card', 'data-sub': product.sub || '' },

@@ -644,6 +644,19 @@ p {
   transition: transform 0.15s ease;
 }
 .card-swatch:hover { transform: scale(1.08); }
+/* Aviso genérico cuando hay más de MAX_SWATCHES_EN_TARJETA colores (ver
+   renderCard en site.js) — mostrar todos los circulitos queda amontonado,
+   así que se ve este texto y la selección completa aparece en la ficha. */
+.card-muchos-colores {
+  align-self: flex-start;
+  min-height: 30px;
+  padding: 0.3rem 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .pill-sm {
   min-height: 44px;
   padding: 0 0.8rem;

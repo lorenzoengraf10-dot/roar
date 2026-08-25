@@ -588,7 +588,7 @@ const PRODUCTOS = {
     {
       nombre: "Pulseras Van Cleef",
       precio: 13000,
-      desc: "Pulsera con eslabones tipo trébol (clover), cadena con mosquetón y cadena extensora. Acero quirúrgico. Elegí el color de cadena y de los tréboles.",
+      desc: "Pulsera con eslabones tipo trébol (clover), cadena con mosquetón y cadena extensora. Acero quirúrgico. Disponible en muchos colores — entrá para verlos todos.",
       img: "assets/images/pulsera-vancleef-plateada-negra.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
