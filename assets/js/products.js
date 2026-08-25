@@ -494,7 +494,7 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero quirúrgico",
         "Diseño: cadena cubana (curb chain)",
-        "Varias medidas disponibles",
+        "Medidas disponibles: 18 a 22 cm",
       ],
     },
     {
@@ -781,11 +781,16 @@ const PRODUCTOS = {
       precio: 30000,
       desc: "Combo de 3 piezas color plateado, cadena cubana (curb chain): pulsera, cadena de 50 cm y anillo plano. Acero quirúrgico.",
       img: "assets/images/combo-cuba-silver.jpg",
+      img2: "assets/images/combo-cuba-silver-modelo.jpg",
+      img3: "assets/images/combo-cuba-silver-modelo2.jpg",
+      img4: "assets/images/combo-cuba-silver-modelo3.jpg",
       etiqueta: "Nuevo",
       color: "navy",
       detalles: [
         "Material: acero quirúrgico",
         "Incluye: pulsera + cadena (50 cm) + anillo",
+        "Talles de anillo disponibles: 18 a 22",
+        "Medidas de pulsera disponibles: 18 a 22 cm",
         "Cada pieza también se vende por separado a $12.000",
       ],
     },
