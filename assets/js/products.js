@@ -755,8 +755,8 @@ const PRODUCTOS = {
       color: "gold",
       detalles: [
         "Material: acero quirúrgico",
-        "Diseño: banda lisa plana",
-        "Varios talles disponibles",
+        "Diseño: banda lisa plana, 7 mm de grosor",
+        "Talles disponibles: 18, 19, 20, 21 y 22",
       ],
     },
   ],
