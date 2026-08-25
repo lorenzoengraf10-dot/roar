@@ -342,6 +342,19 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Cadena Groumet Gold",
+      precio: 12000,
+      desc: "Cadena groumet color dorado, 3 mm de ancho.",
+      img: "assets/images/cadena-groumet-gold.jpg",
+      img2: "assets/images/cadena-groumet-gold-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Cadena: groumet, 3 mm de ancho, 50 cm",
+      ],
+    },
+    {
       nombre: "Collar Nicky",
       precio: 15000,
       desc: "Collar tipo tennis con piedras blancas y negras alternadas, color dorado.",
