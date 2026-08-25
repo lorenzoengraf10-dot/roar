@@ -224,15 +224,21 @@ const PRODUCTOS = {
 
   cadenas: [
     {
-      nombre: "Collar Soga Gold",
-      precio: 16000,
-      desc: "Collar cadena soga (rope chain) de acero macizo, con cierre de mosquetón.",
-      img: "assets/images/collar-soga-dorado.jpg",
-      img2: "assets/images/collar-soga-dorado-modelo.jpg",
-      img3: "assets/images/collar-soga-dorado-modelo2.jpg",
+      nombre: "Collar Gloria",
+      precio: 24000,
+      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Acero quirúrgico. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
+      img: "assets/images/collar-gloria-dorado-modelo.jpg",
+      img2: "assets/images/collar-gloria-dorado-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Dorado", img: "assets/images/collar-gloria-dorado-modelo.jpg", img2: "assets/images/collar-gloria-dorado-modelo2.jpg" },
+        { nombre: "Plateado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
+      ],
       detalles: [
-        "Material: acero macizo dorado",
-        "Largos disponibles: 50 y 55 cm",
+        "Material: acero quirúrgico",
+        "Diseño: medallón circular con el Sol de Mayo en relieve",
+        "Cadena: rolo, cierre de mosquetón",
       ],
     },
     {
@@ -253,21 +259,15 @@ const PRODUCTOS = {
       ],
     },
     {
-      nombre: "Collar Gloria",
-      precio: 24000,
-      desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Acero quirúrgico. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
-      img: "assets/images/collar-gloria-dorado-modelo.jpg",
-      img2: "assets/images/collar-gloria-dorado-modelo2.jpg",
-      etiqueta: "Nuevo",
-      color: "emerald",
-      variantes: [
-        { nombre: "Dorado", img: "assets/images/collar-gloria-dorado-modelo.jpg", img2: "assets/images/collar-gloria-dorado-modelo2.jpg" },
-        { nombre: "Plateado", img: "assets/images/collar-gloria-oxidado.jpg", img2: "assets/images/collar-gloria-oxidado-modelo.jpg" },
-      ],
+      nombre: "Collar Soga Gold",
+      precio: 16000,
+      desc: "Collar cadena soga (rope chain) de acero macizo, con cierre de mosquetón.",
+      img: "assets/images/collar-soga-dorado.jpg",
+      img2: "assets/images/collar-soga-dorado-modelo.jpg",
+      img3: "assets/images/collar-soga-dorado-modelo2.jpg",
       detalles: [
-        "Material: acero quirúrgico",
-        "Diseño: medallón circular con el Sol de Mayo en relieve",
-        "Cadena: rolo, cierre de mosquetón",
+        "Material: acero macizo dorado",
+        "Largos disponibles: 50 y 55 cm",
       ],
     },
     {
@@ -471,6 +471,20 @@ const PRODUCTOS = {
 
   pulseras: [
     {
+      nombre: "Pulsera Tennis Silver",
+      precio: 15000,
+      desc: "Pulsera tennis con circonias engarzadas, color plateado. Acero quirúrgico.",
+      img: "assets/images/pulsera-tennis-silver.jpg",
+      img2: "assets/images/pulsera-tennis-silver-modelo.jpg",
+      img3: "assets/images/pulsera-tennis-silver-modelo2.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Medidas: 2,5 mm x 18 cm + 3 cm (alargue)",
+      ],
+    },
+    {
       nombre: "Pulsera Cuba Silver",
       precio: 12000,
       desc: "Pulsera cadena cubana (curb chain) color plateado. Acero quirúrgico.",
@@ -494,20 +508,6 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero negro",
         "Medidas: 20 cm de largo",
-      ],
-    },
-    {
-      nombre: "Pulsera Tennis Silver",
-      precio: 15000,
-      desc: "Pulsera tennis con circonias engarzadas, color plateado. Acero quirúrgico.",
-      img: "assets/images/pulsera-tennis-silver.jpg",
-      img2: "assets/images/pulsera-tennis-silver-modelo.jpg",
-      img3: "assets/images/pulsera-tennis-silver-modelo2.jpg",
-      etiqueta: "Nuevo",
-      color: "emerald",
-      detalles: [
-        "Material: acero quirúrgico",
-        "Medidas: 2,5 mm x 18 cm + 3 cm (alargue)",
       ],
     },
     {

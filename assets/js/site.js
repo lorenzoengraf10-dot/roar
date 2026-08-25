@@ -377,20 +377,6 @@
       '💬 Atención personalizada por WhatsApp',
     ];
 
-    var ctas = [
-      el('a', { href: '#catalogo', class: 'btn btn-primary', onclick: onHeroCatalogoClick }, document.createTextNode('Ver el catálogo')),
-    ];
-    if (CONFIG.whatsappVisible && CONFIG.whatsapp) {
-      ctas.push(
-        el('a', {
-          href: waLink(CONFIG.whatsapp, 'Hola ' + CONFIG.nombre + '! Quiero hacer una consulta.'),
-          class: 'btn btn-whatsapp',
-          target: '_blank',
-          rel: 'noopener noreferrer',
-        }, document.createTextNode('Consultar por WhatsApp'))
-      );
-    }
-
     hero.appendChild(
       el('img', {
         src: 'assets/images/showroom-pared-roar.jpg',
@@ -412,18 +398,11 @@
           height: '140',
         }),
         el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico' }),
-        el('div', { class: 'hero-ctas' }, ctas),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })
         )
       )
     );
-  }
-
-  function onHeroCatalogoClick(e) {
-    e.preventDefault();
-    var claves = categoriasConProductos();
-    if (claves.length) setActiveCategory(activeCategory || claves[0]);
   }
 
   /* ------------------------------------------------------------
