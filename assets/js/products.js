@@ -213,6 +213,10 @@ const TESTIMONIOS = [
     img: "assets/images/testimonio-fran.jpg",
     autor: "@fran.melignerr",
   },
+  {
+    img: "assets/images/testimonio-manutatts.jpg",
+    autor: "@_manutatts",
+  },
 ];
 
 
