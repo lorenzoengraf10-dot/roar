@@ -986,6 +986,7 @@ p {
   width: 100%;
   aspect-ratio: 1 / 1;
   background: var(--bg-elev-2);
+  touch-action: pan-y;
 }
 .modal-photo-img {
   width: 100%;

@@ -614,6 +614,13 @@
     }
     pintarFoto();
 
+    function irAFoto(i) {
+      if (fotos.length < 2) return;
+      fotoActual = ((i % fotos.length) + fotos.length) % fotos.length;
+      pintarFoto();
+      pintarDots();
+    }
+
     var dotsBox = el('div', { class: 'modal-dots' });
     function pintarDots() {
       dotsBox.innerHTML = '';
@@ -624,16 +631,42 @@
             class: 'modal-dot' + (i === fotoActual ? ' modal-dot-active' : ''),
             type: 'button',
             'aria-label': 'Ver foto ' + (i + 1),
-            onclick: function () {
-              fotoActual = i;
-              pintarFoto();
-              pintarDots();
-            },
+            onclick: function () { irAFoto(i); },
           })
         );
       });
     }
     pintarDots();
+
+    // Deslizar la foto con el dedo para cambiar de imagen, sin tener que
+    // acertarle al puntito (que es un blanco chico en el celular).
+    (function () {
+      var touchX = 0, touchY = 0, swiping = false;
+      fotoBox.addEventListener('touchstart', function (e) {
+        if (fotos.length < 2) return;
+        var t = e.touches[0];
+        touchX = t.clientX;
+        touchY = t.clientY;
+        swiping = false;
+      }, { passive: true });
+      fotoBox.addEventListener('touchmove', function (e) {
+        if (fotos.length < 2) return;
+        var t = e.touches[0];
+        var dx = t.clientX - touchX;
+        var dy = t.clientY - touchY;
+        if (!swiping && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) swiping = true;
+        if (swiping) e.preventDefault();
+      }, { passive: false });
+      fotoBox.addEventListener('touchend', function (e) {
+        if (!swiping) return;
+        swiping = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - touchX;
+        var umbral = 40;
+        if (dx <= -umbral) irAFoto(fotoActual + 1);
+        else if (dx >= umbral) irAFoto(fotoActual - 1);
+      });
+    })();
 
     var qty = 1;
     var qtyLabel = el('span', { class: 'qty-value', text: String(qty) });
