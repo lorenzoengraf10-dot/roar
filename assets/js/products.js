@@ -777,6 +777,22 @@ const PRODUCTOS = {
         "Talles disponibles: 18, 19, 20, 21 y 22",
       ],
     },
+    {
+      nombre: "Anillo Bvlgari",
+      sub: "acero",
+      precio: 9000,
+      desc: "Anillo sello con medallón circular de ónix negro, bordeado con texto grabado en relieve. Banda lisa, acero quirúrgico plateado.",
+      img: "assets/images/anillo-bvlgari.jpg",
+      img2: "assets/images/anillo-bvlgari-modelo.jpg",
+      img3: "assets/images/guia-talles-anillos.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: medallón circular de ónix negro con texto grabado",
+        "Talles disponibles: 18, 19, 20, 21 y 22",
+      ],
+    },
   ],
 
   accesorios: [
