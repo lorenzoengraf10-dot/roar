@@ -28,9 +28,49 @@
    panel) y pagar con las tarjetas de test que da Mercado Pago.
 
    Referencia de la API: https://www.mercadopago.com.ar/developers/es/docs/checkout-pro/landing
+
+   -------------------------------------------------------------------------
+   IMPORTANTE — por qué el precio se recalcula acá y no se usa el que
+   manda el navegador:
+   El navegador no es de confianza: cualquiera puede abrir las
+   herramientas de desarrollador e interceptar este pedido para mandar un
+   precio inventado más bajo. Por eso desde acá SOLO se aceptan los
+   identificadores del producto elegido (categoría + nombre + color) y
+   la cantidad — el precio y el costo de envío se buscan siempre en
+   products.js/shipping.js, la misma fuente de verdad que usa el sitio
+   para mostrar los precios. Así, aunque alguien manipule el pedido, lo
+   máximo que puede hacer es elegir mal un producto — nunca pagar de
+   menos.
    ========================================================================= */
 
+const { PRODUCTOS, CONFIG, PESO_CATEGORIA_KG, TARIFAS_ENVIO } = require("../assets/js/products.js");
+const { claveZonaDeProvincia, ZONAS_ENVIO } = require("../assets/js/shipping.js");
+
 const MP_PREFERENCES_URL = "https://api.mercadopago.com/checkout/preferences";
+const EMBALAJE_KG = 0.1;
+
+/* Mismo criterio que precioDeItem() en site.js: si el color elegido tiene
+   su propio precio, se usa ese; si no, el precio general del producto. */
+function precioDeItem(product, color) {
+  if (color && product.variantes) {
+    var variante = product.variantes.filter(function (v) { return v.nombre === color; })[0];
+    if (variante && variante.precio != null) return variante.precio;
+  }
+  return product.precio;
+}
+
+function calcularEnvio(provincia, cartItems) {
+  var clave = claveZonaDeProvincia(provincia);
+  var zona = clave && ZONAS_ENVIO[clave];
+  var tarifa = clave && TARIFAS_ENVIO[clave];
+  if (!zona || !tarifa) return null;
+
+  var pesoKg = cartItems.reduce(function (kg, it) {
+    return kg + (PESO_CATEGORIA_KG[it.catKey] || 0) * it.cantidad;
+  }, EMBALAJE_KG);
+  var kgExtra = Math.max(0, Math.ceil(pesoKg - 1));
+  return { zona: zona.nombre, precio: tarifa.base + kgExtra * tarifa.porKgExtra };
+}
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -44,26 +84,39 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const { items, siteUrl } = req.body || {};
-  if (!Array.isArray(items) || !items.length) {
+  const { items: pedido, entrega, siteUrl } = req.body || {};
+  if (!Array.isArray(pedido) || !pedido.length) {
     res.status(200).json({ ok: false });
     return;
   }
 
-  // Nunca confiamos en precios que vengan del navegador: acá solo se usan
-  // el título y la cantidad, y el precio se vuelve a validar como número
-  // positivo. Igual, la fuente de verdad de los precios es products.js.
-  const mpItems = items
-    .filter((it) => it && it.title && it.unit_price > 0 && it.quantity > 0)
-    .map((it) => ({
-      title: String(it.title).slice(0, 250),
-      quantity: Math.max(1, Math.round(it.quantity)),
-      unit_price: Math.round(it.unit_price * 100) / 100,
-      currency_id: "ARS",
-    }));
+  // Cada línea del pedido llega como { catKey, nombre, color, cantidad } —
+  // acá se busca el producto real en products.js y se toma SIEMPRE su
+  // precio actual, ignorando cualquier precio que venga del navegador.
+  const mpItems = [];
+  for (const linea of pedido) {
+    var lista = linea && linea.catKey && PRODUCTOS[linea.catKey];
+    var product = lista && lista.filter(function (p) { return p.nombre === linea.nombre; })[0];
+    if (!product) continue;
+    var cantidad = Math.max(1, Math.round(Number(linea.cantidad) || 1));
+    var precio = precioDeItem(product, linea.color);
+    if (!precio) continue; // "Consultar precio": no se puede cobrar un monto que no existe
+    var titulo = product.nombre + (linea.color ? " (" + linea.color + ")" : "");
+    mpItems.push({ title: titulo.slice(0, 250), quantity: cantidad, unit_price: precio, currency_id: "ARS" });
+  }
   if (!mpItems.length) {
     res.status(200).json({ ok: false });
     return;
+  }
+
+  if (entrega && entrega.tipo === "envio" && entrega.provincia) {
+    var subtotal = mpItems.reduce(function (sum, it) { return sum + it.unit_price * it.quantity; }, 0);
+    if (CONFIG.envioGratisDesde == null || subtotal < CONFIG.envioGratisDesde) {
+      var envio = calcularEnvio(entrega.provincia, pedido);
+      if (envio && envio.precio > 0) {
+        mpItems.push({ title: "Envío a " + envio.zona, quantity: 1, unit_price: envio.precio, currency_id: "ARS" });
+      }
+    }
   }
 
   const base = typeof siteUrl === "string" && siteUrl ? siteUrl : "";

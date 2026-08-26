@@ -1096,3 +1096,13 @@ const PRODUCTOS = {
   ],
 
 };
+
+/* Este archivo corre tal cual en el navegador (con <script>, variables
+   globales) y también se puede reusar desde funciones serverless de
+   Vercel (que sí entienden módulos de Node). "module" no existe en el
+   navegador, así que esto no hace nada ahí — solo lo usan cosas como
+   api/crear-preferencia.js para recalcular precios del lado del
+   servidor y no confiar nunca en un precio que mande el navegador. */
+if (typeof module !== "undefined") {
+  module.exports = { CONFIG, CATEGORIAS, PRODUCTOS, PESO_CATEGORIA_KG, TARIFAS_ENVIO };
+}

@@ -1088,19 +1088,14 @@
      pedido por WhatsApp sigue funcionando igual como alternativa. */
   function pagarConMercadoPago(btn) {
     if (!cart.length) return;
-    var items = [];
-    cart.forEach(function (item) {
-      var entry = findEntry(item.catKey, item.slug);
-      if (!entry) return;
-      var product = entry.product;
-      var precioItem = precioDeItem(product, item.color);
-      if (!precioItem) return; // "Consultar precio": no se puede cobrar un monto que no existe
-      var nombreConColor = product.nombre + (item.color ? ' (' + item.color + ')' : '');
-      items.push({ title: nombreConColor, quantity: item.cantidad, unit_price: precioItem });
-    });
-    if (entrega.tipo === 'envio' && entrega.precio) {
-      items.push({ title: 'Envío a ' + entrega.provincia, quantity: 1, unit_price: entrega.precio });
-    }
+    // Ojo: acá solo van identificadores (categoría, nombre, color, cantidad),
+    // nunca precios. El precio y el costo de envío los recalcula siempre
+    // el servidor a partir de products.js/shipping.js — si mandáramos el
+    // precio ya calculado, alguien podría interceptar el pedido desde las
+    // herramientas de desarrollador del navegador y pagar de menos.
+    var items = cart.map(function (item) {
+      return { catKey: item.catKey, nombre: findEntry(item.catKey, item.slug) ? findEntry(item.catKey, item.slug).product.nombre : null, color: item.color, cantidad: item.cantidad };
+    }).filter(function (it) { return it.nombre; });
     if (!items.length) {
       toast('Ningún producto del pedido tiene precio cargado todavía');
       return;
@@ -1113,7 +1108,11 @@
     fetch('/api/crear-preferencia', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: items, siteUrl: window.location.origin + window.location.pathname }),
+      body: JSON.stringify({
+        items: items,
+        entrega: { tipo: entrega.tipo, provincia: entrega.provincia },
+        siteUrl: window.location.origin + window.location.pathname,
+      }),
     })
       .then(function (r) { return r.ok ? r.json() : { ok: false }; })
       .catch(function () { return { ok: false }; })

@@ -85,3 +85,11 @@ function cotizarEnvioReal(cp, pesoKg) {
     .then((r) => (r.ok ? r.json() : { ok: false }))
     .catch(() => ({ ok: false }));
 }
+
+/* Igual que en products.js: esto no hace nada en el navegador, pero le
+   permite a las funciones serverless (ej. api/crear-preferencia.js)
+   recalcular el costo de envío por su cuenta en vez de confiar en un
+   monto que mande el navegador. */
+if (typeof module !== "undefined") {
+  module.exports = { ZONAS_ENVIO, PROVINCIAS_ENVIO, claveZonaDeProvincia, estimateEnvio };
+}
