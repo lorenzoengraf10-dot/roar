@@ -82,6 +82,11 @@ const CONFIG = {
   origenCP: "8500",
   moneda: "ARS",
 
+  // A partir de qué monto de pedido el envío a todo el país sale gratis
+  // (el retiro en Viedma ya es siempre sin cargo). Es el mismo número que
+  // se muestra en el hero — si lo cambiás acá, actualizalo también ahí.
+  envioGratisDesde: 45000,
+
   // Datos para transferencia por Mercado Pago. Dejalo en null si algún
   // día hay que sacarlos — el checkout por WhatsApp funciona igual,
   // el cliente coordina el pago por chat.
@@ -629,8 +634,20 @@ const PRODUCTOS = {
       ],
       detalles: [
         "Material: acero quirúrgico",
-        "Medidas: 0,8 mm x 19 cm + 5 cm (alargue)",
-        "También disponible en versión más fina — consultá por WhatsApp",
+        "Medidas: 4,5 mm x 19 cm + 5 cm (alargue)",
+      ],
+    },
+    {
+      nombre: "Pulsera Soguita",
+      precio: 13000,
+      desc: "Pulsera cadena soga (rope chain) tourbillon, más fina que la Pulsera Soga Gold. Acero quirúrgico.",
+      img: "assets/images/pulsera-soguita.jpg",
+      img2: "assets/images/pulsera-soguita-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Medidas: 2 mm x 17 cm + 5 cm (alargue)",
       ],
     },
     {
@@ -926,6 +943,66 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero dorado con micropavé",
         "Talles disponibles: 19 y 20",
+      ],
+    },
+    {
+      nombre: "Anillo Spike",
+      sub: "acero",
+      precio: 8000,
+      desc: "Anillo abierto con diseño cruzado (X). Acero quirúrgico, regulable.",
+      img: "assets/images/anillo-spike.jpg",
+      img2: "assets/images/anillo-spike-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: abierto, regulable (talle único)",
+      ],
+    },
+    {
+      nombre: "Anillo Lazo",
+      sub: "acero",
+      precio: 8000,
+      desc: "Anillo abierto con doble banda entrelazada. Acero quirúrgico, regulable.",
+      img: "assets/images/anillo-lazo.jpg",
+      img2: "assets/images/anillo-lazo-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: doble banda entrelazada, regulable (talle único)",
+      ],
+    },
+    {
+      nombre: "Anillos Chunky",
+      sub: "acero",
+      precio: 8000,
+      desc: "Anillo abierto de diseño escultural. Acero quirúrgico, regulable. Disponible en 2 modelos.",
+      img: "assets/images/anillo-chunky-ola.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      variantes: [
+        { nombre: "Modelo 1", img: "assets/images/anillo-chunky-ola.jpg", img2: "assets/images/anillo-chunky-modelo.jpg" },
+        { nombre: "Modelo 2", img: "assets/images/anillo-chunky-ovalo.jpg", img2: "assets/images/anillo-chunky-modelo.jpg" },
+      ],
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: escultural, regulable (talle único)",
+        "Disponible en 2 modelos",
+      ],
+    },
+    {
+      nombre: "Anillo Tear",
+      sub: "acero",
+      precio: 8000,
+      desc: "Anillo abierto con doble gota (bypass). Acero quirúrgico, regulable.",
+      img: "assets/images/anillo-tear.jpg",
+      img2: "assets/images/anillo-tear-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: doble gota (bypass), regulable (talle único)",
       ],
     },
   ],

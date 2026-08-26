@@ -237,6 +237,15 @@
      falla, usa la tabla estimada de siempre como respaldo. */
   function actualizarEnvio(provincia) {
     if (!provincia) return;
+
+    if (CONFIG.envioGratisDesde != null && cartTotal() >= CONFIG.envioGratisDesde) {
+      entrega.provincia = provincia;
+      entrega.precio = 0;
+      entrega.esReal = false;
+      renderCartDrawer();
+      return;
+    }
+
     var peso = cartWeight();
 
     function pintar(resultado, esReal) {
@@ -490,7 +499,8 @@
           onclick: function () { openProductModal(catKey, slug); },
         }, document.createTextNode('Muchos colores — ver todos'));
       } else {
-        variantesNode = el('div', { class: 'card-variantes', 'aria-label': 'Colores disponibles' },
+        var todosColoresTarjeta = product.variantes.every(function (v) { return colorHexDeNombre(v.nombre); });
+        variantesNode = el('div', { class: 'card-variantes', 'aria-label': todosColoresTarjeta ? 'Colores disponibles' : 'Opciones disponibles' },
           product.variantes.map(function (v) {
             var hex = colorHexDeNombre(v.nombre);
             return hex
@@ -779,8 +789,12 @@
           },
         }, dot, document.createTextNode(v.nombre));
       });
+      // Si todas las variantes son colores reconocidos, el selector dice
+      // "Color"; si son otra cosa (ej. dos modelos/formas distintas de un
+      // mismo anillo), dice "Modelo" para no llamar "color" a lo que no lo es.
+      var todasSonColores = variantes.every(function (v) { return colorHexDeNombre(v.nombre); });
       variantSelector = el('div', { class: 'modal-variant-row' },
-        el('span', { class: 'modal-qty-label', text: 'Color' }),
+        el('span', { class: 'modal-qty-label', text: todasSonColores ? 'Color' : 'Modelo' }),
         el('div', { class: 'variant-pills' }, variantBtns)
       );
     }
@@ -878,7 +892,7 @@
   /* Bloque "¿Cómo lo recibís?" — retiro sin cargo, o envío con selector
      de provincia (usa shipping.js, ver estimateEnvio). */
   function renderEntregaBlock() {
-    var precioEnvioTexto = entrega.precio != null ? money(entrega.precio) : 'A coordinar';
+    var precioEnvioTexto = entrega.precio === 0 ? 'Gratis' : entrega.precio != null ? money(entrega.precio) : 'A coordinar';
 
     var selectEnvio = entrega.tipo === 'envio'
       ? el('select', {
@@ -922,10 +936,12 @@
       : null;
 
     var notaEnvio = entrega.tipo === 'envio' && entrega.precio != null
-      ? el('small', { class: 'delivery-nota' + (entrega.esReal ? ' delivery-nota-real' : '') },
-          document.createTextNode(entrega.esReal
-            ? '✓ Cotización real de Correo Argentino'
-            : 'Estimado — puede variar, se confirma por WhatsApp'))
+      ? el('small', { class: 'delivery-nota' + (entrega.precio === 0 || entrega.esReal ? ' delivery-nota-real' : '') },
+          document.createTextNode(entrega.precio === 0
+            ? '✓ Envío gratis por superar los ' + money(CONFIG.envioGratisDesde) + ' en productos'
+            : entrega.esReal
+              ? '✓ Cotización real de Correo Argentino'
+              : 'Estimado — puede variar, se confirma por WhatsApp'))
       : null;
 
     return el('div', { class: 'delivery' },
@@ -1050,8 +1066,9 @@
     lineas.push('');
     lineas.push('Total: ' + money(cartTotal()));
     if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
-      var etiquetaEnvio = entrega.esReal ? 'cotización real' : 'estimado';
-      lineas.push('Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + money(entrega.precio));
+      var etiquetaEnvio = entrega.precio === 0 ? 'gratis' : entrega.esReal ? 'cotización real' : 'estimado';
+      var precioEnvioTxt = entrega.precio === 0 ? 'Gratis' : money(entrega.precio);
+      lineas.push('Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + precioEnvioTxt);
       if (entrega.cp) lineas.push('Código postal: ' + entrega.cp);
     }
     lineas.push('');

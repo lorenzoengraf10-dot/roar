@@ -203,8 +203,28 @@
       <image:title>Pulsera Royal — Tennis con Piedra Ovalada, Acero Dorado</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://roar-joyeria.vercel.app/assets/images/pulsera-soguita.jpg</image:loc>
+      <image:title>Pulsera Soguita — Cadena Soga Tourbillon Fina</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar-joyeria.vercel.app/assets/images/anillo-spike.jpg</image:loc>
+      <image:title>Anillo Spike — Diseño Cruzado, Regulable</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar-joyeria.vercel.app/assets/images/anillo-lazo.jpg</image:loc>
+      <image:title>Anillo Lazo — Doble Banda Entrelazada, Regulable</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar-joyeria.vercel.app/assets/images/anillo-chunky-ola.jpg</image:loc>
+      <image:title>Anillos Chunky — Diseño Escultural, Regulable</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://roar-joyeria.vercel.app/assets/images/anillo-tear.jpg</image:loc>
+      <image:title>Anillo Tear — Doble Gota Bypass, Regulable</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://roar-joyeria.vercel.app/assets/images/showroom-pared-roar.jpg</image:loc>
-      <image:title>Showroom de ROAR Joyería Urbana en Viedma</image:title>
+      <image:title>ROAR Joyas de Acero — Que tu Joya Hable por Vos</image:title>
     </image:image>
     <image:image>
       <image:loc>https://roar-joyeria.vercel.app/assets/images/testimonio-guadaeg.jpg</image:loc>
