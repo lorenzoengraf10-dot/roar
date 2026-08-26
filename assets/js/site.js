@@ -415,7 +415,6 @@
 
     hero.appendChild(
       el('div', { class: 'hero-inner' },
-        el('p', { class: 'hero-tagline', text: 'Que tu joya hable por vos' }),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })
         )
@@ -1137,7 +1136,7 @@
     section.hidden = false;
     section.appendChild(
       el('div', { class: 'section-inner' },
-        el('h2', { class: 'section-title', text: 'Clientes con su ROAR' }),
+        el('h2', { class: 'section-title', text: 'Clientes que eligieron a ROAR' }),
         el('div', { class: 'testimonios-grid' },
           TESTIMONIOS.map(function (t) {
             return el('figure', { class: 'testimonio-card' },
