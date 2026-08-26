@@ -416,7 +416,7 @@
 
     hero.appendChild(
       el('div', { class: 'hero-inner' },
-        el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico' }),
+        el('p', { class: 'hero-tagline', text: CONFIG.tagline }),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })
         )

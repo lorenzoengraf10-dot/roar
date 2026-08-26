@@ -64,7 +64,7 @@
    ---------------------------------------------------------------- */
 const CONFIG = {
   nombre: "ROAR",
-  tagline: "Joyería Urbana",
+  tagline: "Joyas de acero",
 
   // Número real. Formato: 549 + código de área + número, sin espacios.
   whatsapp: "5492920588604",
