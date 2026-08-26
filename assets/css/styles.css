@@ -1352,6 +1352,17 @@ p {
 /* ------------------------------------------------------------
    "Pagar por transferencia" — alias/CVU del negocio + confirmación
 ------------------------------------------------------------ */
+.pago-transferencia-toggle {
+  min-height: 40px;
+  padding: 0.4rem 0.2rem;
+  background: none;
+  border: none;
+  color: var(--gold-deep);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+}
 .pago-transferencia {
   display: flex;
   flex-direction: column;
