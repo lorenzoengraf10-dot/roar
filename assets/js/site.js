@@ -397,28 +397,24 @@
   ------------------------------------------------------------ */
   function renderHero() {
     var hero = document.getElementById('hero');
-    var facts = [
-      '📦 Envío gratis a partir de $45.000',
-      '⚙️ Acero quirúrgico 316L, la mejor calidad',
-    ];
+
+    // El slogan y los datos de envío/material ya vienen incorporados en el
+    // diseño de la foto — este bloque los repite oculto visualmente, solo
+    // para lectores de pantalla y buscadores.
+    hero.appendChild(
+      el('h1', { class: 'sr-only', text: 'Que tu joya hable por vos' })
+    );
+    hero.appendChild(
+      el('p', { class: 'sr-only', text: 'Envío gratis a todo el país a partir de $45.000. Acero quirúrgico 316L: no mancha, no irrita, no se oxida.' })
+    );
 
     hero.appendChild(
       el('img', {
         src: 'assets/images/showroom-pared-roar.jpg',
-        alt: '',
-        'aria-hidden': 'true',
+        alt: 'Que tu joya hable por vos — envío gratis a todo el país a partir de $45.000, acero quirúrgico 316L',
         class: 'hero-bg-photo',
         fetchpriority: 'high',
       })
-    );
-    hero.appendChild(el('div', { class: 'hero-bg-scrim' }));
-
-    hero.appendChild(
-      el('div', { class: 'hero-inner' },
-        el('ul', { class: 'hero-facts' },
-          facts.map(function (f) { return el('li', { text: f }); })
-        )
-      )
     );
   }
 
