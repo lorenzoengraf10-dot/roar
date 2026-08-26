@@ -651,6 +651,19 @@ const PRODUCTOS = {
       ],
     },
     {
+      nombre: "Pulsera Chunky Silver",
+      precio: 13000,
+      desc: "Pulsera cadena tipo paperclip con eslabones esféricos, color plateado. Acero quirúrgico.",
+      img: "assets/images/pulsera-chunky-silver.jpg",
+      img2: "assets/images/pulsera-chunky-silver-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "emerald",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Medidas: 18 cm + 4 cm de extensión",
+      ],
+    },
+    {
       nombre: "Pulsera Snake Gold",
       precio: 12000,
       desc: "Pulsera cadena plana tipo snake/herringbone, con cadena extensora para ajustar a cualquier medida de muñeca. Acero quirúrgico.",
