@@ -228,6 +228,21 @@ const PRODUCTOS = {
 
   cadenas: [
     {
+      nombre: "Collar Leo Gold",
+      precio: 32000,
+      desc: "Collar con dije macizo pesado de camiseta con el número 10 en micropavé, cadena gruesa.",
+      img: "assets/images/collar-leo-gold.jpg",
+      img2: "assets/images/collar-leo-gold-modelo.jpg",
+      img3: "assets/images/collar-leo-gold-layered.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero con micropavé",
+        "Dije macizo pesado de 5 x 4 cm",
+        "Medidas de cadena disponibles: 50 o 55 cm (a elección)",
+      ],
+    },
+    {
       nombre: "Collar Gloria",
       precio: 24000,
       desc: "Colgante medallón circular con el Sol de Mayo, insignia nacional argentina, en relieve. Acero quirúrgico. Cadena rolo con cierre de mosquetón. Disponible en dorado o plateado.",
@@ -513,21 +528,6 @@ const PRODUCTOS = {
       ],
     },
     {
-      nombre: "Collar Leo Gold",
-      precio: 32000,
-      desc: "Collar con dije macizo pesado de camiseta con el número 10 en micropavé, cadena gruesa.",
-      img: "assets/images/collar-leo-gold.jpg",
-      img2: "assets/images/collar-leo-gold-modelo.jpg",
-      img3: "assets/images/collar-leo-gold-layered.jpg",
-      etiqueta: "Nuevo",
-      color: "gold",
-      detalles: [
-        "Material: acero con micropavé",
-        "Dije macizo pesado de 5 x 4 cm",
-        "Medidas de cadena disponibles: 50 o 55 cm (a elección)",
-      ],
-    },
-    {
       nombre: "Collar Ice",
       precio: 18000,
       desc: "Collar cadena cubana con eslabones engarzados en strass. Cierre clip. Disponible en plateado o dorado.",
@@ -729,7 +729,7 @@ const PRODUCTOS = {
       variantes: [
         { nombre: "Dorado", img: "assets/images/aro-rock-dorado.jpg", img2: "assets/images/aro-rock-dorado-modelo.jpg" },
         { nombre: "Plateado", img: "assets/images/aro-rock-plateado.jpg" },
-        { nombre: "Negro", img: "assets/images/aro-rock-negro.jpg", img2: "assets/images/aro-rock-negro-modelo.jpg" },
+        { nombre: "Negro", img: "assets/images/aro-rock-negro.jpg" },
       ],
       detalles: [
         "Material: acero quirúrgico, dorado, plateado o negro",
@@ -802,8 +802,8 @@ const PRODUCTOS = {
       sub: "acero",
       precio: 10000,
       desc: "Aro abridor con strass engarzado, cierre a rosca.",
-      img: "assets/images/aros-ney.jpg",
-      img2: "assets/images/aros-ney-2.jpg",
+      img: "assets/images/aros-ney-2.jpg",
+      img2: "assets/images/aros-ney.jpg",
       img3: "assets/images/aros-ney-modelo.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
