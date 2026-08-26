@@ -681,6 +681,20 @@ const PRODUCTOS = {
         "Cierre: mosquetón con cadena extensora",
       ],
     },
+    {
+      nombre: "Pulsera Royal",
+      precio: 18000,
+      desc: "Pulsera tennis con circonias engarzadas y una piedra ovalada central de mayor tamaño. Acero dorado.",
+      img: "assets/images/pulsera-royal-modelo.jpg",
+      img2: "assets/images/pulsera-royal.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado",
+        "Diseño: tennis con piedra ovalada central",
+        "Medidas: 17 cm + 4 cm de extensión",
+      ],
+    },
   ],
 
   aros: [
