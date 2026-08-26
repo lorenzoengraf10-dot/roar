@@ -1350,6 +1350,95 @@ p {
 }
 
 /* ------------------------------------------------------------
+   "Pagar por transferencia" — alias/CVU del negocio + confirmación
+------------------------------------------------------------ */
+.pago-transferencia {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+}
+.pago-transferencia-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.pago-transferencia-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pago-dato-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pago-dato-label {
+  flex: none;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  width: 3.4rem;
+}
+.pago-dato-valor {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 700;
+  word-break: break-word;
+}
+.pago-dato-copy {
+  flex: none;
+  min-height: 32px;
+  padding: 0 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.pago-transferencia-nota {
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+.pago-transferencia-nombre {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+.pago-transferencia-nombre:focus-visible {
+  outline: 2px solid var(--gold-deep);
+}
+.pago-transferencia-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pago-transferencia-check input {
+  accent-color: var(--gold);
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+.btn-transferencia {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------
    Toast de confirmación
 ------------------------------------------------------------ */
 .toast {

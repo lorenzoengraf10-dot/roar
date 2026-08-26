@@ -127,6 +127,16 @@
     }, 2200);
   }
 
+  function copiarAlPortapapeles(texto, mensaje) {
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      toast('No se pudo copiar — copialo a mano');
+      return;
+    }
+    navigator.clipboard.writeText(texto)
+      .then(function () { toast(mensaje); })
+      .catch(function () { toast('No se pudo copiar — copialo a mano'); });
+  }
+
   /* ------------------------------------------------------------
      Índice plano de productos (para buscar por categoria:slug)
   ------------------------------------------------------------ */
@@ -161,6 +171,10 @@
   var CART_KEY = 'roar_cart_v1';
   var cart = loadCart(); // [{ catKey, slug, cantidad }]
   var entrega = { tipo: 'retiro', provincia: '', precio: null, cp: '', esReal: false };
+  /* Datos que carga el comprador para pagar por transferencia (ver
+     renderPagoTransferenciaBlock más abajo). No se guardan en ningún
+     lado — se usan una sola vez para armar el mensaje de WhatsApp. */
+  var transferData = { nombre: '', confirmado: false };
 
   function loadCart() {
     try {
@@ -1033,6 +1047,7 @@
             el('span', { text: 'Total' }),
             el('strong', { text: money(cartTotal()) })
           ),
+          renderPagoTransferenciaBlock(),
           CONFIG.mercadoPagoVisible
             ? el('button', {
                 class: 'btn btn-mercadopago btn-block', type: 'button',
@@ -1057,9 +1072,10 @@
     );
   }
 
-  function enviarPedidoWhatsApp() {
-    if (!cart.length) return;
-    var lineas = ['Hola ' + CONFIG.nombre + '! Quiero hacer este pedido:', ''];
+  /* Una línea por producto del carrito — la usan tanto el pedido genérico
+     por WhatsApp como la confirmación de pago por transferencia. */
+  function lineasProductosPedido() {
+    var lineas = [];
     cart.forEach(function (item, i) {
       var entry = findEntry(item.catKey, item.slug);
       if (!entry) return;
@@ -1069,17 +1085,113 @@
       var nombreConColor = product.nombre + (item.color ? ' (' + item.color + ')' : '');
       lineas.push((i + 1) + '. ' + nombreConColor + ' x' + item.cantidad + ' — ' + precioTxt);
     });
-    lineas.push('');
-    lineas.push('Total: ' + money(cartTotal()));
+    return lineas;
+  }
+
+  /* Línea(s) describiendo cómo se entrega el pedido, para los mensajes de WhatsApp. */
+  function lineasEntregaPedido() {
     if (entrega.tipo === 'envio' && entrega.provincia && entrega.precio != null) {
       var etiquetaEnvio = entrega.precio === 0 ? 'gratis' : entrega.esReal ? 'cotización real' : 'estimado';
       var precioEnvioTxt = entrega.precio === 0 ? 'Gratis' : money(entrega.precio);
-      lineas.push('Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + precioEnvioTxt);
+      var lineas = ['Envío a ' + entrega.provincia + ' (' + etiquetaEnvio + '): ' + precioEnvioTxt];
       if (entrega.cp) lineas.push('Código postal: ' + entrega.cp);
+      return lineas;
     }
+    return ['Retiro en ' + CONFIG.ciudad + ' — sin cargo'];
+  }
+
+  function enviarPedidoWhatsApp() {
+    if (!cart.length) return;
+    var lineas = ['Hola ' + CONFIG.nombre + '! Quiero hacer este pedido:', ''];
+    lineas = lineas.concat(lineasProductosPedido());
+    lineas.push('');
+    lineas.push('Total: ' + money(cartTotal()));
+    lineas = lineas.concat(lineasEntregaPedido());
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
+  }
+
+  /* Bloque "Pagar por transferencia" en el carrito: muestra alias/CVU/
+     titular de CONFIG.pago (con botón de copiar cada dato), le pide al
+     comprador su nombre para que se lo pueda identificar en Mercado Pago,
+     y arma el mensaje de WhatsApp una vez que confirma que ya transfirió.
+     No hay ningún cobro automático acá — el pago lo verifica siempre el
+     dueño del negocio mirando su cuenta de Mercado Pago antes de
+     despachar el pedido. */
+  function renderPagoTransferenciaBlock() {
+    if (!CONFIG.pago) return null;
+
+    function datoRow(etiqueta, valor) {
+      return el('div', { class: 'pago-dato-row' },
+        el('span', { class: 'pago-dato-label', text: etiqueta }),
+        el('span', { class: 'pago-dato-valor', text: valor }),
+        el('button', {
+          type: 'button', class: 'pago-dato-copy',
+          onclick: function () { copiarAlPortapapeles(valor, etiqueta + ' copiado'); },
+        }, document.createTextNode('Copiar'))
+      );
+    }
+
+    return el('div', { class: 'pago-transferencia' },
+      el('span', { class: 'pago-transferencia-title', text: 'Pagar por transferencia' }),
+      el('div', { class: 'pago-transferencia-datos' },
+        datoRow('Titular', CONFIG.pago.titular),
+        datoRow('Alias', CONFIG.pago.alias),
+        datoRow('CVU', CONFIG.pago.cvu)
+      ),
+      el('p', { class: 'pago-transferencia-nota', text: 'Transferí el total del pedido (' + money(cartTotal()) + ') y dejanos tu nombre para poder identificarla.' }),
+      el('input', {
+        type: 'text', class: 'pago-transferencia-nombre',
+        placeholder: 'Tu nombre y apellido',
+        'aria-label': 'Tu nombre y apellido, para identificar la transferencia',
+        value: transferData.nombre || null,
+        oninput: function (e) { transferData.nombre = e.target.value; },
+      }),
+      el('label', { class: 'pago-transferencia-check' },
+        el('input', {
+          type: 'checkbox',
+          checked: transferData.confirmado ? 'checked' : null,
+          onchange: function (e) { transferData.confirmado = e.target.checked; },
+        }),
+        document.createTextNode('Ya realicé la transferencia')
+      ),
+      el('button', {
+        type: 'button', class: 'btn btn-transferencia btn-block',
+        onclick: confirmarPedidoTransferencia,
+      }, document.createTextNode('Confirmar pedido por transferencia'))
+    );
+  }
+
+  function confirmarPedidoTransferencia() {
+    if (!cart.length) return;
+    if (!transferData.confirmado) {
+      toast('Marcá "Ya realicé la transferencia" antes de confirmar');
+      return;
+    }
+    var nombre = (transferData.nombre || '').trim();
+    if (!nombre) {
+      toast('Escribí tu nombre y apellido para identificar la transferencia');
+      return;
+    }
+
+    var lineas = ['Hola! Quisiera confirmar este pedido con *Transferencia*:', '', '*Productos:*'];
+    lineas = lineas.concat(lineasProductosPedido());
+    lineas.push('');
+    lineas = lineas.concat(lineasEntregaPedido());
+    lineas.push('');
+    lineas.push('*Medio de pago:* Transferencia');
+    lineas.push('*Total transferido: ' + money(cartTotal()) + '*');
+    lineas.push('');
+    lineas.push('Ya realicé la transferencia a nombre de ' + nombre + '. ¡Muchas gracias!');
+    window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
+
+    cart = [];
+    saveCart();
+    renderCartCount();
+    transferData = { nombre: '', confirmado: false };
+    renderCartDrawer();
+    toast('¡Pedido enviado! Te vamos a confirmar el pago y coordinar la entrega.');
   }
 
   /* Arma los ítems del pedido (productos + envío, si corresponde) y le pide
