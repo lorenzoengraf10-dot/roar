@@ -416,13 +416,6 @@
 
     hero.appendChild(
       el('div', { class: 'hero-inner' },
-        el('img', {
-          src: 'assets/images/logo-roar.jpg',
-          alt: CONFIG.nombre + ' — ' + CONFIG.tagline,
-          class: 'hero-logo',
-          width: '140',
-          height: '140',
-        }),
         el('p', { class: 'hero-tagline', text: CONFIG.tagline + ' en acero quirúrgico' }),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })

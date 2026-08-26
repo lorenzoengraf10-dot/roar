@@ -443,14 +443,6 @@ p {
   align-items: center;
   gap: 1rem;
 }
-.hero-logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gold-deep);
-  box-shadow: var(--shadow);
-}
 .hero-tagline {
   font-size: 1.05rem;
   color: var(--on-dark-dim);
