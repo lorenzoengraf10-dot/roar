@@ -96,6 +96,15 @@ const CONFIG = {
     cvu: "0000003100071501389000",
   },
 
+  // Pagar con Mercado Pago desde el carrito (cobra el total automático,
+  // sin coordinar la transferencia a mano). Para activarlo:
+  // 1. Cargá la clave MP_ACCESS_TOKEN en Vercel (ver api/crear-preferencia.js
+  //    para el paso a paso de dónde sacarla).
+  // 2. Cambiá esto a true.
+  // Mientras esté en false, el botón no aparece y el pedido se sigue
+  // coordinando por WhatsApp como siempre.
+  mercadoPagoVisible: false,
+
   // Google Analytics: para saber cuánta gente entra al sitio y desde dónde.
   // 1. Andá a https://analytics.google.com, creá una cuenta (es gratis) y
   //    una "propiedad" para este sitio.

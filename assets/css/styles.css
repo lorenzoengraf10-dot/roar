@@ -30,6 +30,9 @@
   --whatsapp: #25d366;
   --whatsapp-ink: #06301c;
 
+  --mercadopago: #009ee3;
+  --mercadopago-ink: #ffffff;
+
   /* Texto y superficies para las zonas oscuras (header negro, footer marino) */
   --on-dark-ink: #ffffff;
   --on-dark-dim: rgba(255, 255, 255, 0.78);
@@ -186,6 +189,14 @@ p {
 .btn-whatsapp {
   background: var(--whatsapp);
   color: var(--whatsapp-ink);
+}
+.btn-mercadopago {
+  background: var(--mercadopago);
+  color: var(--mercadopago-ink);
+}
+.btn-mercadopago:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 .btn-add {
   background: var(--bg);

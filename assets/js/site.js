@@ -1033,6 +1033,12 @@
             el('span', { text: 'Total' }),
             el('strong', { text: money(cartTotal()) })
           ),
+          CONFIG.mercadoPagoVisible
+            ? el('button', {
+                class: 'btn btn-mercadopago btn-block', type: 'button',
+                onclick: function (e) { pagarConMercadoPago(e.currentTarget); },
+              }, document.createTextNode('Pagar con Mercado Pago'))
+            : null,
           (CONFIG.whatsappVisible && CONFIG.whatsapp)
             ? el('button', { class: 'btn btn-whatsapp btn-block', type: 'button', onclick: enviarPedidoWhatsApp }, document.createTextNode('Enviar pedido por WhatsApp'))
             : el('p', { class: 'cart-wa-pendiente', text: 'El WhatsApp todavía no está configurado.' })
@@ -1074,6 +1080,52 @@
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
+  }
+
+  /* Arma los ítems del pedido (productos + envío, si corresponde) y le pide
+     a /api/crear-preferencia un link de pago de Mercado Pago. Si Mercado
+     Pago todavía no está configurado (o falla), avisa por toast — el
+     pedido por WhatsApp sigue funcionando igual como alternativa. */
+  function pagarConMercadoPago(btn) {
+    if (!cart.length) return;
+    var items = [];
+    cart.forEach(function (item) {
+      var entry = findEntry(item.catKey, item.slug);
+      if (!entry) return;
+      var product = entry.product;
+      var precioItem = precioDeItem(product, item.color);
+      if (!precioItem) return; // "Consultar precio": no se puede cobrar un monto que no existe
+      var nombreConColor = product.nombre + (item.color ? ' (' + item.color + ')' : '');
+      items.push({ title: nombreConColor, quantity: item.cantidad, unit_price: precioItem });
+    });
+    if (entrega.tipo === 'envio' && entrega.precio) {
+      items.push({ title: 'Envío a ' + entrega.provincia, quantity: 1, unit_price: entrega.precio });
+    }
+    if (!items.length) {
+      toast('Ningún producto del pedido tiene precio cargado todavía');
+      return;
+    }
+
+    var textoOriginal = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Preparando el pago…';
+
+    fetch('/api/crear-preferencia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: items, siteUrl: window.location.origin + window.location.pathname }),
+    })
+      .then(function (r) { return r.ok ? r.json() : { ok: false }; })
+      .catch(function () { return { ok: false }; })
+      .then(function (data) {
+        if (data.ok && data.init_point) {
+          window.location.href = data.init_point;
+          return;
+        }
+        btn.disabled = false;
+        btn.textContent = textoOriginal;
+        toast('Mercado Pago no está disponible ahora — probá con el pedido por WhatsApp');
+      });
   }
 
   /* ------------------------------------------------------------
@@ -1313,6 +1365,33 @@
     window.addEventListener('hashchange', function () {
       if (location.hash.indexOf('#producto=') === 0) abrirProductoDesdeHash();
     });
+
+    manejarVueltaDeMercadoPago();
+  }
+
+  /* Cuando Mercado Pago devuelve al cliente al sitio después de pagar
+     (ver back_urls en api/crear-preferencia.js), esto lee el resultado de
+     la URL y actúa en consecuencia. Limpia el parámetro de la URL para
+     que un F5 no repita el mensaje. */
+  function manejarVueltaDeMercadoPago() {
+    var params = new URLSearchParams(location.search);
+    var pago = params.get('pago');
+    if (!pago) return;
+
+    if (pago === 'exito') {
+      cart = [];
+      saveCart();
+      renderCartCount();
+      toast('¡Pago recibido! Te vamos a escribir para coordinar el envío.');
+    } else if (pago === 'fallo') {
+      toast('El pago no se pudo completar. Tu pedido sigue guardado en el carrito.');
+    } else if (pago === 'pendiente') {
+      toast('Pago pendiente de confirmación (por ejemplo, Rapipago/Pago Fácil).');
+    }
+
+    params.delete('pago');
+    var query = params.toString();
+    history.replaceState(null, '', location.pathname + (query ? '?' + query : '') + location.hash);
   }
 
   if (document.readyState === 'loading') {
