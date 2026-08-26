@@ -968,8 +968,8 @@ const PRODUCTOS = {
       nombre: "Combo Cleef White",
       precio: 25000,
       desc: "Combo de 2 piezas con eslabones tipo trébol (clover) color blanco nácar: pulsera y collar. Acero quirúrgico.",
-      img: "assets/images/combo-cleef-white.jpg",
-      img2: "assets/images/combo-cleef-white-modelo.jpg",
+      img: "assets/images/combo-cleef-white-modelo.jpg",
+      img2: "assets/images/combo-cleef-white.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
