@@ -728,8 +728,8 @@ const PRODUCTOS = {
       color: "navy",
       variantes: [
         { nombre: "Dorado", img: "assets/images/aro-rock-dorado.jpg", img2: "assets/images/aro-rock-dorado-modelo.jpg" },
-        { nombre: "Plateado", img: "assets/images/aro-rock-plateado.jpg" },
-        { nombre: "Negro", img: "assets/images/aro-rock-negro.jpg" },
+        { nombre: "Plateado", img: "assets/images/aro-rock-plateado.jpg", img2: "assets/images/aro-rock-plateado-modelo.jpg" },
+        { nombre: "Negro", img: "assets/images/aro-rock-negro.jpg", img2: "assets/images/aro-rock-negro-modelo.jpg" },
       ],
       detalles: [
         "Material: acero quirúrgico, dorado, plateado o negro",
