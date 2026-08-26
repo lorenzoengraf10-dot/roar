@@ -444,8 +444,9 @@ p {
   gap: 1rem;
 }
 .hero-tagline {
-  font-size: 1.05rem;
-  color: var(--on-dark-dim);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--on-dark-ink);
   max-width: 32ch;
 }
 .hero-ctas {

@@ -398,9 +398,8 @@
   function renderHero() {
     var hero = document.getElementById('hero');
     var facts = [
-      '📦 Envíos a todo el país',
-      '📍 Showroom en ' + CONFIG.ciudad + ', ' + CONFIG.provincia,
-      '💬 Atención personalizada por WhatsApp',
+      '📦 Envío gratis a partir de $45.000',
+      '⚙️ Acero quirúrgico 316L, la mejor calidad',
     ];
 
     hero.appendChild(
@@ -416,7 +415,7 @@
 
     hero.appendChild(
       el('div', { class: 'hero-inner' },
-        el('p', { class: 'hero-tagline', text: CONFIG.tagline }),
+        el('p', { class: 'hero-tagline', text: 'Que tu joya hable por vos' }),
         el('ul', { class: 'hero-facts' },
           facts.map(function (f) { return el('li', { text: f }); })
         )
