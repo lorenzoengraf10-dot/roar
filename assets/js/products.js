@@ -884,6 +884,21 @@ const PRODUCTOS = {
         "Cierre: clip",
       ],
     },
+    {
+      nombre: "Aros Cleef Black",
+      sub: "acero",
+      precio: 9000,
+      desc: "Aro con dije colgante tipo trébol (clover) negro ónix, acero dorado, cierre clip.",
+      img: "assets/images/aros-cleef-black.jpg",
+      img2: "assets/images/aros-cleef-black-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado",
+        "Diseño: dije colgante tipo trébol, negro ónix",
+        "Cierre: clip",
+      ],
+    },
   ],
 
   anillos: [
