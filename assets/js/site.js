@@ -233,17 +233,6 @@
     }, 0);
   }
 
-  /* cartTotal() es solo el subtotal de productos — el envío se suma acá
-     encima cuando ya se conoce su costo (entrega.tipo "envio" con una
-     provincia elegida). Esto es lo que hay que mostrar como "Total" en
-     cualquier lado donde el cliente vaya a pagar o transferir: mostrar
-     el subtotal como si fuera el total completo hace que se transfiera
-     de menos cuando el envío tiene costo. */
-  function totalAPagar() {
-    var envioCosto = (entrega.tipo === 'envio' && entrega.precio != null && entrega.precio > 0) ? entrega.precio : 0;
-    return cartTotal() + envioCosto;
-  }
-
   function cartWeight() {
     var EMBALAJE_KG = 0.1;
     return cart.reduce(function (kg, item) {
@@ -1055,8 +1044,8 @@
       ? el('div', { class: 'cart-footer' },
           renderEntregaBlock(),
           el('div', { class: 'cart-total-row' },
-            el('span', { text: 'Total a pagar' }),
-            el('strong', { text: money(totalAPagar()) })
+            el('span', { text: 'Total' }),
+            el('strong', { text: money(cartTotal()) })
           ),
           renderPagoTransferenciaBlock(),
           CONFIG.mercadoPagoVisible
@@ -1116,9 +1105,8 @@
     var lineas = ['Hola ' + CONFIG.nombre + '! Quiero hacer este pedido:', ''];
     lineas = lineas.concat(lineasProductosPedido());
     lineas.push('');
+    lineas.push('Total: ' + money(cartTotal()));
     lineas = lineas.concat(lineasEntregaPedido());
-    lineas.push('');
-    lineas.push('Total: ' + money(totalAPagar()));
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
@@ -1163,7 +1151,7 @@
         datoRow('Alias', CONFIG.pago.alias),
         datoRow('CVU', CONFIG.pago.cvu)
       ),
-      el('p', { class: 'pago-transferencia-nota', text: 'Transferí el total del pedido (' + money(totalAPagar()) + ') y dejanos tu nombre para poder identificarla.' }),
+      el('p', { class: 'pago-transferencia-nota', text: 'Transferí el total de los productos (' + money(cartTotal()) + ') y dejanos tu nombre para poder identificarla.' + (entrega.tipo === 'envio' ? ' El envío se coordina y confirma aparte por WhatsApp.' : '') }),
       el('input', {
         type: 'text', class: 'pago-transferencia-nombre',
         placeholder: 'Tu nombre y apellido',
@@ -1204,7 +1192,8 @@
     lineas = lineas.concat(lineasEntregaPedido());
     lineas.push('');
     lineas.push('*Medio de pago:* Transferencia');
-    lineas.push('*Total transferido: ' + money(totalAPagar()) + '*');
+    lineas.push('*Total transferido: ' + money(cartTotal()) + '*');
+    if (entrega.tipo === 'envio') lineas.push('(El envío se coordina y cobra aparte)');
     lineas.push('');
     lineas.push('Ya realicé la transferencia a nombre de ' + nombre + '. ¡Muchas gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
