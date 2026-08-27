@@ -1348,6 +1348,11 @@ p {
   color: var(--ink-faint);
   text-align: center;
 }
+.cart-pago-tarjeta {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
 
 /* ------------------------------------------------------------
    "Pagar por transferencia" — alias/CVU del negocio + confirmación

@@ -1054,6 +1054,7 @@
                 onclick: function (e) { pagarConMercadoPago(e.currentTarget); },
               }, document.createTextNode('Pagar con Mercado Pago'))
             : null,
+          el('p', { class: 'cart-pago-tarjeta', text: '💳 Aceptamos tarjeta de crédito y débito. Consultanos.' }),
           (CONFIG.whatsappVisible && CONFIG.whatsapp)
             ? el('button', { class: 'btn btn-whatsapp btn-block', type: 'button', onclick: enviarPedidoWhatsApp }, document.createTextNode('Enviar pedido por WhatsApp'))
             : el('p', { class: 'cart-wa-pendiente', text: 'El WhatsApp todavía no está configurado.' })
@@ -1130,7 +1131,7 @@
       return el('button', {
         type: 'button', class: 'pago-transferencia-toggle',
         onclick: function () { transferData.abierto = true; renderCartDrawer(); },
-      }, document.createTextNode('💸 ¿Preferís pagar por transferencia antes? Tocá acá'));
+      }, document.createTextNode('💸 Pagá por transferencia y reservá tu joya antes que se agoten. Tocá acá'));
     }
 
     function datoRow(etiqueta, valor) {
