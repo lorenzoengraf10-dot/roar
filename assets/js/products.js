@@ -1076,6 +1076,22 @@ const PRODUCTOS = {
         "Diseño: doble gota (bypass), regulable (talle único)",
       ],
     },
+    {
+      nombre: "Anillo Darkness Roll",
+      sub: "acero",
+      precio: 10000,
+      desc: "Anillo con banda de cadena giratoria (spinner), acero negro.",
+      img: "assets/images/anillo-darkness-roll.jpg",
+      img2: "assets/images/anillo-darkness-roll-modelo.jpg",
+      img3: "assets/images/guia-talles-anillos.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero negro",
+        "Diseño: banda de cadena giratoria (spinner)",
+        "Talles disponibles: 18, 19 y 20",
+      ],
+    },
   ],
 
   accesorios: [
