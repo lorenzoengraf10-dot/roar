@@ -435,6 +435,8 @@ const PRODUCTOS = {
       precio: 12000,
       desc: "Cadena cubana (curb chain) color plateado, 50 cm. Acero quirúrgico.",
       img: "assets/images/cadena-cuba-silver.jpg",
+      img2: "assets/images/cadena-cuba-silver-2.jpg",
+      img3: "assets/images/cadena-cuba-silver-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
@@ -896,6 +898,21 @@ const PRODUCTOS = {
       detalles: [
         "Material: acero dorado",
         "Diseño: dije colgante tipo trébol, negro ónix",
+        "Cierre: clip",
+      ],
+    },
+    {
+      nombre: "Aros Angel",
+      sub: "acero",
+      precio: 8000,
+      desc: "Aro huggie con dije colgante de ala, acero quirúrgico.",
+      img: "assets/images/aro-angel.jpg",
+      img2: "assets/images/aro-angel-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "navy",
+      detalles: [
+        "Material: acero quirúrgico",
+        "Diseño: dije colgante de ala",
         "Cierre: clip",
       ],
     },
