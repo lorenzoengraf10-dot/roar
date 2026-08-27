@@ -406,9 +406,9 @@ const PRODUCTOS = {
       nombre: "Collar Cali",
       precio: 15000,
       desc: "Collar tipo tennis con piedras baguette engarzadas, color dorado.",
-      img: "assets/images/collar-cali.jpg",
-      img2: "assets/images/collar-cali-detalle.jpg",
-      img3: "assets/images/collar-cali-modelo.jpg",
+      img: "assets/images/collar-cali-modelo.jpg",
+      img2: "assets/images/collar-cali.jpg",
+      img3: "assets/images/collar-cali-detalle.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
