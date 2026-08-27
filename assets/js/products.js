@@ -869,6 +869,21 @@ const PRODUCTOS = {
         "Cierre: clip",
       ],
     },
+    {
+      nombre: "Aros Cleef White",
+      sub: "acero",
+      precio: 9000,
+      desc: "Aro con dije colgante tipo trébol (clover) blanco nácar, acero dorado, cierre clip.",
+      img: "assets/images/aros-cleef-white.jpg",
+      img2: "assets/images/aros-cleef-white-modelo.jpg",
+      etiqueta: "Nuevo",
+      color: "gold",
+      detalles: [
+        "Material: acero dorado",
+        "Diseño: dije colgante tipo trébol, blanco nácar",
+        "Cierre: clip",
+      ],
+    },
   ],
 
   anillos: [
