@@ -1130,7 +1130,7 @@
       return el('button', {
         type: 'button', class: 'pago-transferencia-toggle',
         onclick: function () { transferData.abierto = true; renderCartDrawer(); },
-      }, document.createTextNode('💸 ¿Preferís pagar por transferencia antes? Tocá acá'));
+      }, document.createTextNode('💸 Pagá por transferencia y reservá tu joya antes que se agoten. Tocá acá'));
     }
 
     function datoRow(etiqueta, valor) {
