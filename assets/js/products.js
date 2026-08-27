@@ -1079,7 +1079,7 @@ const PRODUCTOS = {
     {
       nombre: "Anillo Darkness Roll",
       sub: "acero",
-      precio: 10000,
+      precio: 12000,
       desc: "Anillo con banda de cadena giratoria (spinner), acero negro.",
       img: "assets/images/anillo-darkness-roll.jpg",
       img2: "assets/images/anillo-darkness-roll-modelo.jpg",
