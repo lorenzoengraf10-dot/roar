@@ -408,6 +408,7 @@ const PRODUCTOS = {
       desc: "Collar tipo tennis con piedras baguette engarzadas, color dorado.",
       img: "assets/images/collar-cali.jpg",
       img2: "assets/images/collar-cali-detalle.jpg",
+      img3: "assets/images/collar-cali-modelo.jpg",
       etiqueta: "Nuevo",
       color: "gold",
       detalles: [
