@@ -664,8 +664,9 @@ const PRODUCTOS = {
       nombre: "Pulsera Chunky Silver",
       precio: 13000,
       desc: "Pulsera cadena tipo paperclip con eslabones esféricos, color plateado. Acero quirúrgico.",
-      img: "assets/images/pulsera-chunky-silver.jpg",
-      img2: "assets/images/pulsera-chunky-silver-modelo.jpg",
+      img: "assets/images/pulsera-chunky-silver-modelo2.jpg",
+      img2: "assets/images/pulsera-chunky-silver.jpg",
+      img3: "assets/images/pulsera-chunky-silver-modelo.jpg",
       etiqueta: "Nuevo",
       color: "emerald",
       detalles: [
