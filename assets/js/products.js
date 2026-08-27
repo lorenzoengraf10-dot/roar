@@ -161,7 +161,7 @@ const CATEGORIAS = {
   },
   accesorios: {
     nombre: "Combos",
-    foto: "assets/images/combo-cuba-silver.jpg",
+    foto: "assets/images/combos-categoria.jpg",
   },
 };
 
