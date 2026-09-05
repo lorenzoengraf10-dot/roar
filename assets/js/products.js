@@ -111,7 +111,7 @@ const CONFIG = {
   // 2. Te va a dar un ID que empieza con "G-" (por ejemplo "G-ABC1234XYZ").
   // 3. Pegalo acá abajo entre las comillas. Mientras esté vacío (""),
   //    el sitio funciona igual pero no se manda ninguna estadística.
-  googleAnalyticsId: "",
+  googleAnalyticsId: "G-57JBWEQRW5",
 };
 
 

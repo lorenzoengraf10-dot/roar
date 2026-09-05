@@ -166,6 +166,53 @@
   }
 
   /* ------------------------------------------------------------
+     Google Analytics (GA4) — eventos de ecommerce
+     ---------------------------------------------------------------
+     El tag se carga en initAnalytics (más abajo), a partir de
+     CONFIG.googleAnalyticsId. Estos son los eventos que le importan a
+     marketing: view_item (abrió la ficha de un producto), add_to_cart
+     (lo sumó al pedido) y purchase (llegó a buen puerto: WhatsApp o
+     confirmó el pago por Mercado Pago — no hay más pasos después de
+     eso, así que es el evento de conversión real del sitio).
+  ------------------------------------------------------------ */
+  function itemGA(entry, color, cantidad) {
+    var precio = precioDeItem(entry.product, color) || 0;
+    var item = {
+      item_id: entryKey(entry),
+      item_name: entry.product.nombre,
+      item_category: entry.catNombre,
+      price: precio,
+      quantity: cantidad || 1,
+    };
+    if (color) item.item_variant = color;
+    return item;
+  }
+
+  function trackearItemGA(nombreEvento, item) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', nombreEvento, {
+      currency: 'ARS',
+      value: item.price * item.quantity,
+      items: [item],
+    });
+  }
+
+  function trackearPedido() {
+    if (typeof gtag !== 'function') return;
+    var items = cart.map(function (item) {
+      var entry = findEntry(item.catKey, item.slug);
+      return entry ? itemGA(entry, item.color, item.cantidad) : null;
+    }).filter(Boolean);
+    if (!items.length) return;
+    gtag('event', 'purchase', {
+      transaction_id: 'roar-' + Date.now(),
+      currency: 'ARS',
+      value: cartTotal(),
+      items: items,
+    });
+  }
+
+  /* ------------------------------------------------------------
      Carrito — 100% client-side, persistido en localStorage
   ------------------------------------------------------------ */
   var CART_KEY = 'roar_cart_v1';
@@ -210,6 +257,9 @@
     renderCartDrawer();
     recalcularEnvioSiCorresponde();
     toast('Agregado al pedido');
+
+    var entry = findEntry(catKey, slug);
+    if (entry) trackearItemGA('add_to_cart', itemGA(entry, color, cantidad));
   }
 
   function cartSetQty(catKey, slug, cantidad, color) {
@@ -857,6 +907,7 @@
     );
 
     modal.hidden = false;
+    trackearItemGA('view_item', itemGA(entry, variantes ? variantes[varianteActual].nombre : undefined, 1));
     document.body.classList.add('no-scroll');
     if (location.hash !== '#producto=' + catKey + ':' + slug) {
       history.replaceState(null, '', '#producto=' + catKey + ':' + slug);
@@ -1111,6 +1162,7 @@
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
+    trackearPedido();
   }
 
   /* Bloque "Pagar por transferencia" en el carrito: muestra alias/CVU/
@@ -1198,6 +1250,7 @@
     lineas.push('');
     lineas.push('Ya realicé la transferencia a nombre de ' + nombre + '. ¡Muchas gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
+    trackearPedido();
 
     cart = [];
     saveCart();
@@ -1456,7 +1509,7 @@
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = function () { window.dataLayer.push(arguments); };
     gtag('js', new Date());
     gtag('config', id);
   }
@@ -1503,6 +1556,7 @@
     if (!pago) return;
 
     if (pago === 'exito') {
+      trackearPedido();
       cart = [];
       saveCart();
       renderCartCount();
