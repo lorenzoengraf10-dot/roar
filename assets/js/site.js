@@ -1497,19 +1497,77 @@
   }
 
   /* ------------------------------------------------------------
+     Aviso de cookies + Consent Mode de Google
+     ---------------------------------------------------------------
+     Mientras la persona no acepta, Analytics arranca en modo "denied":
+     el tag se carga igual, pero Google no guarda ninguna cookie ni
+     identificador hasta que se llama a consent update (ver
+     aceptarCookies). Es el requisito de Google para poder usar sus
+     tags — no alcanza con solo avisar, también hay que frenar la
+     cookie hasta que acepten.
+  ------------------------------------------------------------ */
+  var COOKIE_CONSENT_KEY = 'roar_cookie_consent';
+
+  function consentimientoGuardado() {
+    try { return localStorage.getItem(COOKIE_CONSENT_KEY); } catch (e) { return null; }
+  }
+
+  function renderCookieBanner() {
+    if (!CONFIG.googleAnalyticsId) return;
+    if (consentimientoGuardado() === 'aceptado') return;
+
+    var box = document.getElementById('cookie-banner');
+    if (!box) return;
+    box.hidden = false;
+    box.innerHTML = '';
+    box.appendChild(
+      el('div', { class: 'cookie-banner-inner' },
+        el('p', { class: 'cookie-banner-text' }, document.createTextNode(
+          'Usamos cookies propias y de análisis (Google Analytics) para entender cómo se usa el ' +
+          'sitio y mejorar tu experiencia de compra. Al tocar “Entendido” las aceptás.'
+        )),
+        el('button', {
+          class: 'btn btn-primary cookie-banner-btn', type: 'button',
+          onclick: aceptarCookies,
+        }, document.createTextNode('Entendido'))
+      )
+    );
+  }
+
+  function aceptarCookies() {
+    try { localStorage.setItem(COOKIE_CONSENT_KEY, 'aceptado'); } catch (e) { /* sigue funcionando igual, solo no lo recuerda */ }
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    var box = document.getElementById('cookie-banner');
+    if (box) box.hidden = true;
+  }
+
+  /* ------------------------------------------------------------
      Google Analytics (opcional): solo se activa si se cargó un ID
      en CONFIG.googleAnalyticsId — si está vacío, no se manda nada.
   ------------------------------------------------------------ */
   function initAnalytics() {
     var id = CONFIG.googleAnalyticsId;
     if (!id) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+
+    // El estado por defecto tiene que fijarse ANTES de cargar gtag.js.
+    // Si ya había aceptado en una visita anterior, arranca "granted"
+    // directo; si no, "denied" hasta que toque "Entendido" en el aviso.
+    gtag('consent', 'default', {
+      analytics_storage: consentimientoGuardado() === 'aceptado' ? 'granted' : 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500,
+    });
+
     var script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
     document.head.appendChild(script);
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
     gtag('js', new Date());
     gtag('config', id);
   }
@@ -1527,6 +1585,7 @@
     renderTestimonios();
     renderFooter();
     renderWhatsappFloat();
+    renderCookieBanner();
 
     document.getElementById('cart-backdrop').addEventListener('click', closeCart);
     window.addEventListener('keydown', function (e) {

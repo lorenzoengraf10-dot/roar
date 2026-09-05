@@ -946,6 +946,42 @@ p {
 }
 
 /* ------------------------------------------------------------
+   Aviso de cookies
+------------------------------------------------------------ */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Por debajo del carrito, la ficha de producto y su fondo (z-index 59
+     y 60): si no, el aviso queda tapando el botón de "Enviar pedido"
+     cuando el carrito está abierto y no se puede tocar. */
+  z-index: 50;
+  background: var(--navy);
+  box-shadow: 0 -10px 30px rgba(20, 18, 15, 0.25);
+  padding: 0.9rem calc(1rem + env(safe-area-inset-left, 0px)) calc(0.9rem + env(safe-area-inset-bottom, 0px)) calc(1rem + env(safe-area-inset-right, 0px));
+}
+.cookie-banner-inner {
+  max-width: 960px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cookie-banner-text {
+  flex: 1 1 320px;
+  margin: 0;
+  color: var(--on-dark-ink);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.cookie-banner-btn {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
    Modal de producto
 ------------------------------------------------------------ */
 .product-modal,
