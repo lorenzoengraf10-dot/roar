@@ -197,19 +197,58 @@
     });
   }
 
-  function trackearPedido() {
-    if (typeof gtag !== 'function') return;
-    var items = cart.map(function (item) {
+  function itemsDelCarritoGA() {
+    return cart.map(function (item) {
       var entry = findEntry(item.catKey, item.slug);
       return entry ? itemGA(entry, item.color, item.cantidad) : null;
     }).filter(Boolean);
+  }
+
+  /* Eventos que miran el carrito entero (view_cart, begin_checkout). */
+  function trackearCarritoGA(nombreEvento) {
+    if (typeof gtag !== 'function') return;
+    var items = itemsDelCarritoGA();
     if (!items.length) return;
-    gtag('event', 'purchase', {
-      transaction_id: 'roar-' + Date.now(),
+    gtag('event', nombreEvento, { currency: 'ARS', value: cartTotal(), items: items });
+  }
+
+  /* Firma del carrito (qué productos y cuántos): sirve para no contar dos
+     veces la misma venta si alguien toca "Enviar pedido por WhatsApp"
+     más de una vez (ese botón no vacía el carrito) o recarga la vuelta
+     de Mercado Pago. */
+  var ULTIMO_PEDIDO_KEY = 'roar_ultimo_pedido_ga';
+
+  function firmaCarrito() {
+    return cart.map(function (i) {
+      return i.catKey + ':' + i.slug + ':' + (i.color || '') + ':' + i.cantidad;
+    }).sort().join('|');
+  }
+
+  /* medio: 'whatsapp' | 'transferencia' | 'mercadopago'.
+     idExterno: id del pago cuando existe (Mercado Pago), así GA4 también
+     descarta duplicados del lado de ellos. */
+  function trackearPedido(medio, idExterno) {
+    if (typeof gtag !== 'function') return;
+    var items = itemsDelCarritoGA();
+    if (!items.length) return;
+
+    var firma = medio + '#' + (idExterno || firmaCarrito());
+    var anterior = null;
+    try { anterior = localStorage.getItem(ULTIMO_PEDIDO_KEY); } catch (e) { /* sin storage: se trackea igual */ }
+    if (anterior === firma) return;
+    try { localStorage.setItem(ULTIMO_PEDIDO_KEY, firma); } catch (e) { /* idem */ }
+
+    var datos = {
+      transaction_id: idExterno ? 'mp-' + idExterno : 'roar-' + Date.now(),
       currency: 'ARS',
       value: cartTotal(),
+      payment_type: medio,
       items: items,
-    });
+    };
+    if (medio !== 'mercadopago' && entrega.tipo === 'envio' && entrega.precio != null) {
+      datos.shipping = entrega.precio;
+    }
+    gtag('event', 'purchase', datos);
   }
 
   /* ------------------------------------------------------------
@@ -258,11 +297,22 @@
     recalcularEnvioSiCorresponde();
     toast('Agregado al pedido');
 
+    // Sumó algo nuevo: es otro pedido, así que vuelve a poder contarse
+    // como venta aunque termine con los mismos productos que el anterior.
+    try { localStorage.removeItem(ULTIMO_PEDIDO_KEY); } catch (e) { /* sin storage */ }
+
     var entry = findEntry(catKey, slug);
     if (entry) trackearItemGA('add_to_cart', itemGA(entry, color, cantidad));
   }
 
   function cartSetQty(catKey, slug, cantidad, color) {
+    var previo = cart.filter(function (i) { return i.catKey === catKey && i.slug === slug && i.color === color; })[0];
+    var entryGA = findEntry(catKey, slug);
+    if (previo && entryGA) {
+      var diferencia = Math.max(cantidad, 0) - previo.cantidad;
+      if (diferencia < 0) trackearItemGA('remove_from_cart', itemGA(entryGA, color, -diferencia));
+      else if (diferencia > 0) trackearItemGA('add_to_cart', itemGA(entryGA, color, diferencia));
+    }
     if (cantidad <= 0) {
       cart = cart.filter(function (i) { return !(i.catKey === catKey && i.slug === slug && i.color === color); });
     } else {
@@ -1037,6 +1087,7 @@
 
   function openCart() {
     renderCartDrawer();
+    trackearCarritoGA('view_cart');
     document.getElementById('cart-drawer').hidden = false;
     document.getElementById('cart-backdrop').hidden = false;
     document.body.classList.add('no-scroll');
@@ -1162,7 +1213,7 @@
     lineas.push('');
     lineas.push('Quedo a la espera de los datos para coordinar el pago y el envío. ¡Gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
-    trackearPedido();
+    trackearPedido('whatsapp');
   }
 
   /* Bloque "Pagar por transferencia" en el carrito: muestra alias/CVU/
@@ -1250,12 +1301,12 @@
     lineas.push('');
     lineas.push('Ya realicé la transferencia a nombre de ' + nombre + '. ¡Muchas gracias!');
     window.open(waLink(CONFIG.whatsapp, lineas.join('\n')), '_blank');
-    trackearPedido();
+    trackearPedido('transferencia');
 
     cart = [];
     saveCart();
     renderCartCount();
-    transferData = { nombre: '', confirmado: false };
+    transferData = { nombre: '', confirmado: false, abierto: false };
     renderCartDrawer();
     toast('¡Pedido enviado! Te vamos a confirmar el pago y coordinar la entrega.');
   }
@@ -1278,6 +1329,8 @@
       toast('Ningún producto del pedido tiene precio cargado todavía');
       return;
     }
+
+    trackearCarritoGA('begin_checkout');
 
     var textoOriginal = btn.textContent;
     btn.disabled = true;
@@ -1512,35 +1565,74 @@
     try { return localStorage.getItem(COOKIE_CONSENT_KEY); } catch (e) { return null; }
   }
 
+  /* El aviso es fijo abajo de todo: publica su alto en --cookie-banner-h
+     para que el botón flotante de WhatsApp, los toasts y el final de la
+     página se corran para arriba y no queden tapados. */
+  function actualizarAltoCookieBanner() {
+    var box = document.getElementById('cookie-banner');
+    var alto = box && !box.hidden ? box.offsetHeight : 0;
+    document.documentElement.style.setProperty('--cookie-banner-h', alto + 'px');
+  }
+
   function renderCookieBanner() {
     if (!CONFIG.googleAnalyticsId) return;
-    if (consentimientoGuardado() === 'aceptado') return;
+    var guardado = consentimientoGuardado();
+    if (guardado === 'aceptado' || guardado === 'rechazado') return;
 
     var box = document.getElementById('cookie-banner');
     if (!box) return;
+    box.setAttribute('role', 'region');
+    box.setAttribute('aria-label', 'Aviso de cookies');
     box.hidden = false;
     box.innerHTML = '';
     box.appendChild(
       el('div', { class: 'cookie-banner-inner' },
         el('p', { class: 'cookie-banner-text' }, document.createTextNode(
-          'Usamos cookies propias y de análisis (Google Analytics) para entender cómo se usa el ' +
-          'sitio y mejorar tu experiencia de compra. Al tocar “Entendido” las aceptás.'
+          'Usamos cookies de análisis (Google Analytics) para entender cómo se usa el ' +
+          'sitio y mejorar tu experiencia de compra.'
         )),
-        el('button', {
-          class: 'btn btn-primary cookie-banner-btn', type: 'button',
-          onclick: aceptarCookies,
-        }, document.createTextNode('Entendido'))
+        el('div', { class: 'cookie-banner-actions' },
+          el('button', {
+            class: 'btn cookie-banner-btn cookie-banner-btn-secundario', type: 'button',
+            onclick: function () { responderCookies(false); },
+          }, document.createTextNode('Rechazar')),
+          el('button', {
+            class: 'btn btn-primary cookie-banner-btn', type: 'button',
+            onclick: function () { responderCookies(true); },
+          }, document.createTextNode('Aceptar'))
+        )
       )
     );
+    actualizarAltoCookieBanner();
+    window.addEventListener('resize', actualizarAltoCookieBanner);
   }
 
-  function aceptarCookies() {
-    try { localStorage.setItem(COOKIE_CONSENT_KEY, 'aceptado'); } catch (e) { /* sigue funcionando igual, solo no lo recuerda */ }
-    if (typeof gtag === 'function') {
+  function responderCookies(acepta) {
+    try { localStorage.setItem(COOKIE_CONSENT_KEY, acepta ? 'aceptado' : 'rechazado'); } catch (e) { /* sigue funcionando igual, solo no lo recuerda */ }
+    if (acepta && typeof gtag === 'function') {
       gtag('consent', 'update', { analytics_storage: 'granted' });
     }
     var box = document.getElementById('cookie-banner');
     if (box) box.hidden = true;
+    window.removeEventListener('resize', actualizarAltoCookieBanner);
+    actualizarAltoCookieBanner();
+  }
+
+  /* Parámetros que Mercado Pago agrega a la URL de vuelta (además de
+     ?pago=...). Se sacan antes de mandar el page_view para no ensuciar
+     los reportes de GA4 con ids de pago, y después se limpian de la
+     barra de direcciones (ver manejarVueltaDeMercadoPago). */
+  var PARAMS_VUELTA_MP = [
+    'pago', 'collection_id', 'collection_status', 'payment_id', 'status',
+    'external_reference', 'payment_type', 'merchant_order_id', 'preference_id',
+    'site_id', 'processing_mode', 'merchant_account_id',
+  ];
+
+  function urlSinParamsDeMP() {
+    var params = new URLSearchParams(location.search);
+    PARAMS_VUELTA_MP.forEach(function (p) { params.delete(p); });
+    var query = params.toString();
+    return location.pathname + (query ? '?' + query : '') + location.hash;
   }
 
   /* ------------------------------------------------------------
@@ -1557,10 +1649,14 @@
     // El estado por defecto tiene que fijarse ANTES de cargar gtag.js.
     // Si ya había aceptado en una visita anterior, arranca "granted"
     // directo; si no, "denied" hasta que toque "Entendido" en el aviso.
+    // Consent Mode v2: además de analytics_storage y ad_storage, Google
+    // exige declarar ad_user_data y ad_personalization (si faltan, GA4
+    // marca la propiedad con la advertencia de consentimiento incompleto).
     gtag('consent', 'default', {
       analytics_storage: consentimientoGuardado() === 'aceptado' ? 'granted' : 'denied',
       ad_storage: 'denied',
-      wait_for_update: 500,
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
     });
 
     var script = document.createElement('script');
@@ -1569,7 +1665,7 @@
     document.head.appendChild(script);
 
     gtag('js', new Date());
-    gtag('config', id);
+    gtag('config', id, { page_location: location.origin + urlSinParamsDeMP() });
   }
 
   /* ------------------------------------------------------------
@@ -1615,7 +1711,7 @@
     if (!pago) return;
 
     if (pago === 'exito') {
-      trackearPedido();
+      trackearPedido('mercadopago', params.get('payment_id') || params.get('collection_id'));
       cart = [];
       saveCart();
       renderCartCount();
@@ -1626,9 +1722,7 @@
       toast('Pago pendiente de confirmación (por ejemplo, Rapipago/Pago Fácil).');
     }
 
-    params.delete('pago');
-    var query = params.toString();
-    history.replaceState(null, '', location.pathname + (query ? '?' + query : '') + location.hash);
+    history.replaceState(null, '', urlSinParamsDeMP());
   }
 
   if (document.readyState === 'loading') {

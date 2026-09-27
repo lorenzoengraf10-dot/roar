@@ -932,8 +932,11 @@ p {
 .whatsapp-float-btn {
   position: fixed;
   right: 1rem;
-  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  /* Si el aviso de cookies está abierto, sube por encima de él
+     (--cookie-banner-h lo publica site.js; ya incluye el safe-area). */
+  bottom: calc(1rem + max(env(safe-area-inset-bottom, 0px), var(--cookie-banner-h, 0px)));
   z-index: 45;
+  transition: bottom 0.25s ease;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -959,26 +962,68 @@ p {
   z-index: 50;
   background: var(--navy);
   box-shadow: 0 -10px 30px rgba(20, 18, 15, 0.25);
-  padding: 0.9rem calc(1rem + env(safe-area-inset-left, 0px)) calc(0.9rem + env(safe-area-inset-bottom, 0px)) calc(1rem + env(safe-area-inset-right, 0px));
+  border-top: 1px solid var(--gold-deep);
+  /* Orden del shorthand: arriba, derecha, abajo, izquierda. */
+  padding: 0.9rem calc(1rem + env(safe-area-inset-right, 0px)) calc(0.9rem + env(safe-area-inset-bottom, 0px)) calc(1rem + env(safe-area-inset-left, 0px));
+  animation: cookie-banner-in 0.35s ease both;
+}
+.cookie-banner[hidden] {
+  display: none !important;
+}
+@keyframes cookie-banner-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner { animation: none; }
+  .whatsapp-float-btn { transition: none; }
+}
+/* Mientras el aviso esté abierto, el final de la página (footer) tiene
+   que poder scrollearse por encima de él. */
+body {
+  padding-bottom: var(--cookie-banner-h, 0px);
 }
 .cookie-banner-inner {
   max-width: 960px;
   margin-inline: auto;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem 1rem;
   flex-wrap: wrap;
 }
 .cookie-banner-text {
   flex: 1 1 320px;
   margin: 0;
   color: var(--on-dark-ink);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.5;
 }
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex: 1 1 100%;
+}
 .cookie-banner-btn {
-  flex: none;
+  flex: 1 1 0;
   white-space: nowrap;
+  min-height: 44px;
+  padding: 0.55rem 1.2rem;
+}
+.cookie-banner-btn-secundario {
+  background: transparent;
+  color: var(--on-dark-ink);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+@media (min-width: 640px) {
+  .cookie-banner-actions {
+    flex: none;
+  }
+  .cookie-banner-btn {
+    flex: none;
+  }
+  .cookie-banner-text {
+    font-size: 0.85rem;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -1499,7 +1544,7 @@ p {
 .toast {
   position: fixed;
   left: 50%;
-  bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px));
+  bottom: calc(1.2rem + max(env(safe-area-inset-bottom, 0px), var(--cookie-banner-h, 0px)));
   transform: translate(-50%, 12px);
   background: var(--bg-elev-2);
   border: 1px solid var(--gold-deep);
