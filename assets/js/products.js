@@ -210,7 +210,8 @@ const TARIFAS_ENVIO = {
    3. TESTIMONIOS DE CLIENTES
    Son fotos reales de historias de Instagram de clientes usando piezas
    de ROAR (etiquetados @roar.access). Para agregar una nueva, subí la
-   foto a assets/images/ y sumá un objeto { img, autor } acá abajo.
+   foto a assets/images/ y sumá un objeto { img, autor } acá abajo
+   (opcional: texto, para mostrar una frase del cliente).
    Si borrás todos los que hay acá y dejás la lista vacía ([]),
    la sección de testimonios directamente no se muestra en el sitio.
    ---------------------------------------------------------------- */
@@ -230,6 +231,11 @@ const TESTIMONIOS = [
   {
     img: "assets/images/testimonio-manutatts.jpg",
     autor: "@_manutatts",
+  },
+  {
+    img: "assets/images/testimonio-lorenzo.jpg",
+    autor: "Lorenzo Engraf",
+    texto: "Increíble presentación y muy buena calidad",
   },
 ];
 

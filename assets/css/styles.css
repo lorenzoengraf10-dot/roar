@@ -760,6 +760,14 @@ p {
   font-weight: 600;
   text-align: center;
 }
+.testimonio-card figcaption span {
+  display: block;
+}
+.testimonio-texto {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
 .testimonio-img {
   display: block;
   width: 100%;

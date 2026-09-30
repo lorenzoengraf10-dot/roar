@@ -1436,7 +1436,10 @@
           TESTIMONIOS.map(function (t) {
             return el('figure', { class: 'testimonio-card' },
               el('img', { src: t.img, alt: 'Cliente de ROAR luciendo su pieza' + (t.autor ? ' — ' + t.autor : ''), class: 'testimonio-img', loading: 'lazy' }),
-              t.autor ? el('figcaption', { text: t.autor }) : null
+              (t.autor || t.texto) ? el('figcaption', null,
+                t.texto ? el('span', { class: 'testimonio-texto', text: '“' + t.texto + '”' }) : null,
+                t.autor ? el('span', { class: 'testimonio-autor', text: t.autor }) : null
+              ) : null
             );
           })
         )
